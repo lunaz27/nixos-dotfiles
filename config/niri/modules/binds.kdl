@@ -406,7 +406,10 @@ binds {
     F1 allow-when-locked=true hotkey-overlay-title="Decrease brightness" {
         spawn-sh "noctalia-shell ipc call brightness decrease"
     }
-    F2 allow-when-locked=true hotkey-overlay-title="Increase brightness" {
-        spawn-sh "noctalia-shell ipc call brightness increase"
+    Shift+F1 allow-when-locked=true hotkey-overlay-title="Set minimum brightness" {
+        spawn-sh "noctalia-shell ipc call brightness set 0"
+    }
+    Shift+F2 allow-when-locked=true hotkey-overlay-title="Set maximum brightness" {
+        spawn-sh "noctalia-shell ipc call brightness set 100"
     }
 }
