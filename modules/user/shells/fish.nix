@@ -42,6 +42,7 @@
           nfitr = "nix flake init -t github:suwapotta/nixos-dotfiles/hosts/laptop#";
           nfitl = "nix flake init -t ~/nixos-dotfiles/hosts/laptop#";
           dac = "direnv allow .";
+          dbc = "direnv block .";
           noi = "nh os info";
           nrf = "nh os repl -H";
           ns = "nh search";

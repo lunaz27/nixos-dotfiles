@@ -4,6 +4,7 @@ require("configs.diagnostic")
 require("configs.global")
 require("configs.keymaps")
 require("configs.options")
+-- require("configs.packInterface")
 
 -- ./lua/plugins/*.lua
 require("plugins.blink-cmp")

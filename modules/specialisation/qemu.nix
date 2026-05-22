@@ -21,12 +21,14 @@
               runAsRoot = true;
               # swtpm.enable = true; # Required for Windows 11 VMs
             };
+
           };
 
           # spiceUSBRedirection.enable = true;
         };
 
-        # services.spice-vdagentd.enable = true;
+        # Clipboard sharing
+        services.spice-vdagentd.enable = true;
       };
     };
 }

@@ -1,2 +1,4 @@
+# VM
 result
 *.qcow2
+.is-vm-built
