@@ -10,8 +10,12 @@
       ./configuration.nix
       ./hardware-configuration.nix
 
+      ### disko
+      # inputs.disko.nixosModules.disko
+      # ./disk-config.nix
+
       ### home-manager
-      ./home.nix
+      ./home-manager.nix
 
       ### core
       self.nixosModules."audio"
@@ -40,6 +44,7 @@
       self.nixosModules."touchpad"
       self.nixosModules."users"
       self.nixosModules."variables"
+      self.nixosModules."vm-variant"
       self.nixosModules."zen-kernel"
       self.nixosModules."zram"
 

@@ -10,6 +10,10 @@ C_NONE := \033[0m
 
 all: switch
 
+qemu: ## Switch specialisation for qemu/kvm virtualisation
+	@printf "$(C_BLUE)   VM-SPEC $(C_NONE) NixOS#${FLAKE_HOST}\n"
+	@nh os test --specialisation Virtualisation -H ${FLAKE_HOST} $(NOTIFY)
+
 switch: git ## Build new NixOS generation
 	@printf "$(C_BLUE)  󰟁 SWITCH  $(C_NONE) NixOS#${FLAKE_HOST}\n"
 	@nh os switch . -H ${FLAKE_HOST} $(NOTIFY)
@@ -87,4 +91,4 @@ help: ## Show this help message
 	@printf "$(C_GREEN)Available commands:$(C_NONE)\n"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  $(C_BLUE)%-15s$(C_NONE) %s\n", $$1, $$2}'
 
-.PHONY: all switch boot dry test build-vm legacy clean nuke update git safety
+.PHONY: all qemu switch boot dry test build-vm legacy clean nuke update git safety
