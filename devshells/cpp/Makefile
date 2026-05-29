@@ -1,8 +1,9 @@
 # NOTE: Cheatsheet: https://devhints.io/makefile
 
 CXX = g++
-CXXFLAGS= -Iinclude -MMD -Wall -Wextra -pedantic -Wshadow
-# CXXFLAGS=--std=c++3  -Iinclude -MMD -Wall -Wextra -pedantic -Wshadow
+CXX_FLAGS= -Iinclude -MMD -Wall -Wextra -pedantic -Wshadow
+# CXX_FLAGS=--std=<here>  -Iinclude -MMD -Wall -Wextra -pedantic -Wshadow
+LDFLAGS =
 GTEST_FLAGS = -I$(GTEST_INCLUDE) -L$(GTEST_LIB) -lgtest_main -lgtest -pthread
 
 SRC = $(wildcard src/*.cpp)
@@ -13,21 +14,25 @@ TEST_SRC = $(wildcard tests/*.cpp)
 
 EXE = build/main
 TEST_EXE = build/testRunner
-ARGS ?= test_001
+ARGS ?=
 
 all: $(EXE)
 
-debug: CXXFLAGS += -g
+debug: CXX_FLAGS += -g
 debug: all
+
+asan: CXX_FLAGS += -g -O0 -fsanitize=address -fno-omit-frame-pointer
+asan: LDFLAGS += -fsanitize=address
+asan: all
 
 $(EXE): $(OBJ)
 	@echo "  LD      $@"
-	@$(CXX) -o $@ $^
+	@$(CXX) -o $@ $^ $(LDFLAGS)
 
 build/%.o: src/%.cpp
 	@mkdir -p build
 	@echo "  CXX     $@"
-	@$(CXX) $(CXXFLAGS) -c -o $@ $<
+	@$(CXX) $(CXX_FLAGS) -c -o $@ $<
 
 run: $(EXE)
 	@echo "  RUN     ${EXE}"
@@ -35,10 +40,15 @@ run: $(EXE)
 	@./$(EXE) $(ARGS)
 	@echo "=> Returned $$?."
 
+asan-run:
+	@$(MAKE) --no-print-directory clean
+	@$(MAKE) --no-print-directory asan
+	@$(MAKE) --no-print-directory run
+
 $(TEST_EXE): $(OBJ_NO_MAIN) $(TEST_SRC)
 	@mkdir -p build
 	@echo "  CXX     $@"
-	@$(CXX) $(CXXFLAGS) $^ $(GTEST_FLAGS) -o $@
+	@$(CXX) $(CXX_FLAGS) $^ $(GTEST_FLAGS) $(LDFLAGS) -o $@
 
 pytest: $(EXE)
 	@echo "  PYTEST  tests/"
@@ -52,7 +62,10 @@ report: $(EXE)
 	@echo "  REPORT  tests/"
 	@pytest -vvv --md-report --md-report-verbose=2 --md-report-show-duration --md-report-output=REPORT.md
 
-valgrind: debug
+valgrind:
+	@echo "  PREP      $@"
+	@$(MAKE) --no-print-directory clean
+	@$(MAKE) --no-print-directory debug
 	@echo "  VALGRIND  ${EXE}"
 	@echo "=== RESULT ==="
 	@valgrind --leak-check=full \
@@ -74,4 +87,4 @@ bear:
 
 -include $(DEP)
 
-.PHONY: all debug run pytest gtest report valgrind clean bear
+.PHONY: all debug asan run asan-run pytest gtest report valgrind clean bear
