@@ -6,31 +6,45 @@ CXX_FLAGS= -Iinclude -MMD -Wall -Wextra -pedantic -Wshadow
 LDFLAGS =
 GTEST_FLAGS = -I$(GTEST_INCLUDE) -L$(GTEST_LIB) -lgtest_main -lgtest -pthread
 
-SRC = $(wildcard src/*.cpp)
-OBJ = $(patsubst src/%.cpp, build/%.o, $(SRC))
-DEP = $(OBJ:%.o=%.d)
-OBJ_NO_MAIN = $(filter-out build/main.o, $(OBJ))
-TEST_SRC = $(wildcard tests/*.cpp)
+BUILD_TYPE ?= release
+BUILD_DIR = build/$(BUILD_TYPE)
 
-EXE = build/main
-TEST_EXE = build/testRunner
+ifeq ($(BUILD_TYPE), asan)
+	CXX_FLAGS += -g -O0 -fsanitize=address -fno-omit-frame-pointer
+	LDFLAGS += -fsanitize=address
+else ifeq ($(BUILD_TYPE), debug)
+	CXX_FLAGS += -g
+else # release
+	# CXX_FLAGS += -O<?>
+endif
+
+SRC = $(wildcard src/*.cpp)
+OBJ = $(patsubst src/%.cpp, $(BUILD_DIR)/%.o, $(SRC))
+DEP = $(OBJ:%.o=%.d)
+OBJ_NO_MAIN = $(filter-out $(BUILD_DIR)/main.o, $(OBJ))
+TEST_SRC = $(wildcard tests/test*.cpp)
+
+EXE = $(BUILD_DIR)/main
+TEST_EXE = $(BUILD_DIR)/testRunner
 ARGS ?=
 
 all: $(EXE)
 
-debug: CXX_FLAGS += -g
-debug: all
+release:
+	@$(MAKE) --no-print-directory BUILD_TYPE=release all
 
-asan: CXX_FLAGS += -g -O0 -fsanitize=address -fno-omit-frame-pointer
-asan: LDFLAGS += -fsanitize=address
-asan: all
+debug:
+	@$(MAKE) --no-print-directory BUILD_TYPE=debug all
+
+asan:
+	@$(MAKE) --no-print-directory BUILD_TYPE=asan all
 
 $(EXE): $(OBJ)
 	@echo "  LD      $@"
 	@$(CXX) -o $@ $^ $(LDFLAGS)
 
-build/%.o: src/%.cpp
-	@mkdir -p build
+$(BUILD_DIR)/%.o: src/%.cpp
+	@mkdir -p $(BUILD_DIR)
 	@echo "  CXX     $@"
 	@$(CXX) $(CXX_FLAGS) -c -o $@ $<
 
@@ -41,16 +55,14 @@ run: $(EXE)
 	@echo "=> Returned $$?."
 
 asan-run:
-	@$(MAKE) --no-print-directory clean
-	@$(MAKE) --no-print-directory asan
-	@$(MAKE) --no-print-directory run
+	@$(MAKE) --no-print-directory BUILD_TYPE=asan run
 
 $(TEST_EXE): $(OBJ_NO_MAIN) $(TEST_SRC)
-	@mkdir -p build
+	@mkdir -p $(BUILD_DIR)
 	@echo "  CXX     $@"
 	@$(CXX) $(CXX_FLAGS) $^ $(GTEST_FLAGS) $(LDFLAGS) -o $@
 
-pytest: $(EXE)
+pytest: debug
 	@echo "  PYTEST  tests/"
 	@pytest
 
@@ -58,22 +70,20 @@ gtest: $(TEST_EXE)
 	@echo "  GTEST   tests/"
 	@./$(TEST_EXE)
 
-report: $(EXE)
+report: debug
 	@echo "  REPORT  tests/"
 	@pytest -vvv --md-report --md-report-verbose=2 --md-report-show-duration --md-report-output=REPORT.md
 
-valgrind:
+valgrind: debug
 	@echo "  PREP      $@"
-	@$(MAKE) --no-print-directory clean
-	@$(MAKE) --no-print-directory debug
-	@echo "  VALGRIND  ${EXE}"
+	@echo "  VALGRIND  build/debug/$(notdir $(EXE))"
 	@echo "=== RESULT ==="
 	@valgrind --leak-check=full \
 		--show-leak-kinds=all \
 		--track-origins=yes \
 		--verbose \
 		--log-file=build/valgrind-out.txt \
-		./$(EXE) $(ARGS)
+		./build/debug/$(notdir $(EXE)) $(ARGS)
 	@echo "=> Valgrind finished. Check valgrind-out.txt for the report."
 
 clean:
@@ -87,4 +97,4 @@ bear:
 
 -include $(DEP)
 
-.PHONY: all debug asan run asan-run pytest gtest report valgrind clean bear
+.PHONY: all release debug asan run asan-run pytest gtest report valgrind clean bear

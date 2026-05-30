@@ -21,12 +21,14 @@
             name = "C++";
 
             packages = with pkgs; [
+              fd
+              entr
               gnumake
-              bear
 
               gcc
               clang-tools
               lldb
+              bear
               gtest
               valgrind
 
@@ -66,6 +68,11 @@
                 name = "kickstart";
                 command = "make bear";
                 help = "generate LSP bindings this project through bear";
+              }
+              {
+                name = "debug";
+                command = builtins.readFile ./debugging.sh;
+                help = "run make <mode> continuously";
               }
             ];
 

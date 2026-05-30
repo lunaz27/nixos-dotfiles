@@ -10,8 +10,8 @@ C_NONE := \033[0m
 
 all: switch
 
-qemu: ## Switch specialisation for qemu/kvm virtualisation
-	@printf "$(C_BLUE)   VM-SPEC $(C_NONE) NixOS#${FLAKE_HOST}\n"
+qemu: ## Switch to qemu/kvm virtualisation
+	@printf "$(C_BLUE)   SPECIAL $(C_NONE) NixOS#${FLAKE_HOST}\n"
 	@nh os test --specialisation Virtualisation -H ${FLAKE_HOST} $(NOTIFY)
 
 switch: git ## Build new NixOS generation
@@ -57,10 +57,10 @@ update: git ## Update flake.lock + neovim plugins and building new NixOS generat
 	@nh os switch . -H ${FLAKE_HOST} --update
 	@bash ../../scripts/autoCommit.sh
 	@if pgrep ".quickshell-wra" >/dev/null 2>&1; then \
-		printf "$(C_RED)   PKILL?  $(C_NONE) noctalia-shell [y/N]: "; \
+		printf "$(C_RED)   PKILL?  $(C_NONE) noctalia-shell [Y/n]: "; \
 		\
 		read answer; \
-		if [ "$$answer" == "n" ] && [ "$$answer" == "N" ]; then \
+		if [ "$$answer" != "n" ] && [ "$$answer" != "N" ]; then \
 			kill -15 $$(pgrep ".quickshell-wra") 2>/dev/null || true; \
 			nohup noctalia-shell >/dev/null 2>&1 & \
 			printf "$(C_BLUE)   RESTART $(C_NONE) noctalia-shell\n"; \

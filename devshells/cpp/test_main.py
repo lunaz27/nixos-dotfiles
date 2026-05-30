@@ -8,7 +8,7 @@ import pytest
 # Absolute paths
 TESTS_DIR = Path(__file__).parent
 ROOT_DIR = TESTS_DIR.parent
-BINARY_PATH = ROOT_DIR / "build" / "main"
+BINARY_PATH = ROOT_DIR / "build" / "debug" / "main"
 TEST_DIRS = sorted([d for d in TESTS_DIR.iterdir() if d.is_dir() and d.name.startswith("test_")])
 
 # pytest logic
@@ -41,6 +41,7 @@ def test_cpp_simulation(test_dir: Path) -> None:
         expected_output = f.read()
 
     assert result.stdout == expected_output
+
 
 @pytest.mark.parametrize(
     "test_dir",

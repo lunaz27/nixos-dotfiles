@@ -21,6 +21,8 @@
             name = "SystemVerilog";
 
             packages = with pkgs; [
+              fd
+              entr
               gnumake
 
               iverilog
@@ -45,6 +47,14 @@
                   # pytest-mock
                 ]
               ))
+            ];
+
+            commands = [
+              {
+                name = "debug";
+                command = builtins.readFile ./debugging.sh;
+                help = "run make <mode> continuously";
+              }
             ];
 
             devshell.motd = ''
