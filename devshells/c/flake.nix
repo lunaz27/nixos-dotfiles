@@ -2,8 +2,10 @@
   description = "C (Devshell)";
 
   inputs = {
+    flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     devshell.url = "github:numtide/devshell";
+
   };
 
   outputs =
@@ -17,7 +19,7 @@
         { pkgs, ... }:
 
         {
-          devshells.default = {
+          devshells."c" = {
             name = "C";
 
             packages = with pkgs; [

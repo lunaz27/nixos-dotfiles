@@ -2,6 +2,7 @@
 
 spawn-sh-at-startup "noctalia-shell"
 spawn-sh-at-startup "mcontrolcenter"
+spawn-sh-at-startup "soteria"
 
 // Remove border for gtk applications
 prefer-no-csd

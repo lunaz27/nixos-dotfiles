@@ -31,9 +31,13 @@ test: git ## Run temporary NixOS generation until poweroff
 	@printf "$(C_BLUE)  󰙨 TEST    $(C_NONE) NixOS#${FLAKE_HOST}\n"
 	@nh os test . -H ${FLAKE_HOST} $(NOTIFY)
 
-build-vm: git ## Build NixOS VM
+build-vm: git ## Build NixOS Virtual Machine
 	@printf "$(C_BLUE)   VM      $(C_NONE) NixOS#${FLAKE_HOST}\n"
 	@nh os build-vm . -H ${FLAKE_HOST} $(NOTIFY)
+
+build-iso: git ## Build NixOS iso image
+	@printf "$(C_BLUE)  󰗮 ISO     $(C_NONE) NixOS#${FLAKE_HOST}\n"
+	@nh os build-image -H ${FLAKE_HOST} --image-variant iso $(NOTIFY)
 
 legacy: git ## Run legacy nixos-rebuild switch
 	@printf "$(C_BLUE)  󰟁 SWITCH  $(C_NONE) (L) NixOS#${FLAKE_HOST}\n"
@@ -91,4 +95,4 @@ help: ## Show this help message
 	@printf "$(C_GREEN)Available commands:$(C_NONE)\n"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  $(C_BLUE)%-15s$(C_NONE) %s\n", $$1, $$2}'
 
-.PHONY: all qemu switch boot dry test build-vm legacy clean nuke update safety git help
+.PHONY: all qemu switch boot dry test build-vm build-iso legacy clean nuke update safety git help

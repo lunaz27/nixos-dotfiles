@@ -18,7 +18,7 @@
         { pkgs, ... }:
 
         {
-          devshells.default = {
+          devshells."latex" = {
             name = "LaTeX";
 
             packages = with pkgs; [
