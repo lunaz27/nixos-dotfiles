@@ -1,6 +1,10 @@
 {
   flake.nixosModules."gaming" =
-    { lib, pkgs, ... }:
+    {
+      lib,
+      pkgs,
+      ...
+    }:
 
     {
       specialisation = {
@@ -28,6 +32,19 @@
             };
 
             powerManagement.finegrained = lib.mkForce false;
+          };
+
+          nixpkgs.config.allowUnfreePredicate =
+            pkg:
+            builtins.elem (lib.getName pkg) [
+              "steam"
+              "steam-unwrapped"
+            ];
+          programs.steam = {
+            enable = true;
+            extraCompatPackages = with pkgs; [
+              proton-ge-bin
+            ];
           };
         };
       };
