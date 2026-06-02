@@ -1,5 +1,5 @@
 {
-  flake.homeModules."noctalia" =
+  flake.homeModules."noctalia-v4" =
     { inputs, ... }:
     {
       imports = [ inputs.noctalia.homeModules.default ];
@@ -726,7 +726,7 @@
             fontFixedScale = 1;
             panelBackgroundOpacity = 0.93;
             panelsAttachedToBar = true;
-            settingsPanelMode = "attached";
+            settingsPanelMode = "window";
             settingsPanelSideBarCardStyle = false;
             tooltipsEnabled = true;
           };

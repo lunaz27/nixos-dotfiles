@@ -15,7 +15,7 @@
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -31,6 +31,7 @@
 
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
+      # url = "github:noctalia-dev/noctalia-shell/v5";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         noctalia-qs.follows = "noctalia-qs";

@@ -55,7 +55,8 @@ in
     self.homeModules."fcitx5"
     self.homeModules."gtk"
     self.homeModules."niri-flake"
-    self.homeModules."noctalia"
+    self.homeModules."noctalia-v4"
+    # self.homeModules."noctalia-v5"
     self.homeModules."qt"
     self.homeModules."user-dirs"
 
