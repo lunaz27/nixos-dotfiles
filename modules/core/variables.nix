@@ -11,11 +11,13 @@
           VISUAL = lvim;
         };
 
-        # fcitx5 variables
         sessionVariables = {
+          # fcitx5 variables
           XMODIFIERS = "@im=fcitx";
           MOZ_ENABLE_WAYLAND = "1";
           GLFW_IM_MODULE = "ibus";
+
+          LIBVA_DRIVER_NAME = "iHD";
         };
       };
     };

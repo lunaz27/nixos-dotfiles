@@ -12,7 +12,6 @@
     {
       home.sessionVariables = {
         MANPAGER = "env NVIM_APPNAME=lvim nvim +Man!";
-        LIBVA_DRIVER_NAME = "iHD";
         EZA_COLORS = "*.txt=35:*.md=35:*.kdl=33:*.sv=33";
       };
 
