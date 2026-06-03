@@ -16,22 +16,20 @@
         ];
       services.xserver.videoDrivers = [ "nvidia" ];
 
-      hardware = {
-        nvidia = {
-          modesetting.enable = true;
-          powerManagement.enable = true;
-          powerManagement.finegrained = true;
-          open = false;
-        };
+      hardware.nvidia = {
+        open = false;
+        modesetting.enable = true;
+        powerManagement.enable = true;
+        powerManagement.finegrained = true;
 
-        nvidia.prime = {
+        prime = {
+          intelBusId = "PCI:0:2:0";
+          nvidiaBusId = "PCI:1:0:0";
+
           offload = {
             enable = true;
             enableOffloadCmd = true;
           };
-
-          intelBusId = "PCI:0:2:0";
-          nvidiaBusId = "PCI:1:0:0";
         };
       };
     };
