@@ -60,17 +60,17 @@ update: git ## Update flake.lock + neovim plugins and building new NixOS generat
 	@printf "$(C_BLUE)  󰟁 UPDATE  $(C_NONE) NixOS#${FLAKE_HOST}\n"
 	@nh os switch . -H ${FLAKE_HOST} --update
 	@bash ../../scripts/autoCommit.sh
-	@if pgrep ".quickshell-wra" >/dev/null 2>&1; then \
-		printf "$(C_RED)   PKILL?  $(C_NONE) noctalia-shell [Y/n]: "; \
+	@if pgrep "noctalia" >/dev/null 2>&1; then \
+		printf "$(C_RED)   PKILL?  $(C_NONE) noctalia [Y/n]: "; \
 		\
 		read answer; \
-		if [ "$$answer" == "n" ] && [ "$$answer" == "N" ]; then \
-			kill -15 $$(pgrep ".quickshell-wra") 2>/dev/null || true; \
-			nohup noctalia-shell >/dev/null 2>&1 & \
-			printf "$(C_BLUE)   RESTART $(C_NONE) noctalia-shell\n"; \
-			sleep 3; \
+		if [ "$$answer" != "y" ] && [ "$$answer" != "Y" ]; then \
+			printf "$(C_BLUE)  󰜺 SKIPPED $(C_NONE) noctalia\n"; \
 		else \
-			printf "$(C_BLUE)  󰜺 SKIPPED $(C_NONE) noctalia-shell\n"; \
+			kill -15 $$(pgrep "noctalia") 2>/dev/null || true; \
+			nohup noctalia >/dev/null 2>&1 & \
+			printf "$(C_BLUE)   RESTART $(C_NONE) noctalia\n"; \
+			sleep 3; \
 		fi; \
 	fi $(NOTIFY)
 

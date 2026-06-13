@@ -1,10 +1,5 @@
 {
-  flake.homeModules."zathura" =
-    { pkgs, ... }:
-
-    {
-      home.packages = with pkgs; [
-        zathura
-      ];
-    };
+  flake.homeModules."zathura" = {
+    programs.zathura.enable = true;
+  };
 }

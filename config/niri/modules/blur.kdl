@@ -1,3 +1,5 @@
+// https://yalter.github.io/niri/Configuration:-Miscellaneous
+
 // Overall blur settings
 blur {
   passes 3        // more passes = stronger blur (default: 3)
@@ -6,10 +8,9 @@ blur {
   saturation 1.5  // color saturation boost (default: 1.5)
 }
 
-// NOTE: Experimental with niri-unstable
-// Noctalia: Blur without xray for performance and better look
+// Noctalia v.5+
 layer-rule {
-  match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+  match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
 
   opacity 0.89
   background-effect {

@@ -1,8 +1,7 @@
 // https://yalter.github.io/niri/Configuration:-Miscellaneous
 
-spawn-sh-at-startup "noctalia-shell"
+spawn-at-startup "noctalia"
 spawn-sh-at-startup "mcontrolcenter"
-spawn-sh-at-startup "soteria"
 
 // Remove border for gtk applications
 prefer-no-csd
@@ -11,24 +10,24 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // screenshot-path null
 
 environment {
-    QT_QPA_PLATFORMTHEME "qt6ct"
-    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
-    QT_QPA_PLATFORM "wayland;xcb"
+  QT_QPA_PLATFORMTHEME "qt6ct"
+  QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+  QT_QPA_PLATFORM "wayland;xcb"
 }
 
 cursor {
-    hide-when-typing
-    hide-after-inactive-ms 5000
+  hide-when-typing
+  hide-after-inactive-ms 5000
 }
 
 overview {
-    zoom 0.5
+  zoom 0.5
 }
 
 xwayland-satellite {
-    path "xwayland-satellite"
+  path "xwayland-satellite"
 }
 
 hotkey-overlay {
-    skip-at-startup
+  skip-at-startup
 }

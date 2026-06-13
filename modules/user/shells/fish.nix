@@ -41,6 +41,7 @@
           grc = "git reset --hard; git clean --force";
           lg = "lazygit";
           nr = "nix repl";
+          ne = "nix eval";
           nso = "nix store optimise";
           ni = "nix-instantiate";
           nie = "nix-instantiate --eval";

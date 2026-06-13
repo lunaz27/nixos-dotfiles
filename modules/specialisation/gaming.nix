@@ -34,10 +34,14 @@
             powerManagement.finegrained = lib.mkForce false;
           };
 
-          environment.sessionVariables = {
-            LIBVA_DRIVER_NAME = lib.mkForce "nvidia";
-            GBM_BACKEND = "nvidia-drm";
-            __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+          environment = {
+            sessionVariables = {
+              LIBVA_DRIVER_NAME = lib.mkForce "nvidia";
+              GBM_BACKEND = "nvidia-drm";
+              __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+            };
+
+            # systemPackages = with pkgs; [ mangohud ];
           };
 
           nixpkgs.config.allowUnfreePredicate =
@@ -51,9 +55,7 @@
               enable = true;
 
               gamescopeSession.enable = true;
-              extraCompatPackages = with pkgs; [
-                proton-ge-bin
-              ];
+              extraCompatPackages = with pkgs; [ proton-ge-bin ];
             };
 
             gamemode.enable = true;

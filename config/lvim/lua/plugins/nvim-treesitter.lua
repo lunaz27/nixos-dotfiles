@@ -29,6 +29,7 @@ return {
         "vue",
         "kdl",
         "yaml",
+        "toml",
         "markdown",
         "markdown_inline",
         "make",

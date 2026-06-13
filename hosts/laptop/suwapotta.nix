@@ -10,13 +10,9 @@ let
 
   # Standard ~/.config/ directories
   configs = [
-    "btop"
-    "cava"
     "lvim"
     "niri"
     "nvim"
-    "yazi"
-    "zathura"
   ];
 in
 {
@@ -47,7 +43,7 @@ in
     self.homeModules."fzf"
     self.homeModules."lazygit"
     self.homeModules."tealdeer"
-    ### self.homeModules."tmux"
+    # self.homeModules."tmux"
     self.homeModules."yazi"
 
     ### desktop
@@ -55,8 +51,8 @@ in
     self.homeModules."fcitx5"
     self.homeModules."gtk"
     self.homeModules."niri-flake"
-    self.homeModules."noctalia-v4"
-    # self.homeModules."noctalia-v5"
+    # self.homeModules."noctalia-v4"
+    self.homeModules."noctalia-v5"
     self.homeModules."qt"
     self.homeModules."user-dirs"
 

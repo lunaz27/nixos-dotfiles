@@ -2,6 +2,6 @@
 
 // Noctalia shell: Blurred Overview Wallpaper
 layer-rule {
-    match namespace="^noctalia-overview*"
-    place-within-backdrop true
+  match namespace="^noctalia-backdrop*"
+  place-within-backdrop true
 }
