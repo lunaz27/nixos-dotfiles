@@ -22,9 +22,11 @@
             name = "C";
 
             packages = with pkgs; [
-              fd
               entr
+              fd
               gnumake
+              just
+              lefthook
 
               gcc
               clang-tools
@@ -67,13 +69,8 @@
             commands = [
               {
                 name = "kickstart";
-                command = "make bear";
-                help = "generate LSP bindings this project through bear";
-              }
-              {
-                name = "debug";
-                command = builtins.readFile ./debugging.sh;
-                help = "run make <mode> continuously";
+                command = "just bear && git init && lefthook install";
+                help = "generate LSP bindings this project and install git hooks";
               }
             ];
 
