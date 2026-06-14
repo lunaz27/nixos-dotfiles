@@ -38,7 +38,7 @@
       self.nixosModules."niri-cache"
       self.nixosModules."nvidia"
       self.nixosModules."packages"
-      self.nixosModules."polkit"
+      # self.nixosModules."polkit"
       self.nixosModules."portals"
       self.nixosModules."programs"
       self.nixosModules."services"

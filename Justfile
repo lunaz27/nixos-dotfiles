@@ -175,6 +175,3 @@ clean keep_num="3":
 nuke:
     printf "{{ C_RED }}   CLEAN   {{ C_NONE }} All\n"
     nh clean all --ask {{ NOTIFY }}
-
-optimise:
-    nix store optimise {{ NOTIFY }}
