@@ -168,6 +168,16 @@ update host=FLAKE_HOST: safety git
     just restart noctalia
     just commit
 
+rollback gen="":
+    #!/usr/bin/env bash
+    if [[ -z "{{ gen }}" ]]; then
+      printf "{{ C_BLUE }}   ROLLBACK{{ C_NONE }} Last Generation\n"
+      nh os rollback {{ NOTIFY }}
+    else
+      printf "{{ C_BLUE }}   ROLLBACK{{ C_NONE }} Generation {{ gen }}\n"
+      nh os rollback -t {{ gen }} {{ NOTIFY }}
+    fi
+
 clean keep_num="3":
     printf "{{ C_RED }}   CLEAN   {{ C_NONE }} Partial (Keeping: {{ keep_num }})\n"
     nh clean all --keep {{ keep_num }} {{ NOTIFY }}
