@@ -1,10 +1,7 @@
-if true then
-  return {}
-end
-
 return {
   "rareitems/anki.nvim",
 
+  enabled = false,
   lazy = false,
   opts = {
     tex_support = true,

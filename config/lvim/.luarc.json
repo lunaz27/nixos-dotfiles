@@ -1,5 +1,6 @@
 {
     "diagnostics.globals": [
         "keys"
-    ]
+    ],
+    "completion.autoRequire": false
 }

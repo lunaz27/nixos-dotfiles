@@ -1,10 +1,7 @@
-if true then
-  return {}
-end
-
 return {
   "yuukiflow/Arduino-Nvim",
 
+  enabled = true,
   dependencies = {
     "nvim-telescope/telescope.nvim",
     "neovim/nvim-lspconfig",
