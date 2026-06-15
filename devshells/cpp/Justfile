@@ -2,12 +2,12 @@
 
 set quiet
 bin := "main"
-test_bin := "test_runner"
+test_bin := "testRunner"
 
 default:
     just --list
 
-format +files="src/*.c include/*.h tests/*.c":
+format +files="src/*.cpp include/*.h tests/*.cpp":
     echo "  FORMAT  {{ files }}"
     clang-format -i {{ files }}
 
@@ -22,19 +22,19 @@ run b_type="release" +args="": (build b_type)
     ./build/{{ b_type }}/{{ bin }} {{ args }}
     echo "=> Returned $?."
 
-test: ctest pytest
+test: gtest pytest
     echo "  PASSED  tests/"
 
-ctest:
+gtest:
     make BUILD_TYPE=debug build/debug/{{ test_bin }}
-    echo "  CTEST   tests/"
+    echo "  GTEST   tests/"
     ./build/debug/{{ test_bin }}
 
 pytest: (build "debug")
     echo "  PYTEST  tests/"
     pytest
 
-entr mode="ctest":
+entr mode="gtest":
     fd . src/ include/ tests/ | entr -c bash -c "just {{ mode }}"
 
 valgrind +args="": (build "debug")
