@@ -41,6 +41,7 @@
           gaa = "git add -A";
           gd = "git diff";
           gc = "git clone";
+          gcm = "git commit -m";
           gp = "git push -v";
           gpl = "git pull";
           grc = "git reset --hard; git clean --force";

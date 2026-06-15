@@ -7,9 +7,24 @@ test_bin := "testRunner"
 default:
     just --list
 
-format +files="src/*.cpp include/*.h tests/*.cpp":
+format: format-cpp format-py
+lint: lint-cpp lint-py
+
+format-cpp +files="src/*.cpp include/*.h tests/*.cpp":
     echo "  FORMAT  {{ files }}"
     clang-format -i {{ files }}
+
+lint-cpp +files="src/*.cpp include/*.h tests/*.cpp":
+    echo "  LINT    {{ files }}"
+    clang-tidy -p . {{ files }}
+
+format-py +files=".":
+    echo "  FORMAT  tests/*.py"
+    ruff format {{ files }}
+
+lint-py args="" +files=".":
+    echo "  LINT    tests/*.py"
+    ruff check {{ files }} {{ args }}
 
 # release/asan/debug
 build b_type="release":

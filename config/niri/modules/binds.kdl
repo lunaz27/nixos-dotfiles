@@ -354,7 +354,7 @@ binds {
   Mod+Delete hotkey-overlay-title="Session Menu" {
     spawn-sh "noctalia msg panel-toggle session"
   }
-  Mod+Alt+Left hotkey-overlay-title="System Monitor" {
+  Mod+Alt+M hotkey-overlay-title="System Monitor" {
     spawn-sh "noctalia msg panel-toggle control-center system"
   }
   Mod+P allow-when-locked=true hotkey-overlay-title="Media Panel" {

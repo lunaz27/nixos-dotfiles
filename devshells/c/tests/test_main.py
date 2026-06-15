@@ -10,15 +10,16 @@ TESTS_DIR = Path(__file__).parent
 ROOT_DIR = TESTS_DIR.parent
 BINARY_PATH = ROOT_DIR / "build" / "debug" / "main"
 TEST_DIRS = sorted(
-    [d for d in TESTS_DIR.iterdir() if d.is_dir() and d.name.startswith("test_")]
+    [
+        d
+        for d in TESTS_DIR.iterdir()
+        if d.is_dir() and d.name.startswith("test_")
+    ]
 )
 
+
 # pytest logic
-@pytest.mark.parametrize(
-    "test_dir",
-    TEST_DIRS,
-    ids=[d.name for d in TEST_DIRS]
-)
+@pytest.mark.parametrize("test_dir", TEST_DIRS, ids=[d.name for d in TEST_DIRS])
 def test_c_simulation(test_dir: Path) -> None:
     expected_file = test_dir / "expected.txt"
 
@@ -30,7 +31,7 @@ def test_c_simulation(test_dir: Path) -> None:
         capture_output=True,
         encoding="utf-8",
         text=True,
-        timeout=5
+        timeout=5,
     )
 
     assert result.returncode == 0, (
@@ -45,11 +46,7 @@ def test_c_simulation(test_dir: Path) -> None:
     assert result.stdout == expected_output
 
 
-@pytest.mark.parametrize(
-    "test_dir",
-    TEST_DIRS,
-    ids=[d.name for d in TEST_DIRS]
-)
+@pytest.mark.parametrize("test_dir", TEST_DIRS, ids=[d.name for d in TEST_DIRS])
 def test_memory_leaks(test_dir: Path) -> None:
     expected_file = test_dir / "expected.txt"
 
@@ -63,12 +60,12 @@ def test_memory_leaks(test_dir: Path) -> None:
             "--show-leak-kinds=all",
             "--error-exitcode=1",
             str(BINARY_PATH),
-            test_dir.name
+            test_dir.name,
         ],
         capture_output=True,
         text=True,
         encoding="utf-8",
-        timeout=10
+        timeout=10,
     )
 
     assert result.returncode == 0, (

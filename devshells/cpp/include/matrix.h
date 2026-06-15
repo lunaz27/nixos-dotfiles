@@ -1,5 +1,5 @@
-#ifndef INCLUDE_INCLUDE_MATRIX_H_
-#define INCLUDE_INCLUDE_MATRIX_H_
+#ifndef MATRIX_H
+#define MATRIX_H
 
 #include <cstddef>
 #include <stdexcept>
@@ -74,4 +74,4 @@ template <typename T> bool Matrix<T>::operator==(const Matrix<T> &other) const {
 }
 
 template <typename T> Matrix<T>::~Matrix() {}
-#endif // INCLUDE_INCLUDE_MATRIX_H_
+#endif // MATRIX_H
