@@ -31,13 +31,13 @@
               vscode-langservers-extracted
             ];
 
-            # commands = [
-            #   {
-            #     name = "kickstart";
-            #     command = "npm init @motion-canvas@latest";
-            #     help = "create Motion Canvas project";
-            #   }
-            # ];
+            commands = [
+              {
+                name = "kickstart";
+                command = "npm init @motion-canvas@latest";
+                help = "create Motion Canvas project";
+              }
+            ];
 
             devshell.motd = ''
               󱖲 {45}Welcome to Motion Canvas.{reset}

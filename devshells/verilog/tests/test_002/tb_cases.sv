@@ -1,4 +1,4 @@
-module tb_case ();
+module tb_cases ();
 
   wire signal;
   assign signal = 1'b1;

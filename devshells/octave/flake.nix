@@ -26,20 +26,21 @@
               # octaveFull
 
               # matlab-language-server
-              ruff
-              pyright
-              (python3.withPackages (
-                python-pkgs: with python-pkgs; [
-                  debugpy
 
-                  pytest
-                  pytest-cov
-                  pytest-instafail
-                  pytest-md-report
-                  # pytest-sugar
-                  # pytest-mock
-                ]
-              ))
+              # ruff
+              # pyright
+              # (python3.withPackages (
+              #   python-pkgs: with python-pkgs; [
+              #     debugpy
+              #
+              #     pytest
+              #     pytest-cov
+              #     pytest-instafail
+              #     pytest-md-report
+              #     # pytest-sugar
+              #     # pytest-mock
+              #   ]
+              # ))
             ];
 
             devshell.motd = ''

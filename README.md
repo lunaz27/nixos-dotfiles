@@ -20,10 +20,10 @@
   |   OK   |        `C`         |       c       |
   |   OK   |       `C++`        |      cpp      |
   |   OK   |      `LaTeX`       |     latex     |
-  | _WIP_  |  `Motion Canvas`   | motion-canvas |
-  | _WIP_  |      `Octave`      |    octave     |
+  |   OK   |  `Motion Canvas`   | motion-canvas |
   |   OK   |      `Python`      |    python     |
   | _WIP_  | `(System) Verilog` |    verilog    |
+  | _WIP_  |      `Octave`      |    octave     |
 
 - Initialize a **language template** with `devshell` environment, e.g.:
 

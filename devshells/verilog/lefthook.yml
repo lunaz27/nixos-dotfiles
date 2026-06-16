@@ -1,0 +1,14 @@
+# lefthook.yml
+
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "*.{v,sv,py}"
+      run: just format && git add {staged_files}
+
+pre-push:
+  parallel: false
+  commands:
+    test:
+      run: just test

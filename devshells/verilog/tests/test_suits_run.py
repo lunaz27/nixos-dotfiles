@@ -16,11 +16,8 @@ DESIGN_SV = sorted(SRC_DIR.glob("*.sv"))
 # Mkdir if missing ../build/
 BUILD_DIR.mkdir(exist_ok=True)
 
-@pytest.mark.parametrize(
-    "test_dir",
-    TEST_DIRS,
-    ids=[d.name for d in TEST_DIRS]
-)
+
+@pytest.mark.parametrize("test_dir", TEST_DIRS, ids=[d.name for d in TEST_DIRS])
 def test_hdl_simulation(test_dir: Path) -> None:
     expected_file = test_dir / "expected.txt"
     tb_files = list(test_dir.glob("tb_*.sv"))
@@ -49,9 +46,9 @@ def test_hdl_simulation(test_dir: Path) -> None:
         encoding="utf-8",
         text=True,
         timeout=5,
-        check=False
+        check=False,
     )
-    assert compile_result.returncode == 0,(
+    assert compile_result.returncode == 0, (
         f"Compilation failed for {test_dir.name}:\n{compile_result.stderr}."
     )
 
@@ -61,7 +58,7 @@ def test_hdl_simulation(test_dir: Path) -> None:
         encoding="utf-8",
         text=True,
         timeout=5,
-        check=False
+        check=False,
     )
     assert sim_result.returncode == 0, (
         f"Simulation crashed for {test_dir.name}:\n{sim_result.stderr}"

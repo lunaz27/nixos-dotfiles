@@ -2,7 +2,6 @@
   description = "SystemVerilog (Devshell)";
 
   inputs = {
-    flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     devshell.url = "github:numtide/devshell";
   };
@@ -18,13 +17,14 @@
         { pkgs, ... }:
 
         {
-          devshells."verilog" = {
+          devshells.default = {
             name = "SystemVerilog";
 
             packages = with pkgs; [
               fd
               entr
-              gnumake
+              just
+              lefthook
 
               iverilog
               verible
@@ -52,9 +52,9 @@
 
             commands = [
               {
-                name = "debug";
-                command = builtins.readFile ./debugging.sh;
-                help = "run make <mode> continuously";
+                name = "kickstart";
+                command = "git init && lefthook install";
+                help = "initialize git repository and hooks";
               }
             ];
 

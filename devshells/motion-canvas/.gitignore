@@ -1,0 +1,4 @@
+# Nix environment
+.direnv/
+result
+result-*

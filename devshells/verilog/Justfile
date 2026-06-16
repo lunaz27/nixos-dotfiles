@@ -1,0 +1,73 @@
+# NOTE: Documentation: https://just.systems
+
+set quiet
+
+COMPILER := "iverilog"
+IVERILOG_FLAGS := "-Wall"
+SIMULATOR := "vvp"
+VIEWER := "surfer"
+
+lint: format lint-v lint-py
+
+lint-v:
+    echo "  LINT    *.sv *.v"
+    fd -e sv -e v -x verible-verilog-lint {}
+
+lint-py args="" +files=".":
+    echo "  LINT    tests/*.py"
+    ruff check {{ files }} {{ args }}
+
+format: format-v format-py
+
+format-v:
+    echo "  FORMAT  *.sv *.v"
+    fd -e sv -e v -x verible-verilog-format --inplace {}
+
+format-py +files="":
+    echo "  FORMAT  *.py"
+    ruff format {{ files }}
+
+default:
+    just --list
+
+compile test="test_001":
+    #!/usr/bin/env bash
+    echo "  COMPILE build/{{ test }}.vvp";
+    mkdir -p build/
+    {{ COMPILER }} {{ IVERILOG_FLAGS }} -o build/{{ test }}.vvp src/*.sv tests/{{ test }}/tb_*.sv
+
+sim test="test_001": (compile test)
+    echo "  SIM     build/{{ test }}.vcd"
+    echo "=== RESULT ==="
+    {{ SIMULATOR }} build/{{ test }}.vvp
+
+view test="test_001": pkill (sim test)
+    echo "  SURFER  build/{{ test }}.vcd"
+    nohup {{ VIEWER }} build/{{ test }}.vcd >/dev/null 2>&1 &
+
+test: lint pytest
+
+pytest:
+    echo "  PYTEST  tests/"
+    pytest
+    echo "  PASSED  pytest"
+
+entr target="pytest":
+    fd -e sv -e v -e py | entr -c just {{ target }}
+
+report:
+    echo "  REPORT  tests/"
+    pytest -vvv --md-report --md-report-verbose=2 --md-report-show-duration --md-report-output=REPORT.md
+
+pkill:
+    #!/usr/bin/env bash
+    if pgrep ".surfer-wrapped" >/dev/null 2>&1; then
+      echo "  PKILL   surfer";
+      pkill .surfer-wrapped;
+    fi
+
+clean: pkill
+    #!/usr/bin/env bash
+    [[ -e build ]]     && echo "  CLEAN   build/"    && rm -rf build    || true
+    [[ -f REPORT.md ]] && echo "  CLEAN   REPORT.md" && rm -f REPORT.md || true
+    [[ -f .coverage ]] && echo "  CLEAN   .coverage" && rm -f .coverage || true
