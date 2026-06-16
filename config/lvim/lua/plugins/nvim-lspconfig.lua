@@ -33,7 +33,7 @@ return {
 
       just = {},
 
-      -- meson = {},
+      mesonlsp = {},
     },
   },
 }

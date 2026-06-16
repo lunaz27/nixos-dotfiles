@@ -34,6 +34,7 @@ return {
         "markdown_inline",
         "make",
         "just",
+        "meson",
         "nix",
         "rust",
       }

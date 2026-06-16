@@ -22,7 +22,7 @@
   |   OK   |      `LaTeX`       |     latex     |
   |   OK   |  `Motion Canvas`   | motion-canvas |
   |   OK   |      `Python`      |    python     |
-  | _WIP_  | `(System) Verilog` |    verilog    |
+  |   OK   | `(System) Verilog` |    verilog    |
   | _WIP_  |      `Octave`      |    octave     |
 
 - Initialize a **language template** with `devshell` environment, e.g.:

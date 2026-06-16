@@ -14,7 +14,7 @@ return {
       typescript = { "biome" },
       typescriptreact = { "biome" },
       just = { "just" },
-      -- meson = { "meson" },
+      meson = { "meson" },
       -- rust = { "rustfmt" },
       -- kdl = { "kdlfmt" },
 
