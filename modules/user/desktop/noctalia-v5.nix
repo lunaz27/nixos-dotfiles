@@ -56,6 +56,8 @@
             };
           };
 
+          brightness.minimum_brightness = 0.01;
+
           desktop_widgets.enabled = false;
 
           dock = {
@@ -121,8 +123,10 @@
             };
 
             widget_order = [ "lockscreen-login-box@eDP-1" ];
-
           };
+
+          osd.kinds.media = false;
+
           plugins = {
             enabled = [ ];
             source = [
@@ -203,9 +207,10 @@
 
           wallpaper = {
             directory = ../../../images/wallpapers;
-
             default.path = ../../../images/wallpapers/firewatch.png;
             last.path = ../../../images/wallpapers/sunsetLandscape.jpg;
+
+            transition_on_startup = true;
           };
 
           widget = {

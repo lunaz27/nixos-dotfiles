@@ -56,6 +56,7 @@
           nfu = "nix flake update";
           nlg = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
           nsp = "nix-shell --run \"fish\" -p";
+          nrp = "nix run nixpkgs#";
           nfitr = "nix flake init -t github:suwapotta/nixos-dotfiles/hosts/laptop#";
           nfitl = "nix flake init -t ~/nixos-dotfiles/hosts/laptop#";
           noi = "nh os info";

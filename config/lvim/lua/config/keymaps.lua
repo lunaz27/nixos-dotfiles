@@ -37,3 +37,22 @@ vim.keymap.set("n", "<leader>tg", function()
     },
   })
 end, { desc = "Run make gtest (Terminal)" })
+
+-- Luasnip mappings
+vim.keymap.set("n", "gcC", function()
+  vim.cmd("normal! O")
+
+  local ls = require("luasnip")
+  local snippets = ls.get_snippets("all")
+
+  for _, snip in ipairs(snippets) do
+    if snip.trigger == "fcomment" then
+      ls.snip_expand(snip)
+
+      vim.cmd("startinsert")
+      return
+    end
+  end
+
+  print("Snippet not found!")
+end, { desc = "Add fancy comment line" })

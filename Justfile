@@ -19,7 +19,7 @@ COMMIT := "&& just notify 0 && just commit || just notify $?"
 default:
     just --list
 
-safety app_name="zen-beta":
+pkill app_name="zen-beta":
     #!/usr/bin/env bash
     if pgrep "{{ app_name }}" >/dev/null 2>&1; then
       printf "{{ C_RED }}   PKILL?  {{ C_NONE }} {{ app_name }} [y/N]: "
@@ -125,31 +125,31 @@ push:
     printf "{{ C_BLUE }}   PUSH    {{ C_NONE }} Github\n"
     git push -v && just notify 0 push || just notify $? push
 
-specialisation spec_name="Virtualisation" host=FLAKE_HOST: safety git
+specialisation spec_name="Virtualisation" host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}   SPECIAL {{ C_NONE }} NixOS#{{ host }}\n"
     nh os test {{ justfile_directory() }}/hosts/{{ host }} --specialisation {{ spec_name }} -H {{ host }} {{ NOTIFY }}
 
-switch host=FLAKE_HOST: safety git
+switch host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}  󰟁 SWITCH  {{ C_NONE }} NixOS#{{ host }}\n"
     nh os switch {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} {{ COMMIT }}
 
-boot host=FLAKE_HOST: safety git
+boot host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}  󰜉 BOOT    {{ C_NONE }} NixOS#{{ host }}\n"
     nh os boot {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} {{ COMMIT }}
 
-test host=FLAKE_HOST: safety git
+test host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}  󰙨 TEST    {{ C_NONE }} NixOS#{{ host }}\n"
     nh os test {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} {{ NOTIFY }}
 
-dry host=FLAKE_HOST: safety git
+dry host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}   DRY     {{ C_NONE }} NixOS#{{ host }}\n"
     nh os switch {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} --dry {{ NOTIFY }}
 
-legacy host=FLAKE_HOST: safety git
+legacy host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}  󰟁 SWITCH  {{ C_NONE }} (L) NixOS#{{ host }}\n"
     sudo nixos-rebuild switch --flake {{ justfile_directory() }}/hosts/{{ host }} {{ COMMIT }}
 
-update host=FLAKE_HOST: safety git
+update host=FLAKE_HOST: pkill git
     #!/usr/bin/env bash
     printf "{{ C_BLUE }}   UPDATE  {{ C_NONE }} lazy.nvim\n"
     NVIM_APPNAME=lvim nvim --headless "+Lazy! sync" +qa &>/dev/null

@@ -72,6 +72,12 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
         input_radius = 6.0
         show_login_button = true
 
+[nightlight]
+temperature_day = 10000
+
+[osd.kinds]
+media = false
+
 [plugins]
 enabled = []
 
@@ -132,6 +138,7 @@ settings_show_advanced = true
 
 [theme]
 builtin = "Catppuccin"
+mode = "dark"
 source = "builtin"
 
     [theme.templates]
@@ -140,15 +147,7 @@ source = "builtin"
 
 [wallpaper]
 directory = "/home/suwapotta/nixos-dotfiles/images/wallpapers"
-
-    [wallpaper.default]
-    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/firewatch.png"
-
-    [wallpaper.last]
-    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/firewatch.png"
-
-    [wallpaper.monitors.eDP-1]
-    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/firewatch.png"
+transition_on_startup = true
 
 [widget.active_window]
 display = "icon_only"
