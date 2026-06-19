@@ -2,7 +2,21 @@
 
 output "eDP-1" {
   mode "1920x1080@60.001"
-  scale 1
+  focus-at-startup
+  scale 1.0
+
+  hot-corners {
+    // off
+    // top-left
+    // top-right
+    // bottom-left
+    bottom-right
+  }
+}
+
+output "HDMI-A-1" {
+  mode "1440x900@75.003"
+  scale 0.90
 
   hot-corners {
     // off

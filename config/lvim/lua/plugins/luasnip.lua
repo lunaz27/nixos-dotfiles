@@ -6,7 +6,10 @@ return {
   },
 
   config = function(_, opts)
-    require("luasnip").setup(opts)
+    local ls = require("luasnip")
+
+    ls.setup(opts)
+    ls.filetype_extend("just", { "sh" })
 
     require("luasnip.loaders.from_lua").lazy_load({
       paths = { vim.fn.stdpath("config") .. "/snippets" },

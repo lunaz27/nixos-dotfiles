@@ -56,6 +56,17 @@
             };
           };
 
+          calendar = {
+            enabled = true;
+
+            account = {
+              "personal_google" = {
+                name = "sv_cal";
+                type = "google";
+              };
+            };
+          };
+
           brightness.minimum_brightness = 0.01;
 
           desktop_widgets.enabled = false;

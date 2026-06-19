@@ -14,6 +14,13 @@ start = [ "launcher", "clock", "group:g1", "media" ]
     opacity = 0.0
     padding = 6.0
 
+[calendar]
+enabled = true
+
+    [calendar.account.personal_google]
+    name = "sv_cal"
+    type = "google"
+
 [desktop_widgets]
 enabled = false
 schema_version = 2
