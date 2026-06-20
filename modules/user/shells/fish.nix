@@ -43,6 +43,7 @@
           gc = "git clone";
           gcm = "git commit -m";
           gp = "git push -v";
+          gb = "git branch";
           gpl = "git pull";
           grc = "git reset --hard; git clean --force";
           lg = "lazygit";
@@ -70,6 +71,7 @@
           noc = "nixos-container";
           j = "just";
           nj = "nix-just";
+          lh = "lefthook";
         };
 
         # shellInit = ''

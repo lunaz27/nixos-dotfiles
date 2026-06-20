@@ -1,0 +1,81 @@
+# ── meson.build ───────────────────────────────────────────────────────────────
+project(
+    'cpp-template',
+    'cpp',
+    version: '0.0.0',
+    default_options: [
+        'warning_level=3',
+        'cpp_std=c++26',
+    ],
+)
+project_description = 'An example C++ template using Meson + Ninja'
+
+# ── Target ────────────────────────────────────────────────────────────────────
+core_sources = [
+    'src/hello.cpp',
+]
+
+public_headers = include_directories('include')
+
+core_lib = static_library(
+    'core',
+    sources: core_sources,
+    include_directories: public_headers,
+)
+
+core_dep = declare_dependency(
+    include_directories: public_headers,
+    link_with: core_lib,
+)
+
+# ── Binary ────────────────────────────────────────────────────────────────────
+build_args = [
+
+]
+
+build_args += [
+    '-DPROJECT_NAME="' + meson.project_name() + '"',
+    '-DPROJECT_VERSION="' + meson.project_version() + '"',
+]
+
+executable(
+    meson.project_name(),
+    sources: ['src/main.cpp'],
+    include_directories: public_headers,
+    dependencies: core_dep,
+    cpp_args: build_args,
+    install: true,
+)
+
+# ── Unit tests ────────────────────────────────────────────────────────────────
+if not meson.is_subproject()
+    gtest_dep = dependency('gtest', main: true, required: true)
+
+    test(
+        'matrix_test',
+        executable(
+            'matrix_test',
+            sources: [
+                'tests/testMatrix.cpp',
+            ],
+            dependencies: [
+                core_dep,
+                gtest_dep,
+            ],
+        ),
+    )
+
+    test(
+        'hello_test',
+        executable(
+            'hello_test',
+            sources: [
+                'tests/testHello.cpp',
+            ],
+            dependencies: [
+                core_dep,
+                gtest_dep,
+            ],
+        ),
+    )
+endif

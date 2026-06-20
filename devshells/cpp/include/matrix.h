@@ -45,7 +45,7 @@ template <typename T> T Matrix<T>::get(size_t row, size_t col) const {
 }
 
 template <typename T> void Matrix<T>::set(size_t row, size_t col, T value) {
-  if (row > this->rows || col > this->cols) {
+  if (row >= this->rows || col >= this->cols) {
     throw std::out_of_range("Matrix indices out of bounds");
   }
 
@@ -74,4 +74,5 @@ template <typename T> bool Matrix<T>::operator==(const Matrix<T> &other) const {
 }
 
 template <typename T> Matrix<T>::~Matrix() {}
+
 #endif // MATRIX_H

@@ -1,0 +1,17 @@
+# lefthook.yml
+
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "*.{cpp,h,hpp}"
+      run: just format {staged_files} && git add {staged_files}
+    lint:
+      glob: "*.{cpp,h,hpp}"
+      run: just lint {staged_files}
+
+pre-push:
+  parallel: false
+  commands:
+    test:
+      run: just test

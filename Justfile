@@ -21,6 +21,7 @@ default:
 
 pkill app_name="zen-beta":
     #!/usr/bin/env bash
+    set -euo pipefail
     if pgrep "{{ app_name }}" >/dev/null 2>&1; then
       printf "{{ C_RED }}   PKILL?  {{ C_NONE }} {{ app_name }} [y/N]: "
       read -r answer
@@ -35,6 +36,7 @@ pkill app_name="zen-beta":
 
 restart app_name="noctalia":
     #!/usr/bin/env bash
+    set -euo pipefail
     if pgrep "{{ app_name }}" >/dev/null 2>&1; then
       printf "{{ C_RED }}   RESTART?{{ C_NONE }} {{ app_name }} [Y/n]: "
       read -r answer
@@ -58,6 +60,7 @@ git:
 
 notify exit_code="0" context="system":
     #!/usr/bin/env bash
+    set -euo pipefail
 
     # Context path
     if [[ "{{ context }}" == "system" ]]; then
@@ -109,6 +112,7 @@ notify exit_code="0" context="system":
 
 commit: git
     #!/usr/bin/env bash
+    set -euo pipefail
     GEN=$(readlink /nix/var/nix/profiles/system | cut -d "-" -f 2)
     MESS="[ AUTO ] NixOS Generation $GEN"
     DESC="Saved latest generation $GEN at $(date -u +%Y-%m-%d\ %H:%M:%S)."
@@ -151,6 +155,7 @@ legacy host=FLAKE_HOST: pkill git
 
 update host=FLAKE_HOST: pkill git
     #!/usr/bin/env bash
+    set -euo pipefail
     printf "{{ C_BLUE }}   UPDATE  {{ C_NONE }} lazy.nvim\n"
     NVIM_APPNAME=lvim nvim --headless "+Lazy! sync" +qa &>/dev/null
 
@@ -170,6 +175,7 @@ update host=FLAKE_HOST: pkill git
 
 rollback gen="":
     #!/usr/bin/env bash
+    set -euo pipefail
     if [[ -z "{{ gen }}" ]]; then
       CURRENT_GEN=$(readlink /nix/var/nix/profiles/system | cut -d "-" -f 2)
       printf "{{ C_BLUE }}   ROLLBACK{{ C_NONE }} Generation $((CURRENT_GEN - 1))\n"

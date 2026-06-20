@@ -38,3 +38,5 @@ CheckOptions:
     value: 1
   - key: modernize-use-default-member-init.UseAssignment
     value: 1
+  - key: readability-identifier-naming.MacroDefinitionIgnoredRegexp
+    value: "^(TEST|TYPED_TEST|TYPED_TEST_SUITE|TEST_F|TEST_P)$"

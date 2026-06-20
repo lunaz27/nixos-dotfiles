@@ -1,8 +1,8 @@
 # NOTE: Cheatsheet: https://devhints.io/makefile
 
 CXX = g++
-CXX_FLAGS= -Iinclude -MMD -Wall -Wextra -pedantic -Wshadow
-# CXX_FLAGS=--std=<here>  -Iinclude -MMD -Wall -Wextra -pedantic -Wshadow
+# CXX_FLAGS= -Iinclude -MMD -Wall -Wextra -pedantic -Wshadow
+CXX_FLAGS=--std=c++26  -Iinclude -MMD -Wall -Wextra -pedantic -Wshadow
 LDFLAGS =
 GTEST_FLAGS = -I$(GTEST_INCLUDE) -L$(GTEST_LIB) -lgtest_main -lgtest -pthread
 
