@@ -21,28 +21,8 @@
             "default" = {
               contact_shadow = true;
 
-              capsule_group = [
-                {
-                  fill = "surface_variant";
-
-                  members = [
-                    "sysmon"
-                    "temp"
-                    "ram"
-                    "cpu"
-                  ];
-                  id = "g1";
-                  start = [
-                    "launcher"
-                    "clock"
-                    "group:g1"
-                    "media"
-                  ];
-                  opacity = 0;
-                  padding = 6;
-                }
-              ];
               center = [ "workspaces" ];
+
               end = [
                 "tray"
                 "network"
@@ -53,7 +33,21 @@
                 "brightness"
                 "control-center"
               ];
+
+              start = [
+                "launcher"
+                "clock"
+                "sysmon"
+                "temp"
+                "ram"
+                "cpu"
+                "media"
+              ];
             };
+          };
+
+          brightness = {
+            minimum_brightness = 0.01;
           };
 
           calendar = {
@@ -66,8 +60,6 @@
               };
             };
           };
-
-          brightness.minimum_brightness = 0.01;
 
           desktop_widgets.enabled = false;
 
@@ -155,6 +147,10 @@
           };
 
           shell = {
+            animation = {
+              speed = 0.75;
+            };
+
             avatar_path = ../../../images/pfp/youmu.png;
             corner_radius_scale = 1.75;
             font_family = "Work Sans SemiBold";
