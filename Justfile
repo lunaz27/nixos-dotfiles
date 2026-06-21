@@ -129,6 +129,7 @@ push:
     printf "{{ C_BLUE }}   PUSH    {{ C_NONE }} Github\n"
     git push -v && just notify 0 push || just notify $? push
 
+# Virtualisation/Gaming
 specialisation spec_name="Virtualisation" host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}   SPECIAL {{ C_NONE }} NixOS#{{ host }}\n"
     nh os test {{ justfile_directory() }}/hosts/{{ host }} --specialisation {{ spec_name }} -H {{ host }} {{ NOTIFY }}

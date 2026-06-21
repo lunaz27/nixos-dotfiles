@@ -349,67 +349,67 @@ binds {
   }
 
   // 2. Noctalia shell v5+
-  Alt+Space hotkey-overlay-title="Application Launcher" {
+  Alt+Space repeat=false hotkey-overlay-title="Application Launcher" {
     spawn-sh "noctalia msg panel-toggle launcher"
   }
-  Mod+M hotkey-overlay-title="Control Center" {
+  Mod+M repeat=false hotkey-overlay-title="Control Center" {
     spawn-sh "noctalia msg panel-toggle control-center"
   }
-  Mod+Shift+M hotkey-overlay-title="Settings" {
+  Mod+Shift+M repeat=false hotkey-overlay-title="Settings" {
     spawn-sh "noctalia msg settings-toggle"
   }
-  Mod+V hotkey-overlay-title="Clipboard History" {
+  Mod+V repeat=false hotkey-overlay-title="Clipboard History" {
     spawn-sh "noctalia msg panel-toggle clipboard"
   }
-  Mod+Shift+Delete hotkey-overlay-title="Clear Clipboard History" {
+  Mod+Shift+Delete repeat=false hotkey-overlay-title="Clear Clipboard History" {
     spawn-sh "noctalia msg clipboard-clear"
   }
-  Mod+Shift+C hotkey-overlay-title="Calendar" {
+  Mod+Shift+C repeat=false hotkey-overlay-title="Calendar" {
     spawn-sh "noctalia msg panel-toggle control-center calendar"
   }
-  Mod+Delete hotkey-overlay-title="Session Menu" {
+  Mod+Delete repeat=false hotkey-overlay-title="Session Menu" {
     spawn-sh "noctalia msg panel-toggle session"
   }
-  Mod+Alt+M hotkey-overlay-title="System Monitor" {
+  Mod+Alt+M repeat=false hotkey-overlay-title="System Monitor" {
     spawn-sh "noctalia msg panel-toggle control-center system"
   }
-  Mod+P allow-when-locked=true hotkey-overlay-title="Media Panel" {
+  Mod+P repeat=false allow-when-locked=true hotkey-overlay-title="Media Panel" {
     spawn-sh "noctalia msg panel-toggle control-center media"
   }
-  Mod+Shift+P allow-when-locked=true hotkey-overlay-title="Play/Pause media" {
+  Mod+Shift+P repeat=false allow-when-locked=true hotkey-overlay-title="Play/Pause media" {
     spawn-sh "noctalia msg media toggle"
   }
-  Mod+Shift+N allow-when-locked=true hotkey-overlay-title="Next media" {
+  Mod+Shift+N repeat=false allow-when-locked=true hotkey-overlay-title="Next media" {
     spawn-sh "noctalia msg media next"
   }
-  Mod+Shift+B allow-when-locked=true hotkey-overlay-title="Previous media" {
+  Mod+Shift+B repeat=false allow-when-locked=true hotkey-overlay-title="Previous media" {
     spawn-sh "noctalia msg media previous"
   }
-  Mod+Shift+W hotkey-overlay-title="Set Wallpaper" {
+  Mod+Shift+W repeat=false hotkey-overlay-title="Set Wallpaper" {
     spawn-sh "noctalia msg panel-toggle wallpaper"
   }
-  Mod+N hotkey-overlay-title="Notifications Panel" {
+  Mod+N repeat=false hotkey-overlay-title="Notifications Panel" {
     spawn-sh "noctalia msg panel-toggle control-center notifications"
   }
-  Mod+Alt+N hotkey-overlay-title="Clear active notifications" {
+  Mod+Alt+N repeat=false hotkey-overlay-title="Clear active notifications" {
     spawn-sh "noctalia msg notification-clear-active"
   }
-  Mod+Shift+Alt+N hotkey-overlay-title="Clear all notifications" {
+  Mod+Shift+Alt+N repeat=false hotkey-overlay-title="Clear all notifications" {
     spawn-sh "noctalia msg notification-clear-history"
   }
-  Mod+Ctrl+N hotkey-overlay-title="Toggle DND" {
+  Mod+Ctrl+N repeat=false hotkey-overlay-title="Toggle DND" {
     spawn-sh "noctalia msg notification-dnd-toggle"
   }
-  Mod+Alt+Up hotkey-overlay-title="Toggle Bar Visibility" {
+  Mod+Alt+Up repeat=false hotkey-overlay-title="Toggle Bar Visibility" {
     spawn-sh "noctalia msg bar-toggle"
   }
-  Mod+Alt+Down hotkey-overlay-title="Toggle Dock Visibility" {
+  Mod+Alt+Down repeat=false hotkey-overlay-title="Toggle Dock Visibility" {
     spawn-sh "noctalia msg dock-toggle"
   }
-  Mod+Insert hotkey-overlay-title="Cycle power profiles" {
+  Mod+Insert repeat=false hotkey-overlay-title="Cycle power profiles" {
     spawn-sh "noctalia msg power-cycle"
   }
-  Mod+Alt+Space hotkey-overlay-title="Window Switcher access" {
+  Mod+Alt+Space repeat=false hotkey-overlay-title="Window Switcher access" {
     spawn-sh "noctalia msg panel-toggle launcher \"/win\""
   }
   Mod+F12 allow-when-locked=true hotkey-overlay-title="Increase volume" {
@@ -421,7 +421,7 @@ binds {
   Mod+F10 allow-when-locked=true hotkey-overlay-title="Mute volume" {
     spawn-sh "noctalia msg volume-mute"
   }
-  Mod+F9 allow-when-locked=true hotkey-overlay-title="Mute microphone" {
+  Mod+F9 repeat=false allow-when-locked=true hotkey-overlay-title="Mute microphone" {
     spawn-sh "noctalia msg mic-mute"
   }
   Mod+F1 allow-when-locked=true hotkey-overlay-title="Decrease brightness" {
@@ -430,10 +430,10 @@ binds {
   Mod+F2 allow-when-locked=true hotkey-overlay-title="Increase brightness" {
     spawn-sh "noctalia msg brightness-up"
   }
-  Mod+Shift+F1 allow-when-locked=true hotkey-overlay-title="Set minimum brightness (1)" {
+  Mod+Shift+F1 repeat=false allow-when-locked=true hotkey-overlay-title="Set minimum brightness (1)" {
     spawn-sh "noctalia msg brightness-set 1"
   }
-  Mod+Shift+F2 allow-when-locked=true hotkey-overlay-title="Set maximum brightness (100)" {
+  Mod+Shift+F2 repeat=false allow-when-locked=true hotkey-overlay-title="Set maximum brightness (100)" {
     spawn-sh "noctalia msg brightness-set 100"
   }
 }

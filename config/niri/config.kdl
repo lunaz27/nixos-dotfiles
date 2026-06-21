@@ -8,7 +8,7 @@
 *
 */
 include "modules/input.kdl"
-include "modules/output.kdl"
+include "modules/outputs.kdl"
 include "modules/binds.kdl"
 include "modules/layout.kdl"
 include "modules/misc.kdl"

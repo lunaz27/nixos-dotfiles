@@ -43,7 +43,7 @@ executable(
     sources: ['./src/main.c'],
     include_directories: public_headers,
     dependencies: core_dep,
-    cpp_args: build_args,
+    c_args: build_args,
     install: true,
 )
 
