@@ -54,5 +54,19 @@ vim.keymap.set("n", "gcC", function()
     end
   end
 
-  print("Snippet not found!")
+  print("Snippet not found.")
 end, { desc = "Add fancy comment line" })
+
+vim.keymap.set({ "i", "n" }, "<C-n>", function()
+  local ls = require("luasnip")
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
+end, { desc = "luasnip: Move 1 choice forward" })
+
+vim.keymap.set({ "i", "n" }, "<C-p>", function()
+  local ls = require("luasnip")
+  if ls.choice_active() then
+    ls.change_choice(-1)
+  end
+end, { desc = "luasnip: Move 1 choice backward" })
