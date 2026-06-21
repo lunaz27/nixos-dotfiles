@@ -31,7 +31,8 @@ in
   imports = [
     ### apps
     self.homeModules."anki"
-    self.homeModules."libre-office"
+    # self.homeModules."libre-office"
+    self.homeModules."only-office"
     self.homeModules."zathura"
     self.homeModules."zen-browser"
 

@@ -5,14 +5,15 @@
     with config.home;
     let
       folders = {
-        music = "Music";
-        videos = "Videos";
         desktop = "Desktop";
-        download = "Downloads";
-        pictures = "Pictures";
         documents = "Documents";
-        # templates = "Templates";
+        download = "Downloads";
+        music = "Music";
+        pictures = "Pictures";
+        projects = "Projects";
         publicShare = "Public";
+        templates = "Templates";
+        videos = "Videos";
       };
 
       mkDir = name: "${homeDirectory}/${name}";
@@ -24,9 +25,9 @@
         setSessionVariables = false;
 
         extraConfig = {
-          WORKSPACE = mkDir "Workspace";
-          VIRTUALISATION = mkDir "Virtualisation";
           PRIVATE = mkDir "Private";
+          VIRTUALISATION = mkDir "Virtualisation";
+          WORKSPACE = mkDir "Workspace";
         };
       }
       // builtins.mapAttrs (name: folder: "${homeDirectory}/${folder}") folders;
