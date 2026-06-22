@@ -1,7 +1,8 @@
 local ls = require("luasnip")
+local lse = require("luasnip.extras.fmt")
 local s = ls.snippet
 local i = ls.insert_node
-local fmt = require("luasnip.extras.fmt").fmt
+local fmt = lse.fmt
 
 return {
   s(
@@ -11,9 +12,22 @@ return {
     /*
      * {}
      */
-  ]],
+
+      ]],
       {
         i(1, "Description"),
+      }
+    )
+  ),
+
+  s(
+    "unusedpar",
+    fmt(
+      [[
+      /* {} */
+      ]],
+      {
+        i(1, "parameter"),
       }
     )
   ),

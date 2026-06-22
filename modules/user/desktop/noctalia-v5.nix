@@ -66,6 +66,7 @@
           dock = {
             enabled = true;
 
+            active_monitor_only = true;
             cross_axis_padding = 6;
             icon_size = 35;
             item_spacing = 5;
