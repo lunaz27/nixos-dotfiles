@@ -44,7 +44,7 @@ nix flake init -t github:suwapotta/nixos-dotfiles/hosts/laptop#c
 ### Disko
 
 - **Configuration**: `./modules/_disko`
-- [Documentation URL](urlhttps://github.com/nix-community/disko/blob/master/docs/quickstart.md)
+- [Documentation URL](https://github.com/nix-community/disko/blob/master/docs/quickstart.md)
 
 ## NixOS Logo
 
