@@ -26,7 +26,9 @@
       mkBookmark = name: url: { inherit name url; };
     in
     {
-      imports = [ inputs.zen-browser.homeModules.beta ];
+      imports = [
+        inputs.zen-browser.homeModules.beta
+      ];
 
       # Fix ``nixos-help`` command
       home.sessionVariables.BROWSER = "zen-beta";
@@ -209,18 +211,19 @@
             };
 
             settings = {
+              "browser.contentblocking.category" = "strict";
+              "browser.ctrlTab.sortByRecentlyUsed" = true;
               "extensions.autoDisableScopes" = 0;
               "extensions.pocket.enabled" = false;
-              "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
               "font.default.x-western" = "sans-serif";
-              "font.name.serif.x-western" = "Work Sans";
-              "font.name.sans-serif.x-western" = "Work Sans";
               "font.name.monospace.x-western" = "JetBrainsMono Nerd Font";
-              "browser.contentblocking.category" = "strict";
-              "signon.rememberSignons" = false;
-              "zen.urlbar.behavior" = "float";
-              "browser.ctrlTab.sortByRecentlyUsed" = true;
+              "font.name.sans-serif.x-western" = "Work Sans";
+              "font.name.serif.x-western" = "Work Sans";
               "general.autoScroll" = true;
+              "signon.rememberSignons" = false;
+              "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+              "zen.urlbar.behavior" = "float";
+              "zen.welcome-screen.seen" = true;
             };
 
             bookmarks = {

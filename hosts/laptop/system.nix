@@ -34,7 +34,7 @@
       self.nixosModules."git"
       self.nixosModules."intel"
       self.nixosModules."keyd"
-      self.nixosModules."latest-kernel"
+      # self.nixosModules."latest-kernel"
       # self.nixosModules."libimobiledevice"
       self.nixosModules."nano"
       self.nixosModules."network"
@@ -52,7 +52,7 @@
       self.nixosModules."users"
       self.nixosModules."variables"
       self.nixosModules."vm-variant"
-      # self.nixosModules."zen-kernel"
+      self.nixosModules."zen-kernel"
       self.nixosModules."zram"
 
       ### specialisation

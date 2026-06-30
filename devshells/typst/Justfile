@@ -32,8 +32,11 @@ pdf +args="":
     #!/usr/bin/env bash
     set -euo pipefail
     MAIN="$(fd -e typ -d 1 | head -n 1 | cut -d "." -f 1)"
+    PDF_NAME="$(basename {{ justfile_directory() }})"
     echo "  BUILD   ${MAIN}.pdf"
     typst compile "${MAIN}.typ" {{ args }}
+    echo "  MOVE    ${MAIN}.pdf -> ${PDF_NAME}.pdf"
+    mv "${MAIN}.pdf" "${PDF_NAME}.pdf"
 
 view: pdf
     #!/usr/bin/env bash
