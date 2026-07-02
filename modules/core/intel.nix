@@ -1,6 +1,10 @@
 {
   flake.nixosModules."intel" =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
+
     {
       hardware.graphics = {
         enable = true;

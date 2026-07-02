@@ -1,6 +1,9 @@
 {
   flake.homeModules."lazygit" =
-    { lib, ... }:
+    {
+      lib,
+      ...
+    }:
 
     {
       programs.lazygit = {

@@ -1,6 +1,9 @@
 {
   flake.homeModules."catppuccin" =
-    { inputs, ... }:
+    {
+      inputs,
+      ...
+    }:
 
     {
       imports = [

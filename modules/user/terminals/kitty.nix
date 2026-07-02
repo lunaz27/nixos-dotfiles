@@ -1,6 +1,9 @@
 {
   flake.homeModules."kitty" =
-    { config, ... }:
+    {
+      config,
+      ...
+    }:
 
     let
       mkSymlink =
@@ -17,13 +20,13 @@
         };
 
         settings = {
+          shell = "fish";
+
           confirm_os_window_close = "0";
           hide_window_decorations = "yes";
           cursor_shape = "beam";
           cursor_trail = "1";
           window_margin_width = "21.75";
-
-          shell = "fish";
 
           dynamic_background_opacity = "yes";
           background_opacity = "0.89";

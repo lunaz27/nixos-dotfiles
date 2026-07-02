@@ -1,6 +1,10 @@
 {
   flake.nixosModules."auto-login" =
-    { lib, pkgs, ... }:
+    {
+      lib,
+      pkgs,
+      ...
+    }:
 
     let
       # autologin on tty7y. Otherwise autologin and getty alternate in grabbing tty1 on nixos-rebuild switch

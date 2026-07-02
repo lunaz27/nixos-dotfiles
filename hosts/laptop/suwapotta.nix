@@ -62,7 +62,7 @@ in
 
     ### shells
     self.homeModules."direnv"
-    self.homeModules."entr"
+    # self.homeModules."entr"
     self.homeModules."eza"
     self.homeModules."fd"
     self.homeModules."fish"

@@ -1,6 +1,9 @@
 {
   flake.nixosModules."zen-kernel" =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
 
     {
       boot.kernelPackages = pkgs.linuxPackages_zen;

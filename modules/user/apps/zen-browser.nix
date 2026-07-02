@@ -1,6 +1,10 @@
 {
   flake.homeModules."zen-browser" =
-    { inputs, pkgs, ... }:
+    {
+      inputs,
+      pkgs,
+      ...
+    }:
 
     let
       # NOTE: Helper functions

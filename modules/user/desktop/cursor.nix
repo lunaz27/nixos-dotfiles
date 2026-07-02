@@ -1,6 +1,9 @@
 {
   flake.homeModules."cursor" =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
 
     {
       home.pointerCursor = {

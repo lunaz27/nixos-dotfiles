@@ -1,6 +1,9 @@
 {
   flake.homeModules."fcitx5" =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
 
     {
       i18n.inputMethod = {

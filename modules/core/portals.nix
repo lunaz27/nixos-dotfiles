@@ -1,6 +1,9 @@
 {
   flake.nixosModules."portals" =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
 
     # Gnome portals for niri
     {

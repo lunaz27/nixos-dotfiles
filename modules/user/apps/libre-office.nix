@@ -1,6 +1,9 @@
 {
   flake.homeModules."libre-office" =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
 
     {
       home.packages = with pkgs; [

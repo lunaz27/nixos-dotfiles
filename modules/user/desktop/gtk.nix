@@ -1,6 +1,9 @@
 {
   flake.homeModules."gtk" =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
 
     {
       gtk = {

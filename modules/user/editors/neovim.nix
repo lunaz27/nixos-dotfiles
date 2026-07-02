@@ -1,6 +1,9 @@
 {
   flake.homeModules."neovim" =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
 
     {
       home.packages = with pkgs; [

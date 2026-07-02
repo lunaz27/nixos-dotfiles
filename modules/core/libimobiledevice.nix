@@ -1,6 +1,9 @@
 {
   flake.nixosModules."libimobiledevice" =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
 
     {
       services.usbmuxd.enable = true;

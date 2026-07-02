@@ -1,6 +1,9 @@
 {
   flake.homeModules."user-dirs" =
-    { config, ... }:
+    {
+      config,
+      ...
+    }:
 
     with config.home;
     let

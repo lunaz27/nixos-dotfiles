@@ -1,6 +1,9 @@
 {
   flake.homeModules."tmux" =
-    { pkgs, ... }:
+    {
+      pkgs,
+      ...
+    }:
 
     {
       programs.tmux = {
