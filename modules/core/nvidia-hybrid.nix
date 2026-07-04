@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."nvidia" =
+  flake.nixosModules."nvidia-hybrid" =
     # NOTE: Specs:
     # $ nix-shell -p pciutils --run "lspci | grep 'VGA\|3D'"
     #   00:02.0 VGA compatible controller: Intel Corporation TigerLake-H GT1 [UHD Graphics] (rev 01)

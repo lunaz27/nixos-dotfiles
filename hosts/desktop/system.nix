@@ -5,7 +5,7 @@
 }:
 
 {
-  flake.nixosConfigurations."laptop" = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations."desktop" = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = { inherit self inputs; };
 
@@ -15,8 +15,8 @@
       ./hardware-configuration.nix
 
       ### disko
-      # inputs.disko.nixosModules.disko
-      # ./disk-config.nix
+      inputs.disko.nixosModules.disko
+      ./disk-config.nix
 
       ### home-manager
       ./home-manager.nix
@@ -25,6 +25,7 @@
       self.nixosModules."testbox"
 
       ### core
+      self.nixosModules."amd-gpu"
       self.nixosModules."audio"
       self.nixosModules."auto-login"
       self.nixosModules."bluetooth"
@@ -32,7 +33,7 @@
       self.nixosModules."experimental"
       self.nixosModules."fonts"
       self.nixosModules."git"
-      self.nixosModules."intel"
+      # self.nixosModules."intel"
       self.nixosModules."keyd"
       # self.nixosModules."latest-kernel"
       # self.nixosModules."libimobiledevice"
@@ -40,7 +41,7 @@
       self.nixosModules."network"
       self.nixosModules."nh"
       self.nixosModules."niri-cache"
-      self.nixosModules."nvidia-hybrid"
+      # self.nixosModules."nvidia-hybrid"
       self.nixosModules."packages"
       # self.nixosModules."polkit"
       self.nixosModules."portals"
