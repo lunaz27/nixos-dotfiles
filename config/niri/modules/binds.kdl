@@ -430,10 +430,16 @@ binds {
   Mod+F2 allow-when-locked=true hotkey-overlay-title="Increase brightness" {
     spawn-sh "noctalia msg brightness-up"
   }
+  Mod+F3 allow-when-locked=true hotkey-overlay-title="Toggle Night light" {
+    spawn-sh "noctalia msg nightlight-toggle"
+  }
   Mod+Shift+F1 repeat=false allow-when-locked=true hotkey-overlay-title="Set minimum brightness (1)" {
     spawn-sh "noctalia msg brightness-set 1"
   }
   Mod+Shift+F2 repeat=false allow-when-locked=true hotkey-overlay-title="Set maximum brightness (100)" {
     spawn-sh "noctalia msg brightness-set 100"
+  }
+  Mod+Shift+F3 repeat=false allow-when-locked=true hotkey-overlay-title="Force Toggle Night light" {
+    spawn-sh "noctalia msg nightlight-force-toggle"
   }
 }

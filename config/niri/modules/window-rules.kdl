@@ -17,6 +17,8 @@ window-rule {
 
 window-rule {
   match app-id="^anki$"
+  match app-id="^org\\.gnome\\.Nautilus$"
+  match app-id="^xdg-desktop-portal-gtk$"
   opacity 0.89
 
   draw-border-with-background false

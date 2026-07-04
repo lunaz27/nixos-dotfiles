@@ -10,7 +10,7 @@
         "--border=rounded"
       ];
 
-      historyWidgetOptions = [
+      historyWidget.options = [
         "--height=80%"
         "--layout=reverse"
         "--border=rounded"

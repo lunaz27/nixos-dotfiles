@@ -250,11 +250,10 @@
                     (mkBookmark "Messenger" "https://www.messenger.com/t/5765709533478160/")
                     (mkBookmark "Motion Canvas (Docs)" "https://archive.canvascommons.io/")
                     (mkBookmark "My Bach Khoa" "https://mybk.hcmut.edu.vn/my/index.action")
-                    (mkBookmark "Tinkercad" "https://www.tinkercad.com/dashboard/designs/circuits")
+                    (mkBookmark "Noggle" "https://noogle.dev/")
                     (mkBookmark "YouTube" "https://www.youtube.com/")
                     (mkBookmark "Zalo" "https://chat.zalo.me/")
                     (mkBookmark "アニメ" "https://aanime.biz/")
-                    (mkBookmark "Noggle" "https://noogle.dev/")
                   ];
                 }
               ];

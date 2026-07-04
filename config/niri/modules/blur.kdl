@@ -36,6 +36,8 @@ window-rule {
   match app-id="^anki$"
   match app-id="^kitty$"
   match app-id="zathura$"
+  match app-id="^org\\.gnome\\.Nautilus$"
+  match app-id="^xdg-desktop-portal-gtk$"
 
   background-effect {
     blur true
@@ -44,6 +46,7 @@ window-rule {
 }
 
 window-rule {
+  match app-id="^floating.*"
   match is-floating=true
 
   background-effect {
