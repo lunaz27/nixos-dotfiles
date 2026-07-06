@@ -10,11 +10,11 @@
     modules.user.themes.catppuccin.enable = lib.mkEnableOption "catppuccin colorscheme";
   };
 
-  config = lib.mkIf config.modules.user.themes.catppuccin.enable {
-    imports = [
-      inputs.catppuccin.homeModules.catppuccin
-    ];
+  imports = [
+    inputs.catppuccin.homeModules.catppuccin
+  ];
 
+  config = lib.mkIf config.modules.user.themes.catppuccin.enable {
     catppuccin = {
       enable = true;
       autoEnable = false;

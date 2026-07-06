@@ -11,15 +11,17 @@
   };
 
   config = lib.mkIf config.modules.core.fonts.enable {
-    enableDefaultPackages = true;
-    packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.symbols-only
+    fonts = {
+      enableDefaultPackages = true;
+      packages = with pkgs; [
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.symbols-only
 
-      work-sans
+        work-sans
 
-      noto-fonts-cjk-sans
-      noto-fonts-color-emoji
-    ];
+        noto-fonts-cjk-sans
+        noto-fonts-color-emoji
+      ];
+    };
   };
 }

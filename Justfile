@@ -114,7 +114,7 @@ commit: git
     #!/usr/bin/env bash
     set -euo pipefail
     GEN=$(readlink /nix/var/nix/profiles/system | cut -d "-" -f 2)
-    MESS="[ AUTO ] NixOS Generation $GEN"
+    MESS="[ {{ FLAKE_HOST }} ] NixOS Generation $GEN"
     DESC="Saved latest generation $GEN at $(date -u +%Y-%m-%d\ %H:%M:%S)."
 
     if git diff --quiet --cached; then

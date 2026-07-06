@@ -12,5 +12,4 @@
   config = lib.mkIf config.modules.core.disabled.enable {
     programs.nano.enable = false;
   };
-
 }

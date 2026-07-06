@@ -63,8 +63,6 @@
       };
     in
     {
-      templates = ./modules/flake-utils/templates.nix;
-
       nixosConfigurations = nixpkgs.lib.mapAttrs (
         hostname: system:
         nixpkgs.lib.nixosSystem {
@@ -75,5 +73,7 @@
           ];
         }
       ) hosts;
+
+      templates = ./modules/flake-utils/templates.nix;
     };
 }
