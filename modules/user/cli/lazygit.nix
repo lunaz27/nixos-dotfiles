@@ -1,30 +1,34 @@
 {
-  flake.homeModules."lazygit" =
-    {
-      lib,
-      ...
-    }:
+  lib,
+  config,
+  ...
+}:
 
-    {
-      programs.lazygit = {
-        enable = true;
+{
+  options = {
+    modules.user.cli.lazygit.enable = lib.mkEnableOption "lazygit - tui for git";
+  };
 
-        settings = lib.mkForce {
-          disableStartupPopups = true;
-          notARepository = "skip";
-          promptToReturnFromSubprocess = false;
-          update.method = "never";
+  config = lib.mkIf config.modules.user.cli.lazygit.enable {
+    programs.lazygit = {
+      enable = true;
 
-          git = {
-            commit.signOff = true;
-            parseEmoji = true;
-          };
+      settings = lib.mkForce {
+        disableStartupPopups = true;
+        notARepository = "skip";
+        promptToReturnFromSubprocess = false;
+        update.method = "never";
 
-          showListFooter = false;
-          showRandomTip = false;
-          showBottomLine = false;
-          nerdFontsVersion = "3";
+        git = {
+          commit.signOff = true;
+          parseEmoji = true;
         };
+
+        showListFooter = false;
+        showRandomTip = false;
+        showBottomLine = false;
+        nerdFontsVersion = "3";
       };
     };
+  };
 }

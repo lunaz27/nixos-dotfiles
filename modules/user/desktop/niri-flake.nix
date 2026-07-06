@@ -24,11 +24,11 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    imports = [
-      inputs.niri-flake.homeModules."niri"
-    ];
+  imports = [
+    inputs.niri-flake.homeModules."niri"
+  ];
 
+  config = lib.mkIf cfg.enable {
     home = {
       sessionVariables = {
         NIXOS_OZONE_WL = 1;

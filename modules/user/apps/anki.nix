@@ -7,7 +7,7 @@
 
 {
   options = {
-    modules.users.apps.anki.enable = lib.mkEnableOption "anki - spaced repetition flashcard program";
+    modules.user.apps.anki.enable = lib.mkEnableOption "anki - spaced repetition flashcard program";
   };
 
   config = lib.mkIf config.modules.users.apps.anki.enable {

@@ -34,11 +34,11 @@ in
     modules.user.apps.zen-browser.enable = lib.mkEnableOption "zen-browser with declarative options";
   };
 
-  config = lib.mkIf config.modules.user.apps.zen-browser.enable {
-    imports = [
-      inputs.zen-browser.homeModules.beta
-    ];
+  imports = [
+    inputs.zen-browser.homeModules.beta
+  ];
 
+  config = lib.mkIf config.modules.user.apps.zen-browser.enable {
     # Fix ``nixos-help`` command
     home.sessionVariables.BROWSER = "zen-beta";
 

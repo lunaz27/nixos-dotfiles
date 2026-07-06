@@ -22,7 +22,7 @@ let
 in
 {
   options = {
-    modules.user.desktop.user-dires.enable =
+    modules.user.desktop.user-dirs.enable =
       lib.mkEnableOption "auto-create default dirs in /home/$USER";
   };
 

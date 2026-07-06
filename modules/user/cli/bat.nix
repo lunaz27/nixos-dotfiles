@@ -6,7 +6,7 @@
 
 {
   options = {
-    modules.apps.cli.bat.enable = lib.mkEnableOption "bat - fancier cat";
+    modules.user.cli.bat.enable = lib.mkEnableOption "bat - fancier cat";
   };
 
   config = lib.mkIf config.modules.apps.cli.bat.enable {

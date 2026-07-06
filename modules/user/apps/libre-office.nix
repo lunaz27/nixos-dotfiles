@@ -7,7 +7,7 @@
 
 {
   options = {
-    modules.users.apps.libre-office.enable = lib.mkEnableOption "libre office - productivity suite";
+    modules.user.apps.libre-office.enable = lib.mkEnableOption "libre office - productivity suite";
   };
 
   config = lib.mkIf config.modules.users.apps.libre-office.enable {
