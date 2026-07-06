@@ -5,7 +5,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "<insert-here>";
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {

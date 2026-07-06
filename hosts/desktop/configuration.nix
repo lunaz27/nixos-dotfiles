@@ -14,7 +14,7 @@
   # ╚───────────────────────────────────────────────────╝
 
   # WARN: DO NOT change the state version!
-  system.stateVersion = "<insert-here>";
+  system.stateVersion = "26.05";
 
   imports = [
     # ── Hardware ──────────────────────────────────────────────────────────────────
@@ -40,7 +40,7 @@
     };
 
     core = {
-      amd-gpu.enable = false;
+      amd-gpu.enable = true;
       audio.enable = true;
       auto-login.enable = false;
       bluetooth.enable = true;

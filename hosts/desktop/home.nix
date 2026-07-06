@@ -17,7 +17,7 @@
       ];
 
       home = {
-        stateVersion = "<insert-here>";
+        stateVersion = "26.05";
         username = "suwapotta";
         homeDirectory = "/home/suwapotta";
       };
