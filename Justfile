@@ -207,17 +207,18 @@ __hardware_grab from="/mnt/etc/nixos" to="./hosts/desktop/":
     echo "  HDWARE  {{ from }} -> {{ to }}"
     cp {{ from }}/hardware-configuration.nix {{ to }}
 
-__install host user="suwapotta":
+__anki_key user="suwapotta":
     #!/usr/bin/env bash
     set -euo pipefail
     echo -n "Enter Anki key: "
     read -r KEY_ANS # -s (no-echo)
     echo
-    clear
-
     mkdir -p /mnt/home/{{ user }}/Private
     echo "  KEY     Anki"
     echo "$KEY_ANS" > /mnt/home/{{ user }}/Private/.anki_key
+
+__install host:
+    clear
     echo "  GIT     *"
     git add -A
     echo "  INSTALL NixOS#{{ host }}"
@@ -234,6 +235,5 @@ __cp_dotfiles user="suwapotta":
     echo "  COPY    . -> /mnt/home/{{ user }}/nixos-dotfiles"
     mkdir -p /mnt/home/{{ user }}
     cp -a {{ justfile_directory() }} /mnt/home/{{ user }}/nixos-dotfiles
-    echo "  CHOWN   root -> {{ user }}"
-    nixos-enter --root /mnt -c "chown -R {{ user }}:users /home/{{ user }}/nixos-dotfiles"
-    nixos-enter --root /mnt -c "chown -R {{ user }}:users /home/{{ user }}/Private/.anki_key"
+    echo "  CHOWN   ~: root -> {{ user }}"
+    nixos-enter --root /mnt -c "chown -R {{ user }}:users /home/{{ user }}"

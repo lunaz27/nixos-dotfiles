@@ -33,7 +33,10 @@
 
         cli = {
           bat.enable = true;
-          btop.enable = true;
+          btop = {
+            enable = true;
+            gpu = "amd";
+          };
           cava.enable = false;
           fastfetch.enable = true;
           fzf.enable = true;
@@ -47,7 +50,10 @@
           cursor.enable = true;
           fcitx5.enable = true;
           gtk.enable = true;
-          niri-flake.enable = true;
+          niri-flake = {
+            enable = true;
+            release = "unstable";
+          };
           noctalia-v5.enable = true;
           qt.enable = true;
           user-dirs.enable = true;
