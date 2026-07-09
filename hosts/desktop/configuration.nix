@@ -42,7 +42,7 @@
     core = {
       amd-gpu.enable = true;
       audio.enable = true;
-      auto-login.enable = true;
+      auto-login.enable = false;
       bluetooth.enable = true;
       btrfs.enable = true;
       disabled.enable = true;
@@ -58,7 +58,7 @@
       keyboard.enable = true;
       keyd.enable = true;
       libimobiledevice.enable = false;
-      ly.enable = false;
+      ly.enable = true;
       mcontrolcenter.enable = false;
       network.enable = true;
       nh.enable = true;
@@ -75,7 +75,7 @@
       touchpad.enable = false;
       users = {
         enable = true;
-        remoteBuilder = true;
+        remoteBuilder = false;
       };
       variables.enable = true;
       vm-variant.enable = true;
