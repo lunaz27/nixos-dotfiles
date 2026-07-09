@@ -46,7 +46,7 @@
             useTPM = false;
             identityLifetimeSeconds = 8 * 60;
           };
-          ssh.enable = true;
+          ssh-client.enable = true;
           tealdeer.enable = true;
           tmux.enable = false;
           yazi.enable = true;

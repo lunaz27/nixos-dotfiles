@@ -70,10 +70,7 @@
       systemd-boot.enable = true;
       timezone.enable = true;
       touchpad.enable = true;
-      users = {
-        enable = true;
-        remoteBuilder = false;
-      };
+      users.enable = true;
       variables.enable = true;
       vm-variant.enable = true;
       zram.enable = true;

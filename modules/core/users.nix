@@ -4,37 +4,23 @@
   ...
 }:
 
-let
-  cfg = config.modules.core.users;
-in
 {
   options = {
-    modules.core.users = {
-      enable = lib.mkEnableOption "users declaration";
-      remoteBuilder = lib.mkEnableOption "dedicated user for remote compilation";
-    };
+    modules.core.users.enable = lib.mkEnableOption "users declaration";
   };
 
-  config = lib.mkIf cfg.enable {
-    users = {
-      users = lib.mkMerge [
-        # ── Global ────────────────────────────────────────────────────────────────────
-        {
-          "suwapotta" = {
-            isNormalUser = true;
-            extraGroups = [
-              "wheel"
-              "networkmanager"
-            ];
-          };
-        }
+  config = lib.mkIf config.modules.core.users.enable {
+    users.users."suwapotta" = {
+      isNormalUser = true;
 
-        # ── Remote Builder ────────────────────────────────────────────────────────────
-        (lib.mkIf cfg.remoteBuilder {
-          "nix-builder" = {
-            # TODO: https://nix.dev/tutorials/nixos/distributed-builds-setup.html#alternatives
-          };
-        })
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+      ];
+
+      openssh.authorizedKeys.keyFiles = [
+        ../_ssh-keys/desktop.pub
+        ../_ssh-keys/laptop.pub
       ];
     };
   };

@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.user.cli.ssh.enable = lib.mkEnableOption "user-level ssh client settings";
+    modules.user.cli.ssh-client.enable = lib.mkEnableOption "user-level ssh client settings";
   };
 
-  config = lib.mkIf config.modules.user.cli.ssh.enable {
+  config = lib.mkIf config.modules.user.cli.ssh-client.enable {
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
