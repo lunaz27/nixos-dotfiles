@@ -22,7 +22,7 @@
           systems = [ "x86_64-linux" ];
           protocol = "ssh-ng";
           maxJobs = 32; # Ryzen 9 7950X
-          speedFactor = 2;
+          speedFactor = 5; # Relative speed
           supportedFeatures = [
             "nixos-test"
             "benchmark"
@@ -37,5 +37,14 @@
         builders-use-substitutes = true
       '';
     };
+
+    programs.ssh.extraConfig = ''
+      Host 192.168.1.201
+        User                  remotebuilder
+        Port                  22
+        IdentityFile          /root/.ssh/remote_builder
+        IdentitiesOnly        yes
+        StrictHostKeyChecking accept-new
+    '';
   };
 }
