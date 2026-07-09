@@ -39,12 +39,12 @@
     };
 
     programs.ssh.extraConfig = ''
-      Host 192.168.1.201
-        User                  remotebuilder
-        Port                  22
-        IdentityFile          /root/.ssh/remote_builder
-        IdentitiesOnly        yes
-        StrictHostKeyChecking accept-new
+      Host                  192.168.1.201
+      User                  remotebuilder
+      Port                  22
+      IdentityFile          /root/.ssh/remote_builder
+      IdentitiesOnly        yes
+      StrictHostKeyChecking accept-new
     '';
   };
 }

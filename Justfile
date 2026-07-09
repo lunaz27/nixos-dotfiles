@@ -122,6 +122,22 @@ push:
     printf "{{ BLUE }}   PUSH    {{ NORMAL }} Github\n"
     git push -v && just notify 0 push || just notify $? push
 
+pull:
+    printf "{{ BLUE }}   PULL    {{ NORMAL }} Github\n"
+    git pull -v && just notify 0 push || just notify $? push
+
+repl:
+    printf "{{ BLUE }}   REPL    {{ NORMAL }} NixOS Flake\n"
+    nix repl {{ justfile_directory() }}
+
+doc:
+    printf "{{ BLUE }}  󰈙 REPL    {{ NORMAL }} :doc\n"
+    nh os repl {{ justfile_directory() }} -H {{ FLAKE_HOST }}
+
+inspect:
+    printf "{{ BLUE }}   INSPECT {{ NORMAL }} NixOS Flake\n"
+    nix run nixpkgs#nix-inspect -- -p {{ justfile_directory() }}
+
 # Virtualisation/Gaming
 specialisation spec_name="Virtualisation" host=FLAKE_HOST: pkill git
     printf "{{ BLUE }}   SPECIAL {{ NORMAL }} NixOS#{{ host }}\n"
@@ -132,7 +148,7 @@ switch host=FLAKE_HOST: pkill git
     nh os switch {{ justfile_directory() }} -H {{ host }} \
       && just notify 0 && just commit {{ host }} || just notify $?
 
-boot host=FLAKE_HOST: pkill git
+boot host=FLAKE_HOST: git
     printf "{{ BLUE }}  󰜉 BOOT    {{ NORMAL }} NixOS#{{ host }}\n"
     nh os boot {{ justfile_directory() }} -H {{ host }} \
       && just notify 0 && just commit {{ host }} || just notify $?
@@ -141,7 +157,16 @@ test host=FLAKE_HOST: pkill git
     printf "{{ BLUE }}  󰙨 TEST    {{ NORMAL }} NixOS#{{ host }}\n"
     nh os test {{ justfile_directory() }} -H {{ host }} {{ NOTIFY }}
 
-dry host=FLAKE_HOST: pkill git
+build host=FLAKE_HOST: git
+    printf "{{ BLUE }}  󰲽 BUILD   {{ NORMAL }} NixOS#{{ host }}\n"
+    nh os build {{ justfile_directory() }} -H {{ host }}
+
+remote action="switch" host="laptop": pkill git
+    printf "{{ BLUE }}  󰢹 REMOTE  {{ NORMAL }} NixOS#{{ host }} (Forced offload)\n"
+    nh os build {{ justfile_directory() }} -H {{ host }} -- --max-jobs 0
+    just {{ action }} {{ host }}
+
+dry host=FLAKE_HOST: git
     printf "{{ BLUE }}   DRY     {{ NORMAL }} NixOS#{{ host }}\n"
     nh os switch {{ justfile_directory() }} -H {{ host }} --dry {{ NOTIFY }}
 

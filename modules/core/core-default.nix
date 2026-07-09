@@ -15,5 +15,10 @@ let
     map (name: dir + "/${name}") validFiles;
 in
 {
-  imports = getNixFiles ./.;
+  imports =
+    (getNixFiles ./display)
+    ++ (getNixFiles ./hardware)
+    ++ (getNixFiles ./nix)
+    ++ (getNixFiles ./services)
+    ++ (getNixFiles ./system);
 }
