@@ -5,7 +5,7 @@
 }:
 
 let
-  dotfiles = ./config;
+  dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/modules/user/dotfiles/config";
   cfg = config.modules.user.dotfiles.symlink;
 in
 {

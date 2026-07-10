@@ -45,6 +45,14 @@
         fonts.enable = true;
         ly.enable = true;
         portals.enable = true;
+        steam = {
+          enable = false;
+          features = {
+            protonGE = true;
+            gamemode = true;
+            mangoHud = true;
+          };
+        };
       };
 
       hardware = {

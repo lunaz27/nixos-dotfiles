@@ -60,15 +60,17 @@ notify exit_code="0" context="system":
       APP_NAME="System Task"
       ICON="{{ justfile_directory() }}/images/logos/nixos-colorful.png"
       SUCC_TITLE="Task Completed"
-      SUCC_BODY="The operation finished successfully without errors."
+      SUCC_BODY="The operation completed without error."
       FAIL_TITLE="Task Failed (Code: {{ exit_code }})"
-      FAIL_BODY="The operation was aborted. Check your terminal for the error."
+      FAIL_BODY="The operation was aborted. Check terminal for the error."
     else
+      RAW_CONTEXT="{{ context }}"
+      ACTION="${RAW_CONTEXT^}"
       APP_NAME="Git"
       ICON="{{ justfile_directory() }}/images/icons/git.png"
-      SUCC_TITLE="Push Successful"
-      SUCC_BODY="All commits have been safely pushed to the remote repository."
-      FAIL_TITLE="Push Rejected (Code: {{ exit_code }})"
+      SUCC_TITLE="${ACTION} Successful"
+      SUCC_BODY="All commits have been safely ${RAW_CONTEXT} from/to the remote repository."
+      FAIL_TITLE="${ACTION} Rejected (Code: {{ exit_code }})"
       FAIL_BODY="Check the terminal for upstream conflicts or network issues."
     fi
 
@@ -124,7 +126,7 @@ push:
 
 pull:
     printf "{{ BLUE }}   PULL    {{ NORMAL }} Github\n"
-    git pull -v && just notify 0 push || just notify $? push
+    git pull -v && just notify 0 pull || just notify $? pull
 
 repl:
     printf "{{ BLUE }}   REPL    {{ NORMAL }} NixOS Flake\n"

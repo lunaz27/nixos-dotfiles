@@ -5,17 +5,11 @@ enabled = true
 center = [ "workspaces" ]
 contact_shadow = true
 end = [ "tray", "network", "bluetooth", "input_volume", "output_volume", "battery", "brightness", "control-center" ]
+margin_edge = 10
 start = [ "launcher", "clock", "sysmon", "temp", "ram", "cpu", "media" ]
 
-    [[bar.default.capsule_group]]
-    fill = "surface_variant"
-    id = "g1"
-    members = [ "sysmon", "temp", "ram", "cpu" ]
-    opacity = 0.0
-    padding = 6.0
-
 [brightness]
-minimum_brightness = 0.0099999997764825821
+minimum_brightness = 0.01
 
 [calendar]
 enabled = true
@@ -27,15 +21,6 @@ refresh_minutes = 240
 
 [desktop_widgets]
 enabled = false
-schema_version = 2
-widget_order = []
-
-    [desktop_widgets.grid]
-    cell_size = 16
-    major_interval = 4
-    visible = true
-
-    [desktop_widgets.widget]
 
 [dock]
 active_monitor_only = true
@@ -69,10 +54,10 @@ widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
     visible = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
-    box_height = 0.0
-    box_width = 0.0
-    cx = 720.0
-    cy = 777.0
+    box_height = 70.0
+    box_width = 400.0
+    cx = 960.0
+    cy = 961.0
     output = "HDMI-A-1"
     rotation = 0.0
     type = "login_box"
@@ -83,11 +68,14 @@ widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
         background_radius = 12.0
         input_opacity = 1.0
         input_radius = 6.0
+        show_caps_lock = true
+        show_keyboard_layout = true
         show_login_button = true
+        show_password_hint = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-    box_height = 0.0
-    box_width = 0.0
+    box_height = 70.0
+    box_width = 400.0
     cx = 960.0
     cy = 540.0
     output = "eDP-1"
@@ -100,10 +88,10 @@ widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
         background_radius = 12.0
         input_opacity = 1.0
         input_radius = 6.0
+        show_caps_lock = true
+        show_keyboard_layout = true
         show_login_button = true
-
-[nightlight]
-temperature_day = 10000
+        show_password_hint = true
 
 [osd.kinds]
 media = false
@@ -122,15 +110,15 @@ enabled = []
     name = "official"
 
 [shell]
-avatar_path = "/home/suwapotta/nixos-dotfiles/images/pfp/youmu.png"
-corner_radius_scale = 1.7500000260770321
+avatar_path = "/nix/store/2akwwpy7r3fz6aydddywlx0mdvjffka1-youmu.png"
+corner_radius_scale = 1.75
 font_family = "Work Sans SemiBold"
 polkit_agent = true
 screen_time_enabled = true
 settings_show_advanced = true
 
     [shell.animation]
-    speed = 0.7500000111758709
+    speed = 0.75
 
     [shell.panel]
     open_near_click_control_center = true
@@ -172,46 +160,33 @@ settings_show_advanced = true
 
 [theme]
 builtin = "Catppuccin"
-community_palette = "Oxocarbon"
-mode = "dark"
 source = "builtin"
-wallpaper_scheme = "m3-content"
 
     [theme.templates]
     builtin_ids = [ "gtk3", "gtk4", "niri", "qt" ]
     community_ids = [ "zen-browser" ]
 
 [wallpaper]
-directory = "/home/suwapotta/nixos-dotfiles/images/wallpapers"
+directory = "/nix/store/f9r7kv8qklm69yqbqivs7jpp3qfmzx7j-wallpapers"
 transition_on_startup = true
 
     [wallpaper.default]
-    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/sunsetLandscape.jpg"
+    path = "/nix/store/f9r7kv8qklm69yqbqivs7jpp3qfmzx7j-wallpapers/sunsetLandscape.jpg"
 
     [wallpaper.last]
-    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/pastelWindow.png"
+    path = "/nix/store/f9r7kv8qklm69yqbqivs7jpp3qfmzx7j-wallpapers/sunsetLandscape.jpg"
 
     [wallpaper.monitors.HDMI-A-1]
-    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/sunsetLandscape.jpg"
-
-    [wallpaper.monitors.eDP-1]
-    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/pastelWindow.png"
-
-[widget.active_window]
-display = "icon_only"
-title_scroll = "on_hover"
-
-[widget.cat]
-type = "noctalia/bongocat:cat"
+    path = "/nix/store/f9r7kv8qklm69yqbqivs7jpp3qfmzx7j-wallpapers/sunsetLandscape.jpg"
 
 [widget.control-center]
-custom_image = "/home/suwapotta/nixos-dotfiles/images/logos/nixos-flake.png"
+custom_image = "/nix/store/r90ixzwialz4qghdmnqf41l71iwc8l1i-nixos-flake.png"
 
 [widget.cpu]
 show_label = false
 
 [widget.launcher]
-custom_image = "/home/suwapotta/nixos-dotfiles/images/icons/niri.svg"
+custom_image = "/nix/store/5ysanjq34b2dvhcma3jkqy9hkappwkfg-niri.svg"
 
 [widget.media]
 min_length = 0

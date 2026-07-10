@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 
@@ -27,30 +26,13 @@ in
       {
         system.nixos.tags = [ "Gaming" ];
 
-        # Proton-GE performance boost
-        boot.kernelModules = [ "ntsync" ];
-        services.udev.extraRules = ''
-          KERNEL=="ntsync", MODE="0666"
-        '';
-
-        # environment.systemPackages = with pkgs; [ mangohud ];
-
-        # Steam + ProtonGE
-        nixpkgs.config.allowUnfreePredicate =
-          pkg:
-          builtins.elem (lib.getName pkg) [
-            "steam"
-            "steam-unwrapped"
-          ];
-        programs = {
-          steam = {
-            enable = true;
-
-            gamescopeSession.enable = true;
-            extraCompatPackages = with pkgs; [ proton-ge-bin ];
+        modules.core.display.steam = {
+          enable = lib.mkForce true;
+          features = {
+            protonGE = lib.mkForce true;
+            gamemode = lib.mkForce true;
+            mangoHud = lib.mkForce true;
           };
-
-          gamemode.enable = true;
         };
       }
 

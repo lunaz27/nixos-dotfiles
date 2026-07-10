@@ -40,7 +40,45 @@ return {
   ),
 
   s(
-    "useModule",
+    "mkCfgModule",
+    fmt(
+      [[
+    {
+      lib,
+      config,
+      ...
+    }:
+
+    let
+      cfg = config.modules.<>;
+    in
+    {
+      options = {
+        modules.<> = {
+          enable = lib.mkEnableOption "<>";
+
+          <>
+        };
+      };
+
+      config = lib.mkIf cfg.enable {
+        <>
+      };
+    }
+    ]],
+      {
+        i(1, "name"),
+        rep(1),
+        i(2, "desc"),
+        i(3, "option2 = lib.mkOption { };"),
+        i(4, "option3 = { };"),
+      },
+      { delimiters = "<>" }
+    )
+  ),
+
+  s(
+    "enableModule",
     fmt("modules.<>.enable = <>;", {
       i(1, "name"),
       c(2, {

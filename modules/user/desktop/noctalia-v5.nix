@@ -27,6 +27,7 @@
         bar = {
           "default" = {
             contact_shadow = true;
+            margin_edge = 12;
 
             center = [ "workspaces" ];
 
