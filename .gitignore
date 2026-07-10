@@ -1,4 +1,3 @@
-# VM
+# Nix artifacts
 result
 *.qcow2
-.is-vm-built

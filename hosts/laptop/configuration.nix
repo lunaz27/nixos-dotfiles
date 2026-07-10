@@ -51,7 +51,8 @@
         btrfs.enable = true;
         intel.enable = true;
         keyboard.enable = true;
-        nvidia-hybrid.enable = true;
+        nvidia-offload.enable = true;
+        nvidia-sync.enable = false;
         ryzen.enable = false;
         touchpad.enable = true;
       };
@@ -77,6 +78,15 @@
         openssh.enable = false;
         polkit.enable = false;
         power.enable = true;
+        qemu = {
+          enable = false;
+          features = {
+            gui = true;
+            windowsSupport = false;
+            usbSharing = false;
+            clipboardSharing = true;
+          };
+        };
       };
 
       system = {

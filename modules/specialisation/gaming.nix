@@ -69,34 +69,20 @@ in
 
       # ── Laptop host (iGPU + Nvidia) ───────────────────────────────────────────────
       (lib.mkIf (cfg.platform == "laptop") {
-        modules.core.system = {
-          kernel-cachyos = {
-            enable = lib.mkForce true;
-            optimisationLevel = lib.mkForce "v4";
-          };
-
-          kernel-zen.enable = lib.mkForce false;
-          kernel-latest.enable = lib.mkForce false;
-        };
-
-        hardware.nvidia = {
-          prime = {
-            sync.enable = lib.mkForce true;
-
-            offload = {
-              enable = lib.mkForce false;
-              enableOffloadCmd = lib.mkForce false;
+        modules.core = {
+          system = {
+            kernel-cachyos = {
+              enable = lib.mkForce true;
+              optimisationLevel = lib.mkForce "v4";
             };
+
+            kernel-zen.enable = lib.mkForce false;
+            kernel-latest.enable = lib.mkForce false;
           };
 
-          powerManagement.finegrained = lib.mkForce false;
-        };
-
-        environment = {
-          sessionVariables = {
-            LIBVA_DRIVER_NAME = lib.mkForce "nvidia";
-            GBM_BACKEND = "nvidia-drm";
-            __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+          hardware = {
+            nvidia-hybrid.enable = lib.mkForce false;
+            nvidia-sync.enable = lib.mkForce true;
           };
         };
       })

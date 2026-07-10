@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 
@@ -11,7 +10,7 @@ in
 {
   options = {
     modules.specialisation.virtualisation = {
-      enable = lib.mkEnableOption "qemu/kvm virtualisation";
+      enable = lib.mkEnableOption "virtualisation boot specialisation";
 
       features = {
         gui = lib.mkEnableOption "uses virt-manager frontend";
@@ -23,47 +22,19 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    specialisation."Virtualisation".configuration = lib.mkMerge [
-      # ── Core ──────────────────────────────────────────────────────────────────────
-      {
-        system.nixos.tags = [ "Virtualisation" ];
+    specialisation."Virtualisation".configuration = {
+      system.nixos.tags = [ "Virtualisation" ];
 
-        users.users."suwapotta".extraGroups = [
-          "libvirtd"
-          "kvm"
-        ];
+      modules.core.services.qemu = {
+        enable = lib.mkForce true;
 
-        virtualisation = {
-          libvirtd = {
-            enable = true;
-
-            qemu = {
-              package = pkgs.qemu_kvm;
-              runAsRoot = true;
-            };
-          };
+        features = {
+          gui = lib.mkForce cfg.features.gui;
+          windowsSupport = lib.mkForce cfg.features.windowsSupport;
+          usbSharing = lib.mkForce cfg.features.usbSharing;
+          clipboardSharing = lib.mkForce cfg.features.clipboardSharing;
         };
-      }
-
-      # ── GUI ───────────────────────────────────────────────────────────────────────
-      (lib.mkIf cfg.features.gui {
-        programs.virt-manager.enable = true;
-      })
-
-      # ── Windows ───────────────────────────────────────────────────────────────────
-      (lib.mkIf cfg.features.windowsSupport {
-        virtualisation.libvirtd.qemu.swtpm.enable = true;
-      })
-
-      # ── USB ───────────────────────────────────────────────────────────────────────
-      (lib.mkIf cfg.features.usbSharing {
-        virtualisation.spiceUSBRedirection.enable = true;
-      })
-
-      # ── Clipboard ─────────────────────────────────────────────────────────────────
-      (lib.mkIf cfg.features.clipboardSharing {
-        services.spice-vdagentd.enable = true;
-      })
-    ];
+      };
+    };
   };
 }

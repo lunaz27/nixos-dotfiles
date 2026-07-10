@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.hardware.nvidia-hybrid.enable = lib.mkEnableOption "laptop hydrid iGPU + NVIDIA";
+    modules.core.hardware.nvidia-offload.enable = lib.mkEnableOption "balance usage of iGPU + NVIDIA";
   };
 
-  config = lib.mkIf config.modules.core.hardware.nvidia-hybrid.enable {
+  config = lib.mkIf config.modules.core.hardware.nvidia-offload.enable {
     # NOTE: Specs:
     # $ nix-shell -p pciutils --run "lspci | grep 'VGA\|3D'"
     #   00:02.0 VGA compatible controller: Intel Corporation TigerLake-H GT1 [UHD Graphics] (rev 01)
