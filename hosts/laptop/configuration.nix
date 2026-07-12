@@ -59,7 +59,10 @@
         btrfs.enable = true;
         intel.enable = true;
         keyboard.enable = true;
-        msi.enable = true;
+        msi = {
+          enable = true;
+          ec.preset = null;
+        };
         nvidia-disable.enable = false;
         nvidia-offload.enable = true;
         nvidia-sync.enable = false;

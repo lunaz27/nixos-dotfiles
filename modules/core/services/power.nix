@@ -37,8 +37,11 @@ in
       description = "Force power-profiles-daemon to use ${cfg.mode} profile";
       after = [ "power-profiles-daemon.service" ];
       wantedBy = [ "multi-user.target" ];
+      requires = [ "power-profiles-daemon.service" ];
+
       path = [ pkgs.power-profiles-daemon ];
       script = ''
+        sleep 3
         powerprofilesctl set ${cfg.mode}
       '';
 

@@ -15,13 +15,8 @@
       mcontrolcenter
     ];
 
-    boot = {
-      kernelModules = [
-        "msi-ec"
-        "ec_sys"
-      ];
-
-      extraModulePackages = [ config.boot.kernelPackages.msi-ec ];
-    };
+    boot.kernelModules = [
+      "ec_sys"
+    ];
   };
 }

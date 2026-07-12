@@ -15,14 +15,21 @@
 
       modules.core = {
         hardware = {
-          msi.enable = lib.mkForce true;
+          msi = {
+            enable = lib.mkForce true;
+            ec.preset = lib.mkForce "eco";
+          };
           nvidia-disable.enable = lib.mkForce true;
           nvidia-offload.enable = lib.mkForce false;
           nvidia-sync.enable = lib.mkForce false;
         };
-        services.power = {
-          enable = lib.mkForce true;
-          mode = lib.mkForce "power-saver";
+
+        services = {
+          mcontrolcenter.enable = lib.mkForce false;
+          power = {
+            enable = lib.mkForce true;
+            mode = lib.mkForce "power-saver";
+          };
         };
       };
     };
