@@ -160,7 +160,7 @@
             speed = 0.75;
           };
 
-          avatar_path = ../../../images/pfp/youmu.png;
+          avatar_path = ../../../public/images/pfp/youmu.png;
           corner_radius_scale = 1.75;
           font_family = "Work Sans SemiBold";
 
@@ -228,23 +228,23 @@
         };
 
         wallpaper = {
-          directory = ../../../images/wallpapers;
-          default.path = ../../../images/wallpapers/sunsetLandscape.jpg;
-          last.path = ../../../images/wallpapers/firewatch.png;
+          directory = ../../../public/images/wallpapers;
+          default.path = ../../../public/images/wallpapers/sunsetLandscape.jpg;
+          last.path = ../../../public/images/wallpapers/firewatch.png;
 
           transition_on_startup = true;
         };
 
         widget = {
           control-center = {
-            custom_image = ../../../images/logos/nixos-flake.png;
+            custom_image = ../../../public/images/logos/nixos-flake.png;
           };
           cpu = {
             show_label = false;
           };
 
           launcher = {
-            custom_image = ../../../images/icons/niri.svg;
+            custom_image = ../../../public/images/icons/niri.svg;
           };
 
           media = {

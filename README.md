@@ -47,4 +47,4 @@ nix flake init -t github:suwapotta/nixos-dotfiles#c
 
 ## NixOS Logo
 
-![**NixOS** Distro logo](./images/logos/nixos-text.png)
+![**NixOS** Distro logo](./public/images/logos/nixos-text.png)

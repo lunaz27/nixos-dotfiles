@@ -20,7 +20,7 @@ in
       settings = {
         logo = {
           type = "auto";
-          source = ../../../images/logos/nixos-colorful.png;
+          source = ../../../public/images/logos/nixos-colorful.png;
           # height = 20;
           # width = 40;
           padding = {

@@ -86,6 +86,7 @@
         nh.enable = true;
         niri-cachix.enable = true;
         remote-builder.enable = true;
+        sops.enable = true;
         vm-variant.enable = true;
       };
 

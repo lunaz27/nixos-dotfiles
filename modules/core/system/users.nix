@@ -16,10 +16,11 @@
         "wheel"
         "networkmanager"
       ];
+      hashedPasswordFile = config.sops.secrets."suwapotta".path;
 
       openssh.authorizedKeys.keyFiles = [
-        ../../.ssh-keys/desktop.pub
-        ../../.ssh-keys/laptop.pub
+        ../../../public/ssh-keys/id_desktop.pub
+        ../../../public/ssh-keys/id_laptop.pub
       ];
     };
   };

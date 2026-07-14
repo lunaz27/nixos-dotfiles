@@ -9,6 +9,9 @@
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs; };
     backupFileExtension = "bak";
+    sharedModules = [
+      inputs.sops-nix.homeManagerModules.sops
+    ];
 
     users."suwapotta" = {
       imports = [
@@ -20,6 +23,12 @@
         stateVersion = "25.11";
         username = "suwapotta";
         homeDirectory = "/home/suwapotta";
+      };
+
+      sops = {
+        defaultSopsFile = ../../../secrets/sshKeys.yaml;
+        defaultSopsFormat = "yaml";
+        age.keyFile = "/home/suwapotta/.config/sops/age/keys.txt";
       };
 
       modules.user = {
@@ -46,7 +55,10 @@
             useTPM = false;
             identityLifetimeSeconds = 8 * 60;
           };
-          ssh-client.enable = true;
+          ssh-client = {
+            enable = true;
+            keyGen = "laptop";
+          };
           tealdeer.enable = true;
           tmux.enable = false;
           yazi.enable = true;

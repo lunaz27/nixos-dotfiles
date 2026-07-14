@@ -17,7 +17,7 @@
         useDefaultShell = true;
 
         openssh.authorizedKeys.keyFiles = [
-          ../../.ssh-keys/remote-build.pub
+          ../../../public/ssh-keys/remote_build.pub
         ];
       };
 

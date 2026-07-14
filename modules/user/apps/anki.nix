@@ -11,6 +11,10 @@
   };
 
   config = lib.mkIf config.modules.user.apps.anki.enable {
+    sops.secrets."user-1" = {
+      sopsFile = ../../../secrets/ankiKeys.yaml;
+    };
+
     programs.anki = {
       enable = true;
       addons = with pkgs.ankiAddons; [
@@ -59,14 +63,7 @@
 
         sync = {
           username = "nguyenducthientan09@gmail.com";
-          # HACK: -> path to key file
-          # - Navigate to the sync settings page. (Tools > Preferences > Syncing)
-          # - Log in to your AnkiWeb account.
-          # - Select "Yes" to the prompt about saving preferences and syncing.
-          # - A Home Manager warning prompt will show. Select "Show details...".
-          # - Get your sync key from the message: "syncKey changed from \`None\` to \`<YOUR SYNC KEY WILL BE HERE>\`"
-          keyFile = "/home/suwapotta/Private/.anki_key";
-
+          keyFile = config.sops.secrets."user-1".path;
           autoSync = true;
           syncMedia = true;
         };

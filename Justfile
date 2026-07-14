@@ -58,7 +58,7 @@ notify exit_code="0" context="system":
     # Context path
     if [[ "{{ context }}" == "system" ]]; then
       APP_NAME="System Task"
-      ICON="{{ justfile_directory() }}/images/logos/nixos-colorful.png"
+      ICON="{{ justfile_directory() }}/public/images/logos/nixos-colorful.png"
       SUCC_TITLE="Task Completed"
       SUCC_BODY="The operation completed without error."
       FAIL_TITLE="Task Failed (Code: {{ exit_code }})"
@@ -67,7 +67,7 @@ notify exit_code="0" context="system":
       RAW_CONTEXT="{{ context }}"
       ACTION="${RAW_CONTEXT^}"
       APP_NAME="Git"
-      ICON="{{ justfile_directory() }}/images/icons/git.png"
+      ICON="{{ justfile_directory() }}/public/images/icons/git.png"
       SUCC_TITLE="${ACTION} Successful"
       SUCC_BODY="All commits have been safely ${RAW_CONTEXT} from/to the remote repository."
       FAIL_TITLE="${ACTION} Rejected (Code: {{ exit_code }})"
@@ -228,16 +228,6 @@ __hardware_grab from="/mnt/etc/nixos" to="./hosts/desktop/":
     echo "  HDWARE  {{ from }} -> {{ to }}"
     cp {{ from }}/hardware-configuration.nix {{ to }}
 
-__anki_key user="suwapotta":
-    #!/usr/bin/env bash
-    set -euo pipefail
-    echo -n "Enter Anki key: "
-    read -r KEY_ANS # -s (no-echo)
-    echo
-    mkdir -p /mnt/home/{{ user }}/Private
-    echo "  KEY     Anki"
-    echo "$KEY_ANS" > /mnt/home/{{ user }}/Private/.anki_key
-
 __install host:
     clear
     echo "  GIT     *"
@@ -251,6 +241,18 @@ __install host:
 __setup path="/mnt" user="suwapotta":
     echo "  PWRD    {{ user }}"
     nixos-enter --root {{ path }} -c "passwd {{ user }}"
+
+# __sops_updatekeys host:
+#     #!/usr/bin/env bash
+#     set -euo pipefail
+#     if [[ ! -e {{ config_dir() }}/sops/age/keys.txt ]]; then
+#       echo "  MKDIR   {{ config_dir() }}/sops/age"
+#       mkdir -p {{ config_dir() }}/sops/age
+#     fi
+#     for secret in ./secrets/*.yaml; do
+#       echo "  SOPS    trusted_hosts += {{ host }}"
+#       nix-shell -p sops --run "sops updatekeys ${secret}"
+#     done
 
 __cp_dotfiles user="suwapotta":
     echo "  COPY    . -> /mnt/home/{{ user }}/nixos-dotfiles"

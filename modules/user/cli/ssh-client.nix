@@ -4,12 +4,27 @@
   ...
 }:
 
+let
+  cfg = config.modules.user.cli.ssh-client;
+in
 {
   options = {
-    modules.user.cli.ssh-client.enable = lib.mkEnableOption "user-level ssh client settings";
+    modules.user.cli.ssh-client = {
+      enable = lib.mkEnableOption "user-level ssh client settings";
+      keyGen = lib.mkOption {
+        type = lib.types.nullOr (
+          lib.types.enum [
+            "desktop"
+            "laptop"
+          ]
+        );
+        default = null;
+        description = "which machine to generate ssh key from sops";
+      };
+    };
   };
 
-  config = lib.mkIf config.modules.user.cli.ssh-client.enable {
+  config = lib.mkIf cfg.enable {
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
@@ -33,6 +48,18 @@
           User = "suwapotta";
           Port = "24";
         };
+      };
+    };
+
+    sops.secrets = lib.mkIf (cfg.keyGen != null) {
+      "id_${cfg.keyGen}" = {
+        sopsFile = ../../../secrets/sshKeys.yaml;
+        path = "${config.home.homeDirectory}/.ssh/id_ed25519";
+      };
+
+      "github_${cfg.keyGen}" = {
+        sopsFile = ../../../secrets/sshKeys.yaml;
+        path = "${config.home.homeDirectory}/.ssh/github_ed25519";
       };
     };
   };

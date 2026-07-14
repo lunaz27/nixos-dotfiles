@@ -17,7 +17,7 @@
         {
           hostName = "192.168.1.201";
           sshUser = "remotebuilder";
-          sshKey = "/root/.ssh/remote_builder";
+          sshKey = config.sops.secrets."remote-builder-laptop-x86_64".path;
 
           systems = [ "x86_64-linux" ];
           protocol = "ssh-ng";
@@ -42,7 +42,7 @@
       Host                  192.168.1.201
       User                  remotebuilder
       Port                  22
-      IdentityFile          /root/.ssh/remote_builder
+      IdentityFile          ${config.sops.secrets."remote-builder-laptop-x86_64".path}
       IdentitiesOnly        yes
       StrictHostKeyChecking accept-new
     '';
