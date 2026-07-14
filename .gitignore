@@ -1,3 +1,4 @@
 # Nix artifacts
 result
+result-*
 *.qcow2

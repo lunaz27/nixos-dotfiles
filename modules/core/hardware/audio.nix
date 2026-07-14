@@ -10,7 +10,6 @@
   };
 
   config = lib.mkIf config.modules.core.hardware.audio.enable {
-    # Enable sound (pipewire)
     services.pipewire = {
       enable = true;
 

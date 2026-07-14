@@ -129,8 +129,8 @@ pull:
     git pull -v && just notify 0 pull || just notify $? pull
 
 repl:
-    printf "{{ BLUE }}   REPL    {{ NORMAL }} NixOS Flake\n"
-    nix repl {{ justfile_directory() }}
+    printf "{{ BLUE }}   REPL    {{ NORMAL }} Unstable channel\n"
+    nix repl -f channel:nixos-unstable
 
 doc:
     printf "{{ BLUE }}  󰈙 REPL    {{ NORMAL }} :doc\n"
