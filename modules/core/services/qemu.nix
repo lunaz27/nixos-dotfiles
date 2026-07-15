@@ -26,7 +26,7 @@ in
     lib.mkMerge [
       # ── Core ──────────────────────────────────────────────────────────────────────
       {
-        users.users."suwapotta".extraGroups = [
+        users.users."lunaz".extraGroups = [
           "libvirtd"
           "kvm"
         ];

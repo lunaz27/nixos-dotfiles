@@ -15,7 +15,7 @@
 
       config = {
         user = {
-          name = "suwapotta";
+          name = "lunaz";
           email = "nguyenducthientan09@gmail.com";
         };
 

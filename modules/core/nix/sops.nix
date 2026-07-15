@@ -20,7 +20,7 @@
     sops = {
       defaultSopsFile = ../../../secrets/sshKeys.yaml;
       defaultSopsFormat = "yaml";
-      age.keyFile = "/home/suwapotta/.config/sops/age/keys.txt";
+      age.keyFile = "/home/lunaz/.config/sops/age/keys.txt";
 
       secrets = {
         # ── passwordHashes.yaml ───────────────────────────────────────────────────────

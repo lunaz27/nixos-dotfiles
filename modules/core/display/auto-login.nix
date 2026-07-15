@@ -34,7 +34,7 @@ in
       ];
 
       serviceConfig = {
-        ExecStart = "${autologin_on_7}/bin/autologin suwapotta ${pkgs.niri}/bin/niri-session";
+        ExecStart = "${autologin_on_7}/bin/autologin lunaz ${pkgs.niri}/bin/niri-session";
         Type = "simple";
         IgnoreSIGPIPE = "no";
         SendSIGHUP = "yes";

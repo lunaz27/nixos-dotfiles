@@ -10,7 +10,7 @@
   };
 
   config = lib.mkIf config.modules.core.system.users.enable {
-    users.users."suwapotta" = {
+    users.users."lunaz" = {
       isNormalUser = true;
       extraGroups = [
         "wheel"

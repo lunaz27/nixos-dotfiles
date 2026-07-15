@@ -135,7 +135,7 @@ in
 
           pins = {
             "NixOS-Dotfiles" = mkEssential {
-              url = "https://github.com/suwapotta/nixos-dotfiles";
+              url = "https://github.com/lunaz/nixos-dotfiles";
               position = 101;
               id = "ececd77f-1354-4c4b-931e-fdca3754cdeb";
             };

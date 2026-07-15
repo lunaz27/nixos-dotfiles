@@ -39,7 +39,7 @@
                     mountpoint = "/home";
                   };
 
-                  # "/home/suwapotta" = { };
+                  # "/home/lunaz" = { };
 
                   "/nix" = {
                     mountOptions = [

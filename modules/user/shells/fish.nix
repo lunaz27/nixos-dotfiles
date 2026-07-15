@@ -62,7 +62,7 @@ in
         nlg = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
         nsp = "nix-shell --run \"fish\" -p";
         nrp = "nix run nixpkgs#";
-        nfitr = "nix flake init -t github:suwapotta/nixos-dotfiles#";
+        nfitr = "nix flake init -t github:lunaz/nixos-dotfiles#";
         nfitl = "nix flake init -t ~/nixos-dotfiles#";
         noi = "nh os info";
         nrf = "nh os repl -H";

@@ -13,7 +13,7 @@
       inputs.sops-nix.homeManagerModules.sops
     ];
 
-    users."suwapotta" = {
+    users."lunaz" = {
       imports = [
         # ── Modules ───────────────────────────────────────────────────────────────────
         ../../modules/user/user-default.nix
@@ -21,14 +21,14 @@
 
       home = {
         stateVersion = "25.11";
-        username = "suwapotta";
-        homeDirectory = "/home/suwapotta";
+        username = "lunaz";
+        homeDirectory = "/home/lunaz";
       };
 
       sops = {
         defaultSopsFile = ../../../secrets/sshKeys.yaml;
         defaultSopsFormat = "yaml";
-        age.keyFile = "/home/suwapotta/.config/sops/age/keys.txt";
+        age.keyFile = "/home/lunaz/.config/sops/age/keys.txt";
       };
 
       modules.user = {

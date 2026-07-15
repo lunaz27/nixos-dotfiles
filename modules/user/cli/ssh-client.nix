@@ -39,13 +39,13 @@ in
 
         "desktop" = {
           HostName = "192.168.1.201";
-          User = "suwapotta";
+          User = "lunaz";
           Port = "24";
         };
 
         "laptop" = {
           HostName = "192.168.1.27";
-          User = "suwapotta";
+          User = "lunaz";
           Port = "24";
         };
       };

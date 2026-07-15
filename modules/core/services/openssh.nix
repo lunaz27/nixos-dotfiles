@@ -23,7 +23,7 @@
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
         AllowUsers = [
-          "suwapotta"
+          "lunaz"
           "remotebuilder"
         ];
         MaxAuthTries = 3;
