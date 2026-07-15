@@ -5,20 +5,13 @@
   ...
 }:
 
-let
-  cfg = config.modules.elyprismlauncher;
-in
 {
   options = {
-    modules.elyprismlauncher = {
-      enable = lib.mkEnableOption "enables switch" // {
-        default = true;
-      };
-      # option2 = lib.mkOption { };
-    };
+    modules.core.display.elyprismlauncher.enable =
+      lib.mkEnableOption "minecraft launcher with ely.by and local accounts";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf config.modules.core.display.elyprismlauncher.enable {
     environment.systemPackages = with pkgs; [
       elyprismlauncher
     ];
@@ -46,8 +39,14 @@ in
               qtWrapperArgs = map (
                 arg:
                 builtins.replaceStrings
-                  [ "bin/prismlauncher" "PRISMLAUNCHER_JAVA_PATHS" ]
-                  [ "bin/elyprismlauncher" "PINECONEMC_JAVA_PATHS" ]
+                  [
+                    "bin/prismlauncher"
+                    "PRISMLAUNCHER_JAVA_PATHS"
+                  ]
+                  [
+                    "bin/elyprismlauncher"
+                    "PINECONEMC_JAVA_PATHS"
+                  ]
                   arg
               ) oldAttrs.qtWrapperArgs;
             });

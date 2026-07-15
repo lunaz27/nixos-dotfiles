@@ -43,6 +43,7 @@
     core = {
       display = {
         auto-login.enable = false;
+        elyprismlauncher.enable = false;
         fonts.enable = true;
         ly.enable = true;
         portals.enable = true;

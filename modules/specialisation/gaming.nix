@@ -26,12 +26,16 @@ in
       {
         system.nixos.tags = [ "Gaming" ];
 
-        modules.core.display.steam = {
-          enable = lib.mkForce true;
-          features = {
-            protonGE = lib.mkForce true;
-            gamemode = lib.mkForce true;
-            mangoHud = lib.mkForce true;
+        modules.core.display = {
+          elyprismlauncher.enable = lib.mkForce true;
+
+          steam = {
+            enable = lib.mkForce true;
+            features = {
+              protonGE = lib.mkForce true;
+              gamemode = lib.mkForce true;
+              mangoHud = lib.mkForce true;
+            };
           };
         };
       }

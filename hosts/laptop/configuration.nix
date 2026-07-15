@@ -40,6 +40,7 @@
     core = {
       display = {
         auto-login.enable = true;
+        elyprismlauncher.enable = false;
         fonts.enable = true;
         ly.enable = false;
         portals.enable = true;
