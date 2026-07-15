@@ -20,7 +20,7 @@
       ];
 
       home = {
-        stateVersion = "25.11";
+        stateVersion = "26.05";
         username = "lunaz";
         homeDirectory = "/home/lunaz";
       };
@@ -33,48 +33,48 @@
 
       modules.user = {
         apps = {
-          anki.enable = true;
+          anki.enable = false;
           libre-office.enable = false;
-          librewolf.enable = false;
-          only-office.enable = true;
-          zathura.enable = true;
-          zen-browser.enable = true;
+          librewolf.enable = true;
+          only-office.enable = false;
+          zathura.enable = false;
+          zen-browser.enable = false;
         };
 
         cli = {
-          bat.enable = true;
+          bat.enable = false;
           btop = {
-            enable = true;
-            gpu = "nvidia";
+            enable = false;
+            gpu = "none";
           };
           cava.enable = false;
           fastfetch.enable = true;
-          fzf.enable = true;
+          fzf.enable = false;
           lazygit.enable = true;
           ssh-agent = {
-            enable = true;
+            enable = false;
             useTPM = false;
             identityLifetimeSeconds = 8 * 60;
           };
           ssh-client = {
             enable = true;
-            keyGen = "laptop";
+            keyGen = "rig";
           };
-          tealdeer.enable = true;
+          tealdeer.enable = false;
           tmux.enable = false;
-          yazi.enable = true;
+          yazi.enable = false;
         };
 
         desktop = {
           cursor.enable = true;
           fcitx5.enable = true;
-          gtk.enable = true;
+          gtk.enable = false;
           niri-flake = {
-            enable = true;
+            enable = false;
             release = "unstable";
           };
-          noctalia.enable = true;
-          qt.enable = true;
+          noctalia.enable = false;
+          qt.enable = false;
           user-dirs.enable = true;
         };
 
@@ -82,8 +82,6 @@
           symlink = {
             enable = true;
             targets = [
-              "niri"
-              "lvim"
               "nvim"
             ];
           };
@@ -94,22 +92,22 @@
         };
 
         shells = {
-          direnv.enable = true;
+          direnv.enable = false;
           entr.enable = false;
-          eza.enable = true;
-          fd.enable = true;
-          fish.enable = true;
-          ripgrep.enable = true;
-          starship.enable = true;
-          zoxide.enable = true;
+          eza.enable = false;
+          fd.enable = false;
+          fish.enable = false;
+          ripgrep.enable = false;
+          starship.enable = false;
+          zoxide.enable = false;
         };
 
         terminals = {
-          kitty.enable = true;
+          kitty.enable = false;
         };
 
         themes = {
-          catppuccin.enable = true;
+          catppuccin.enable = false;
         };
       };
     };

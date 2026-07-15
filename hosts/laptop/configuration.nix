@@ -42,6 +42,7 @@
         auto-login.enable = true;
         elyprismlauncher.enable = false;
         fonts.enable = true;
+        gnome.enable = false;
         ly.enable = false;
         portals.enable = true;
         steam = {

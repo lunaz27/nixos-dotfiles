@@ -218,45 +218,26 @@ nuke:
     nh clean all --ask {{ NOTIFY }}
 
 # WARN: Recipes for installing NixOS on a new machine
-__format_and_mount host:
+__disko host:
     echo "  DISKO   ."
-    nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount ./hosts/{{ host }}/disk-config.nix
+    nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- \
+      --mode destroy,format,mount ./hosts/{{ host }}/disk-config.nix
 
-__hardware_grab from="/mnt/etc/nixos" to="./hosts/desktop/":
-    echo "  NIXGEN  /mnt"
-    nixos-generate-config --no-filesystems --root /mnt
-    echo "  HDWARE  {{ from }} -> {{ to }}"
-    cp {{ from }}/hardware-configuration.nix {{ to }}
+__nixos-anywhere host ip_addr:
+    # Assume sops-keys is already in /tmp/sops-keys/root/.config/sops/age/keys.txt
+    echo "  NIX-ANY {{ host }}"
+    nix run github:nix-community/nixos-anywhere -- \
+      --generate-hardware-config nixos-generate-config ./hosts/{{ host }}/hardware-configuration.nix \
+      --flake .#{{ host }} \
+      --extra-files /tmp/sops-keys \
+      --target-host root@{{ ip_addr }}
 
-__install host:
-    clear
-    echo "  GIT     *"
-    git add -A
-    echo "  INSTALL NixOS#{{ host }}"
-    nixos-install --flake .#{{ host }}
-    echo "  SUCCESS NixOS#{{ host }}"
-    echo "          --> Generation 1"
-    git commit -m "[ {{ host }} ] NixOS Generation 1" -m "Initial installation" &>/dev/null || true
-
-__setup path="/mnt" user="suwapotta":
-    echo "  PWRD    {{ user }}"
-    nixos-enter --root {{ path }} -c "passwd {{ user }}"
-
-# __sops_updatekeys host:
-#     #!/usr/bin/env bash
-#     set -euo pipefail
-#     if [[ ! -e {{ config_dir() }}/sops/age/keys.txt ]]; then
-#       echo "  MKDIR   {{ config_dir() }}/sops/age"
-#       mkdir -p {{ config_dir() }}/sops/age
-#     fi
-#     for secret in ./secrets/*.yaml; do
-#       echo "  SOPS    trusted_hosts += {{ host }}"
-#       nix-shell -p sops --run "sops updatekeys ${secret}"
-#     done
-
-__cp_dotfiles user="suwapotta":
-    echo "  COPY    . -> /mnt/home/{{ user }}/nixos-dotfiles"
-    mkdir -p /mnt/home/{{ user }}
-    cp -a {{ justfile_directory() }} /mnt/home/{{ user }}/nixos-dotfiles
-    echo "  CHOWN   ~: root -> {{ user }}"
-    nixos-enter --root /mnt -c "chown -R {{ user }}:users /home/{{ user }}"
+__update-sops-keys:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    # First update new sops public key of current host in ./.sops.yaml 
+    echo "  SOPS    Add Trusted host"
+    for secret in ./secrets/*.yaml; do
+      nix run nixpkgs#sops -- \
+        --run "sops updatekeys --yes ${secret}"
+    done

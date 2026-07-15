@@ -35,6 +35,7 @@
         apps = {
           anki.enable = true;
           libre-office.enable = false;
+          librewolf.enable = false;
           only-office.enable = true;
           zathura.enable = true;
           zen-browser.enable = true;

@@ -16,6 +16,7 @@ in
           lib.types.enum [
             "desktop"
             "laptop"
+            "rig"
           ]
         );
         default = null;

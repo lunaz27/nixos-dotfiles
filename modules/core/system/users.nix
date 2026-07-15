@@ -21,6 +21,7 @@
       openssh.authorizedKeys.keyFiles = [
         ../../../public/ssh-keys/id_desktop.pub
         ../../../public/ssh-keys/id_laptop.pub
+        ../../../public/ssh-keys/id_rig.pub
       ];
     };
   };

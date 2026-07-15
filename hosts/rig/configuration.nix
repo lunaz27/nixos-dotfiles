@@ -4,15 +4,6 @@
 }:
 
 {
-  # ╔───────────────────────────────────────────────────╗
-  # │ ____            _    _                ____   ____ │
-  # │|  _ \  ___  ___| | _| |_ ___  _ __   |  _ \ / ___|│
-  # │| | | |/ _ \/ __| |/ / __/ _ \| '_ \  | |_) | |    │
-  # │| |_| |  __/\__ \   <| || (_) | |_) | |  __/| |___ │
-  # │|____/ \___||___/_|\_\\__\___/| .__/  |_|    \____|│
-  # │                              |_|                  │
-  # ╚───────────────────────────────────────────────────╝
-
   # WARN: DO NOT change the state version!
   system.stateVersion = "26.05";
 
@@ -34,20 +25,20 @@
     ../../modules/specialisation/specialisation-default.nix
   ];
 
-  system.nixos.tags = [ "Desktop" ];
+  system.nixos.tags = [ "Rig" ];
   modules = {
     containers = {
-      testbox.enable = true;
+      testbox.enable = false;
     };
 
     core = {
       display = {
         auto-login.enable = false;
-        elyprismlauncher.enable = false;
-        fonts.enable = true;
-        gnome.enable = false;
-        ly.enable = true;
-        portals.enable = true;
+        elyprismlauncher.enable = true;
+        fonts.enable = false;
+        gnome.enable = true;
+        ly.enable = false;
+        portals.enable = false;
         steam = {
           enable = false;
           features = {
@@ -59,14 +50,14 @@
       };
 
       hardware = {
-        amd-gpu.enable = true;
+        amd-gpu.enable = false;
         audio.enable = true;
-        bluetooth.enable = true;
-        btrfs.enable = true;
-        intel.enable = false;
-        keyboard.enable = true;
+        bluetooth.enable = false;
+        btrfs.enable = false;
+        intel.enable = true;
+        keyboard.enable = false;
         msi = {
-          enable = true;
+          enable = false;
           ec = {
             preset = "turbo";
             coolerBoost = false;
@@ -77,7 +68,7 @@
         nvidia-disable.enable = false;
         nvidia-offload.enable = false;
         nvidia-sync.enable = false;
-        ryzen.enable = true;
+        ryzen.enable = false;
         touchpad.enable = false;
       };
 
@@ -86,10 +77,10 @@
         distributed-build.enable = false;
         experimental-features.enable = true;
         nh.enable = true;
-        niri-cachix.enable = true;
-        remote-builder.enable = true;
+        niri-cachix.enable = false;
+        remote-builder.enable = false;
         sops.enable = true;
-        vm-variant.enable = true;
+        vm-variant.enable = false;
       };
 
       services = {
@@ -101,7 +92,7 @@
         logind.enable = false;
         mcontrolcenter.enable = false;
         network.enable = true;
-        openssh.enable = true;
+        openssh.enable = false;
         polkit.enable = false;
         power = {
           enable = true;
@@ -122,7 +113,7 @@
         global-pkgs.enable = true;
         kernel-cachyos = {
           enable = false;
-          optimisationLevel = "zen4";
+          optimisationLevel = "v2";
         };
         kernel-latest.enable = false;
         kernel-zen.enable = true;
@@ -136,14 +127,14 @@
 
     specialisation = {
       gaming = {
-        enable = true;
-        platform = "desktop";
+        enable = false;
+        platform = null;
       };
 
       travel.enable = false;
 
       virtualisation = {
-        enable = true;
+        enable = false;
         features = {
           gui = true;
           windowsSupport = false;

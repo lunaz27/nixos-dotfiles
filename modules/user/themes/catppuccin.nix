@@ -39,10 +39,11 @@
         enable = true;
         enableRounded = true;
       };
-      # qt5ct.enable = true;
-      # gtk.icon.enable = true;
+      qt5ct.enable = false;
+      gtk.icon.enable = false;
 
       # ── editors ───────────────────────────────────────────────────────────────────
+      nvim.enable = false;
 
       # ── shells ────────────────────────────────────────────────────────────────────
       fish.enable = true;
