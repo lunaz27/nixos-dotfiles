@@ -36,10 +36,11 @@ in
       };
 
       packages = with pkgs; [
-        nautilus
-        xwayland-satellite
-        wl-clipboard
         libsecret
+        nautilus
+        papers
+        wl-clipboard
+        xwayland-satellite
       ];
     };
 
