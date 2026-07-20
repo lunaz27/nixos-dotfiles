@@ -1,0 +1,7 @@
+// https://yalter.github.io/niri/Configuration:-Switch-Events
+
+switch-events {
+  lid-close {
+    spawn-sh "noctalia msg session lock-and-suspend"
+  }
+}
