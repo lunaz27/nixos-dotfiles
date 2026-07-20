@@ -34,7 +34,7 @@
 
 % Code & Lists
 \RequirePackage{codespace}
-\RequirePackage{minted}
+\RequirePackage{minted2}
 \RequirePackage{enumerate, enumitem}
 
 % References

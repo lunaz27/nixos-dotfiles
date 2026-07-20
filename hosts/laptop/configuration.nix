@@ -4,11 +4,19 @@
 }:
 
 {
-  # ╔────────────────────────────────────────────────────────────╗
-  # │.---..---.,-.  .---. .---..-. .-..-..-..-.  /. /..-..-..--. │
-  # │| |'_| |- | /-.  -|| `| |'| |=| || || .` |  || ||| || || \ \│
-  # │`-'-/`-'  `---'`---'  `-' `-' `-'`-'`-'`-'  -- --`----'`-'-'│
-  # ╚────────────────────────────────────────────────────────────╝
+  # NOTE: MSI laptop specs:
+  # - Name: GF63 Thin 11UD
+  # - Board: MS-16R6 (REV:1.0)
+  # - CPU: Intel i5-11400H (12)
+  # - iGPU: Intel UHD Graphics
+  # - dGPU: NVIDIA GeForce RTX 3050Ti Mobile
+  # - RAM: (2x8) DDR4 16GiB
+  # - Storage: NVME SSD 512GiB (Gen3)
+  # - Display: 15" 1920x1080@60Hz
+  # - Battery: MSI BIF0_9
+  # - Keyboard: Single backlid keyboard (Red)
+  # - Weight: 1.86 kg
+  # - Cooling: 1 Fan
 
   # WARN: DO NOT change the state version!
   system.stateVersion = "25.11";

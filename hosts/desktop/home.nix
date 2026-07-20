@@ -51,7 +51,8 @@
           libre-office.enable = false;
           librewolf.enable = false;
           only-office.enable = true;
-          zathura.enable = true;
+          sioyek.enable = true;
+          zathura.enable = false;
           zen-browser.enable = true;
         };
 

@@ -28,6 +28,7 @@
               lefthook
 
               texliveFull
+              (python3.withPackages (ps: [ ps.pygments ]))
 
               texlab
               bibtex-tidy

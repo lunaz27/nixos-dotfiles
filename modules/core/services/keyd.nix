@@ -19,7 +19,14 @@
 
           settings = {
             main = {
-              capslock = "escape";
+              capslock = "overload(nav, esc)";
+            };
+
+            nav = {
+              h = "left";
+              j = "down";
+              k = "up";
+              l = "right";
             };
           };
         };

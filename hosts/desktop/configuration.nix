@@ -4,14 +4,17 @@
 }:
 
 {
-  # ╔───────────────────────────────────────────────────╗
-  # │ ____            _    _                ____   ____ │
-  # │|  _ \  ___  ___| | _| |_ ___  _ __   |  _ \ / ___|│
-  # │| | | |/ _ \/ __| |/ / __/ _ \| '_ \  | |_) | |    │
-  # │| |_| |  __/\__ \   <| || (_) | |_) | |  __/| |___ │
-  # │|____/ \___||___/_|\_\\__\___/| .__/  |_|    \____|│
-  # │                              |_|                  │
-  # ╚───────────────────────────────────────────────────╝
+  # NOTE: Desktop PC specs:
+  # - Board: PRO X870E-P WIFI (MS-7E70) (2.0)
+  # - CPU: AMD Ryzen 9 7950X (32)
+  # - iGPU: AMD Raphael
+  # - dGPU: AMD Radeon RX 9060XT
+  # - RAM: (2x16) DDR5 32GiB Gskill Ripjaws
+  # - Storage: NVME SSD Western 1TiB (Gen4)
+  # - Display: 24" 1920x1080@75Hz
+  # - Cooling: Frozen A620 SLK (Dual Tower)
+  # - PSU: EVGA Supernova 750W (Gold)
+  # - Case: Linktech Bahamut ATX
 
   # WARN: DO NOT change the state version!
   system.stateVersion = "26.05";

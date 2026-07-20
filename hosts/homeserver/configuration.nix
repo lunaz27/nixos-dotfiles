@@ -4,6 +4,15 @@
 }:
 
 {
+  # NOTE: Homeserver PC specs:
+  # - Board: ASUS Prime H120M-K
+  # - CPU: Intel Pentium Gold G6405 (4)
+  # - iGPU: UHD Graphics 610
+  # - RAM: (1x4) DDR4 4GiB
+  # - Storage: HS SSD E100N 128GiB
+  # - Storage: SATA 1TiB
+  # - Display: 19" 1440x900@75Hz
+
   # WARN: DO NOT change the state version!
   system.stateVersion = "26.05";
 
