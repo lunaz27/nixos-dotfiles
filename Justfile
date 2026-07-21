@@ -4,7 +4,7 @@
 set quiet
 
 # Systems information
-FLAKE_HOST := "desktop"
+FLAKE_HOST := "desktop" # desktop/laptop/homeserver
 
 # Commands macro
 NOTIFY := "&& just notify 0 || just notify $?"
@@ -47,9 +47,9 @@ restart app_name="noctalia":
       fi
     fi
 
-git:
+git +arg="":
     printf "{{ GREEN }}   GIT     {{ NORMAL }} *\n"
-    git add -A
+    git add -A {{ arg }}
 
 notify exit_code="0" context="system":
     #!/usr/bin/env bash
@@ -105,7 +105,7 @@ notify exit_code="0" context="system":
     fi
     exit 0
 
-commit host=FLAKE_HOST:
+commit host=FLAKE_HOST +arg="":
     #!/usr/bin/env bash
     set -euo pipefail
     GEN=$(readlink /nix/var/nix/profiles/system | cut -d "-" -f 2)
@@ -117,16 +117,16 @@ commit host=FLAKE_HOST:
       exit 0
     fi
 
-    git commit -m "$MESS" -m "$DESC" &>/dev/null
+    git commit -m "$MESS" -m "$DESC" {{ arg }} &>/dev/null
     printf "{{ GREEN }}   COMMIT  {{ NORMAL }} Latest Generation\n"
 
-push:
+push +arg="":
     printf "{{ BLUE }}   PUSH    {{ NORMAL }} Github\n"
-    git push -v && just notify 0 push || just notify $? push
+    git push -v {{ arg }} && just notify 0 push || just notify $? push
 
-pull:
+pull +arg="":
     printf "{{ BLUE }}   PULL    {{ NORMAL }} Github\n"
-    git pull -v && just notify 0 pull || just notify $? pull
+    git pull -v {{ arg }} && just notify 0 pull || just notify $? pull
 
 repl:
     printf "{{ BLUE }}   REPL    {{ NORMAL }} Unstable channel\n"

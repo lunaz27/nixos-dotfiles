@@ -19,7 +19,28 @@ return {
 
       svls = {},
 
-      nixd = {},
+      nixd = {
+        settings = {
+          nixd = {
+            nixpkgs = {
+              expr = "import (builtins.getFlake (toString ./.)).inputs.nixpkgs { }",
+            },
+
+            options = {
+              nixos = {
+                expr = "(builtins.getFlake (toString ./.)).nixosConfigurations."
+                  .. vim.uv.os_gethostname()
+                  .. ".options",
+              },
+              home_manager = {
+                expr = "(builtins.getFlake (toString ./.)).nixosConfigurations."
+                  .. vim.uv.os_gethostname()
+                  .. ".options.home-manager.users.type.getSubOptions",
+              },
+            },
+          },
+        },
+      },
 
       arduino_language_server = {
         cmd = {
