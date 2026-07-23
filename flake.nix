@@ -5,6 +5,11 @@
     # ── Nixpkgs ───────────────────────────────────────────────────────────────────
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # nix-index-database = {
+    #   url = "github:nix-community/nix-index-database";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     # ── Utils ─────────────────────────────────────────────────────────────────────
     disko = {
       url = "github:nix-community/disko/latest";

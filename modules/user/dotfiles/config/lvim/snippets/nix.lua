@@ -25,7 +25,7 @@ end
 
 return {
   s(
-    "mkModule",
+    "mkLegacyModule",
     fmt(
       [[
     {
@@ -55,7 +55,7 @@ return {
   ),
 
   s(
-    "mkCfgModule",
+    "mkModule",
     fmt(
       [[
     {

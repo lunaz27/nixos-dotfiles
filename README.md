@@ -34,7 +34,7 @@
 nix flake init -t ~/nixos-dotfiles#c
 
 ## Shell abbreviation: `nfitl` (current repository)
-nix flake init -t github:suwapotta/nixos-dotfiles#c
+nix flake init -t github:lunaz27/nixos-dotfiles#c
 ```
 
 - **Configuration**: `./modules/flake-utils/templates.nix` and `./devshells/*`

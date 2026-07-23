@@ -7,8 +7,8 @@
 }:
 
 let
-  # autologin on tty7y. Otherwise autologin and getty alternate in grabbing tty1 on nixos-rebuild switch
-  autologin_on_7 = pkgs.autologin.overrideAttrs (_: {
+  # autologin on tty7. Otherwise autologin and getty alternate in grabbing tty1 on nixos-rebuild switch
+  autologin_on_tty7 = pkgs.autologin.overrideAttrs (_: {
     postPatch = /* sh */ ''
       substituteInPlace "main.c" \
         --replace-fail "setup_vt(1);" "setup_vt(7);" \
@@ -23,7 +23,7 @@ in
 
   config = lib.mkIf config.modules.core.services.auto-login.enable {
     # https://git.sr.ht/~kennylevinsen/autologin
-    environment.systemPackages = [ autologin_on_7 ];
+    environment.systemPackages = [ autologin_on_tty7 ];
 
     systemd.services."autologin" = {
       enable = true;
@@ -35,7 +35,9 @@ in
       ];
 
       serviceConfig = {
-        ExecStart = "${autologin_on_7}/bin/autologin ${userName} ${pkgs.niri}/bin/niri-session";
+        ExecStart = /* sh */ ''
+          ${autologin_on_tty7}/bin/autologin \
+                ${userName} ${pkgs.niri}/bin/niri-session 2>/dev/null'';
         Type = "simple";
         IgnoreSIGPIPE = "no";
         SendSIGHUP = "yes";

@@ -21,4 +21,8 @@ in
     ++ (getNixFiles ./nix)
     ++ (getNixFiles ./services)
     ++ (getNixFiles ./system);
+
+  # imports = builtins.filter (
+  #   name: lib.hasSuffix ".nix" name && baseNameOf name != "core-default.nix"
+  # ) (lib.filesystem.listFilesRecursive ./.);
 }

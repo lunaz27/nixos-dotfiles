@@ -167,7 +167,6 @@
           panel = {
             transparency_mode = "soft";
             open_near_click_control_center = true;
-            session_placement = "centered";
           };
 
           polkit_agent = true;

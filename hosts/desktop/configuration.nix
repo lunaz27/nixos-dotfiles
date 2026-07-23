@@ -25,8 +25,10 @@
     nixPath = [
       "nixpkgs=${inputs.nixpkgs}"
     ];
+
     channel.enable = false;
   };
+  systemd.enableStrictShellChecks = true;
 
   imports = [
     # ── Hardware ──────────────────────────────────────────────────────────────────
