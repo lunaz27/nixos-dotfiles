@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  osConfig,
   ...
 }:
 
@@ -23,9 +24,16 @@ in
     programs.fish = {
       enable = true;
 
-      completions = {
-        just = "JUST_COMPLETE=fish just | source";
-      };
+      completions = lib.mkMerge [
+        (lib.mkIf osConfig.modules.core.system.global-pkgs.enable {
+          just = "JUST_COMPLETE=fish just | source";
+        })
+
+        {
+          comma = "comma -c fish 2>/dev/null | source";
+          "," = "comma -c fish 2>/dev/null | string replace -ra 'complete -c comma' 'complete -c ,' | source";
+        }
+      ];
 
       shellAliases = {
         nix-just = "just -f ${config.home.homeDirectory}/nixos-dotfiles/Justfile";
