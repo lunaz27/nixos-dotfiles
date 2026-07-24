@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  userEmail,
   ...
 }:
 
@@ -62,7 +63,7 @@
         default = true;
 
         sync = {
-          username = "nguyenducthientan09@gmail.com";
+          username = userEmail;
           keyFile = config.sops.secrets."user-1".path;
           autoSync = true;
           syncMedia = true;

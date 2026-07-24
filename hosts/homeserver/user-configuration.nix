@@ -1,6 +1,6 @@
-{
-  # NOTE: Imported by ./home.nix
+# NOTE: Imported by ./home.nix
 
+{
   modules.user = {
     apps = {
       anki.enable = false;
@@ -19,6 +19,7 @@
         gpu = "none";
       };
       cava.enable = false;
+      comma.enable = true;
       fastfetch.enable = false;
       fzf.enable = false;
       lazygit.enable = false;

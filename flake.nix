@@ -103,6 +103,9 @@
       # Global variables
       userName = "lunaz";
       userEmail = "nguyenducthientan09@gmail.com";
+
+      # Helper functions
+      helperLib = import ./utils/helpers/functions.nix { inherit (nixpkgs) lib; };
     in
     {
       nixosConfigurations = nixpkgs.lib.mapAttrs (
@@ -112,6 +115,7 @@
           specialArgs = {
             inherit
               inputs
+              helperLib
               hosts
               hostList
               userName
@@ -128,6 +132,6 @@
         }
       ) hosts;
 
-      templates = import ./modules/flake-utils/templates.nix;
+      templates = import ./utils/templates { inherit (nixpkgs) lib; };
     };
 }

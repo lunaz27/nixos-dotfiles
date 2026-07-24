@@ -1,5 +1,6 @@
 {
   inputs,
+  helperLib,
   hostList,
   hostName,
   hosts,
@@ -16,6 +17,7 @@
     extraSpecialArgs = {
       inherit
         inputs
+        helperLib
         hostList
         hostName
         hosts
@@ -28,10 +30,9 @@
     sharedModules = [
       # ── sops-nix ──────────────────────────────────────────────────────────────────
       inputs.sops-nix.homeManagerModules.sops
-
-      # ── Modules ───────────────────────────────────────────────────────────────────
-      ../../modules/user/user-default.nix
-    ];
+    ]
+    # ── Modules ───────────────────────────────────────────────────────────────────
+    ++ (helperLib.getNixFiles ../../modules/user);
 
     users."${userName}" = {
       imports = [

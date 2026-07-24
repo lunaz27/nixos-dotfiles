@@ -1,28 +1,6 @@
-{
-  inputs,
-  ...
-}:
+# NOTE: Imported by ./home.nix
 
 {
-  # NOTE: Imported by ./home.nix
-
-  imports = [
-    inputs.nix-index-database.homeModules.default
-  ];
-
-  programs = {
-    nix-index = {
-      enable = true;
-
-      enableFishIntegration = true;
-      enableBashIntegration = true;
-    };
-
-    nix-index-database.comma = {
-      enable = true;
-    };
-  };
-
   modules.user = {
     apps = {
       anki.enable = true;
@@ -41,6 +19,7 @@
         gpu = "amd";
       };
       cava.enable = false;
+      comma.enable = true;
       fastfetch.enable = true;
       fzf.enable = true;
       lazygit.enable = true;

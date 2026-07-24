@@ -1,6 +1,5 @@
+# NOTE: Imported by ./home.nix
 {
-  # NOTE: Imported by ./home.nix
-
   modules.user = {
     apps = {
       anki.enable = true;
@@ -19,6 +18,7 @@
         gpu = "nvidia";
       };
       cava.enable = false;
+      comma.enable = true;
       fastfetch.enable = true;
       fzf.enable = true;
       lazygit.enable = true;

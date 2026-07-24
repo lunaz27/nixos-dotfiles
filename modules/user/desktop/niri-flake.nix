@@ -25,7 +25,7 @@ in
   };
 
   imports = [
-    inputs.niri-flake.homeModules."niri"
+    inputs.niri-flake.homeModules.niri
   ];
 
   config = lib.mkIf cfg.enable {

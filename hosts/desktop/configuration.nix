@@ -1,5 +1,6 @@
 {
   inputs,
+  helperLib,
   stateVersion,
   ...
 }:
@@ -20,16 +21,6 @@
   # WARN: DO NOT change the state version!
   system.stateVersion = stateVersion;
 
-  # TODO: Module for:
-  nix = {
-    nixPath = [
-      "nixpkgs=${inputs.nixpkgs}"
-    ];
-
-    channel.enable = false;
-  };
-  systemd.enableStrictShellChecks = true;
-
   imports = [
     # ── Hardware ──────────────────────────────────────────────────────────────────
     ./hardware-configuration.nix
@@ -41,12 +32,11 @@
     # ── Home Manager ──────────────────────────────────────────────────────────────
     inputs.home-manager.nixosModules.home-manager
     ./home.nix
-
-    # ── Modules ───────────────────────────────────────────────────────────────────
-    ../../modules/core/core-default.nix
-    ../../modules/containers/containers-default.nix
-    ../../modules/specialisation/specialisation-default.nix
-  ];
+  ]
+  # ── Modules ───────────────────────────────────────────────────────────────────
+  ++ (helperLib.getNixFiles ../../modules/core)
+  ++ (helperLib.getNixFiles ../../modules/containers)
+  ++ (helperLib.getNixFiles ../../modules/specialisation);
 
   modules = {
     containers = {
@@ -99,6 +89,7 @@
         distributed-build.enable = false;
         experimental-features.enable = true;
         nh.enable = true;
+        path.enable = true;
         niri-cachix.enable = true;
         remote-builder.enable = true;
         sops.enable = true;

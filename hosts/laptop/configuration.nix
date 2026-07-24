@@ -1,5 +1,6 @@
 {
   inputs,
+  helperLib,
   stateVersion,
   ...
 }:
@@ -33,12 +34,11 @@
     # ── Home Manager ──────────────────────────────────────────────────────────────
     inputs.home-manager.nixosModules.home-manager
     ./home.nix
-
-    # ── Modules ───────────────────────────────────────────────────────────────────
-    ../../modules/core/core-default.nix
-    ../../modules/containers/containers-default.nix
-    ../../modules/specialisation/specialisation-default.nix
-  ];
+  ]
+  # ── Modules ───────────────────────────────────────────────────────────────────
+  ++ (helperLib.getNixFiles ../../modules/core)
+  ++ (helperLib.getNixFiles ../../modules/containers)
+  ++ (helperLib.getNixFiles ../../modules/specialisation);
 
   modules = {
     containers = {
@@ -91,6 +91,7 @@
         distributed-build.enable = true;
         experimental-features.enable = true;
         nh.enable = true;
+        path.enable = true;
         niri-cachix.enable = true;
         remote-builder.enable = false;
         sops.enable = true;

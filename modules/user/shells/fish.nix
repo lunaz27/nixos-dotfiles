@@ -62,6 +62,7 @@ in
         nie = "nix-instantiate --eval";
         nies = "nix-instantiate --eval --strict";
         nfu = "nix flake update";
+        nfs = "nix flake show";
         nlg = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
         nsp = "nix-shell --run \"fish\" -p";
         nrp = "nix run nixpkgs#";
@@ -92,13 +93,6 @@ in
 
         # sudo prompt
         set -gx SUDO_PROMPT (set_color -u -o red)"[sudo]"(set_color -u cyan) "Enter password %p:  "(set_color normal)
-
-        # tmux + starship integration
-        if not set -q TMUX
-          if test -f ~/.local/state/quickshell/user/generated/terminal/sequences.txt
-            cat ~/.local/state/quickshell/user/generated/terminal/sequences.txt
-          end
-        end
       '';
 
       functions = {
