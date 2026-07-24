@@ -38,7 +38,7 @@
         };
       };
 
-      sessionPackages = [ pkgs.niri ];
+      # sessionPackages = [ pkgs.niri ];
     };
   };
 }

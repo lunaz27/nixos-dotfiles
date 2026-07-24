@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   ...
 }:
 
@@ -10,6 +11,9 @@
   };
 
   config = lib.mkIf config.modules.core.nix.niri-cachix.enable {
+    nixpkgs.overlays = [ inputs.niri-flake.overlays.niri ];
+    programs.niri.enable = true;
+
     nix.settings = {
       substituters = [
         "https://niri.cachix.org"

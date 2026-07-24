@@ -50,8 +50,8 @@ in
       package =
         {
           "nixpkgs" = pkgs.niri;
-          "stable" = inputs.niri-flake.packages.${pkgs.stdenv.hostPlatform.system}.niri-stable;
-          "unstable" = inputs.niri-flake.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+          "stable" = pkgs.niri-stable;
+          "unstable" = pkgs.niri-unstable;
         }
         .${cfg.release};
     };
