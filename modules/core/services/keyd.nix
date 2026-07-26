@@ -27,6 +27,7 @@
               j = "down";
               k = "up";
               l = "right";
+              tab = "macro(space space)";
             };
           };
         };

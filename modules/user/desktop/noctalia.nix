@@ -24,22 +24,10 @@
         backdrop.enabled = true;
 
         bar = {
-          "default" = {
-            contact_shadow = true;
+          default = {
             margin_edge = 12;
-
-            center = [ "workspaces" ];
-
-            end = [
-              "tray"
-              "network"
-              "bluetooth"
-              "input_volume"
-              "output_volume"
-              "battery"
-              "brightness"
-              "control-center"
-            ];
+            contact_shadow = true;
+            order = [ "default" ];
 
             start = [
               "launcher"
@@ -50,9 +38,22 @@
               "cpu"
               "media"
             ];
+            center = [
+              "workspaces"
+            ];
+            end = [
+              "tray"
+              "network"
+              "bluetooth"
+              "input_volume"
+              "output_volume"
+              "battery"
+              "brightness"
+              "privacy"
+              "control-center"
+            ];
           };
         };
-
         brightness = {
           minimum_brightness = 0.01;
         };
@@ -103,39 +104,7 @@
 
         location.address = "Ho Chi Minh City";
 
-        lockscreen_widgets = {
-          schema_version = 2;
-
-          grid = {
-            cell_size = 16;
-            major_interval = 4;
-            visible = true;
-          };
-
-          widget = {
-            "lockscreen-login-box@eDP-1" = {
-              type = "login_box";
-              box_height = 0;
-              box_width = 0;
-              cx = 960;
-              cy = 540;
-              output = "eDP-1";
-              rotation = 0;
-
-              settings = {
-                background_color = "surface_variant";
-                background_opacity = 0.88;
-                background_radius = 12;
-                input_opacity = 1;
-                input_radius = 6;
-                show_login_button = true;
-              };
-
-            };
-          };
-
-          widget_order = [ "lockscreen-login-box@eDP-1" ];
-        };
+        notification.layer = "overlay";
 
         osd.kinds.media = false;
 
@@ -163,6 +132,7 @@
           avatar_path = ../../../public/images/pfp/youmu.png;
           corner_radius_scale = 1.75;
           font_family = "Work Sans SemiBold";
+          password_style = "random";
 
           panel = {
             transparency_mode = "soft";
@@ -255,13 +225,17 @@
             show_label = false;
           };
 
+          privacy = {
+            inactive_color = "on_surface";
+          };
+
           ram = {
             show_label = false;
           };
 
           sysmon = {
             show_label = false;
-            stat = "disk_pct";
+            stat = "disk_used";
           };
 
           temp = {

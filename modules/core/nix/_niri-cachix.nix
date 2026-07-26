@@ -11,7 +11,9 @@
   };
 
   config = lib.mkIf config.modules.core.nix.niri-cachix.enable {
-    nixpkgs.overlays = [ inputs.niri-flake.overlays.niri ];
+    nixpkgs.overlays = [
+      inputs.niri-flake.overlays.niri
+    ];
     programs.niri.enable = true;
 
     nix.settings = {
