@@ -1,7 +1,8 @@
 {
   lib,
   config,
-  pkgs,
+  # inputs,
+  # pkgs,
   ...
 }:
 
@@ -38,7 +39,9 @@
         };
       };
 
-      # sessionPackages = [ pkgs.niri ];
+      # sessionPackages = [
+      #   inputs.niri-flake.packages.${pkgs.stdenv.system}.niri-unstable
+      # ];
     };
   };
 }
