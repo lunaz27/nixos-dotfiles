@@ -29,17 +29,21 @@ in
       {
         system.nixos.tags = [ "Gaming" ];
 
-        modules.core.display = {
-          elyprismlauncher.enable = mkForce true;
+        modules.core = {
+          display = {
+            elyprismlauncher.enable = mkForce true;
 
-          steam = {
-            enable = mkForce true;
-            features = {
-              protonGE = mkForce true;
-              gamemode = mkForce true;
-              mangoHud = mkForce true;
+            steam = {
+              enable = mkForce true;
+              features = {
+                protonGE = mkForce true;
+                gamemode = mkForce true;
+                mangoHud = mkForce true;
+              };
             };
           };
+
+          services.tailscale.enable = mkForce true;
         };
       }
 

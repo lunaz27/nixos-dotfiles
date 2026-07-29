@@ -39,7 +39,7 @@ in
       serverProperties = {
         server-port = 45000;
         difficulty = 0; # Force peaceful
-        max-players = 3;
+        max-players = 2;
         motd = "NixOS Monifactory Hard mode (1.20.1) server!";
         allow-cheats = true;
         online-mode = false;
