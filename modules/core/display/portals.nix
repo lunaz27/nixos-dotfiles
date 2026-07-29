@@ -1,24 +1,19 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 
 {
   options = {
-    modules.core.display.portals.enable = lib.mkEnableOption "niri gnome portal";
+    modules.core.display.portals.enable =
+      lib.mkEnableOption "system-level portals linking for home manager";
   };
 
   config = lib.mkIf config.modules.core.display.portals.enable {
-    xdg.portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gnome
-        xdg-desktop-portal-gtk
-      ];
-
-      config.common.default = "*";
-    };
+    environment.pathsToLink = [
+      "/share/applications"
+      "/share/xdg-desktop-portal"
+    ];
   };
 }

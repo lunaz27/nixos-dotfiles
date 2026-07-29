@@ -90,7 +90,6 @@
         experimental-features.enable = true;
         nh.enable = true;
         path.enable = true;
-        niri-cachix.enable = true;
         remote-builder.enable = true;
         sops.enable = true;
         vm-variant.enable = true;

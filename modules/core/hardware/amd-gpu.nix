@@ -24,7 +24,7 @@
     ];
 
     # Linux MSI Afterburner
-    services.lact.enable = true;
+    services.lact.enable = false;
 
     services.xserver.videoDrivers = [ "amdgpu" ];
   };

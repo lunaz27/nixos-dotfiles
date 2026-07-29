@@ -38,10 +38,7 @@
       cursor.enable = false;
       fcitx5.enable = false;
       gtk.enable = false;
-      niri-flake = {
-        enable = false;
-        release = "unstable";
-      };
+      niri.enable = true;
       noctalia.enable = false;
       qt.enable = false;
       sway.enable = true;

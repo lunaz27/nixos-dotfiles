@@ -37,10 +37,7 @@
       cursor.enable = true;
       fcitx5.enable = true;
       gtk.enable = true;
-      niri-flake = {
-        enable = true;
-        release = "unstable";
-      };
+      niri.enable = true;
       noctalia.enable = true;
       qt.enable = true;
       sway.enable = false;
@@ -50,10 +47,7 @@
     dotfiles = {
       symlink = {
         enable = true;
-        targets = [
-          "niri"
-          "lvim"
-        ];
+        targets = [ "lvim" ];
       };
     };
 

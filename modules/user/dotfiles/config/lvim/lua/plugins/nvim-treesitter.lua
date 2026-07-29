@@ -13,6 +13,7 @@ return {
         "css",
         "fish",
         "gitignore",
+        "glsl",
         "html",
         "javascript",
         "json",
