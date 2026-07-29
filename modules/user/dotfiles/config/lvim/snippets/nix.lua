@@ -116,6 +116,19 @@ return {
   ),
 
   s(
+    "mkHmCfg",
+    fmt(
+      [[
+      hmCfg = config.home-manager.users.${userName}.modules.user.<>;
+      ]],
+      {
+        i(1, "desktop.niri"),
+      },
+      { delimiters = "<>" }
+    )
+  ),
+
+  s(
     "lang",
     fmt(
       [[
