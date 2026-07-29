@@ -163,6 +163,7 @@
       };
 
       server.enable = true;
+
       travel.enable = true;
 
       virtualisation = {
