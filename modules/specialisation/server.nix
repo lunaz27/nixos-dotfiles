@@ -22,9 +22,6 @@ in
       configuration = {
         system.nixos.tags = [ "Server" ];
 
-        # Remove home manager bloat
-        home-manager.users.${userName} = { };
-
         modules.core = {
           hardware = {
             msi.ec = {
@@ -50,6 +47,72 @@ in
               enable = mkForce true;
               optimisationLevel = mkForce "v4";
             };
+          };
+        };
+
+        home-manager.users.${userName}.modules.user = {
+          apps = {
+            anki.enable = mkForce false;
+            libre-office.enable = mkForce false;
+            librewolf.enable = mkForce false;
+            only-office.enable = mkForce true;
+            sioyek.enable = mkForce false;
+            zathura.enable = mkForce false;
+            zen-browser.enable = mkForce false;
+          };
+
+          cli = {
+            bat.enable = mkForce false;
+            btop.enable = mkForce false;
+            cava.enable = mkForce false;
+            comma.enable = mkForce false;
+            fastfetch.enable = mkForce false;
+            fzf.enable = mkForce false;
+            lazygit.enable = mkForce false;
+            ssh-agent.enable = mkForce false;
+            ssh-client.enable = mkForce true;
+            tealdeer.enable = mkForce false;
+            tmux.enable = mkForce false;
+            yazi.enable = mkForce false;
+          };
+
+          desktop = {
+            cursor.enable = mkForce false;
+            fcitx5.enable = mkForce false;
+            gtk.enable = mkForce false;
+            niri.enable = mkForce false;
+            noctalia.enable = mkForce false;
+            qt.enable = mkForce false;
+            sway.enable = mkForce false;
+            user-dirs.enable = mkForce false;
+          };
+
+          dotfiles = {
+            symlink.enable = mkForce false;
+          };
+
+          editors = {
+            neovim.enable = mkForce false;
+          };
+
+          shells = {
+            direnv.enable = mkForce false;
+            entr.enable = mkForce false;
+            eza.enable = mkForce false;
+            fd.enable = mkForce false;
+            fish.enable = mkForce false;
+            ripgrep.enable = mkForce false;
+            starship.enable = mkForce false;
+            zoxide.enable = true;
+          };
+
+          terminals = {
+            alacritty.enable = false;
+            kitty.enable = mkForce false;
+          };
+
+          themes = {
+            catppuccin.enable = mkForce false;
           };
         };
       };
