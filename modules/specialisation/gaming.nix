@@ -6,6 +6,11 @@
 }:
 
 let
+  inherit (lib)
+    mkForce
+    mkIf
+    ;
+
   cfg = config.modules.specialisation.gaming;
 in
 {
@@ -18,65 +23,65 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     specialisation."Gaming".configuration = lib.mkMerge [
       # ── Global settings ───────────────────────────────────────────────────────────
       {
         system.nixos.tags = [ "Gaming" ];
 
         modules.core.display = {
-          elyprismlauncher.enable = lib.mkForce true;
+          elyprismlauncher.enable = mkForce true;
 
           steam = {
-            enable = lib.mkForce true;
+            enable = mkForce true;
             features = {
-              protonGE = lib.mkForce true;
-              gamemode = lib.mkForce true;
-              mangoHud = lib.mkForce true;
+              protonGE = mkForce true;
+              gamemode = mkForce true;
+              mangoHud = mkForce true;
             };
           };
         };
       }
 
       # ── Desktop host (Full AMD) ───────────────────────────────────────────────────
-      (lib.mkIf (cfg.platform == "desktop") {
+      (mkIf (cfg.platform == "desktop") {
         modules.core.system = {
           kernel-cachyos = {
-            enable = lib.mkForce true;
-            optimisationLevel = lib.mkForce "zen4";
+            enable = mkForce true;
+            optimisationLevel = mkForce "zen4";
           };
 
-          kernel-zen.enable = lib.mkForce false;
-          kernel-latest.enable = lib.mkForce false;
+          kernel-zen.enable = mkForce false;
+          kernel-latest.enable = mkForce false;
         };
       })
 
       # ── Laptop host (iGPU + Nvidia) ───────────────────────────────────────────────
-      (lib.mkIf (cfg.platform == "laptop") {
+      (mkIf (cfg.platform == "laptop") {
         modules.core = {
           system = {
             kernel-cachyos = {
-              enable = lib.mkForce true;
-              optimisationLevel = lib.mkForce "v4";
+              enable = mkForce true;
+              optimisationLevel = mkForce "v4";
             };
 
-            kernel-zen.enable = lib.mkForce false;
-            kernel-latest.enable = lib.mkForce false;
+            kernel-zen.enable = mkForce false;
+            kernel-latest.enable = mkForce false;
           };
 
           hardware = {
             msi = {
-              enable = lib.mkForce true;
+              enable = mkForce true;
               ec = {
-                preset = lib.mkForce "turbo";
-                coolerBoost = lib.mkForce true;
-                webcamBlock = lib.mkForce false;
-                kbdBacklight = lib.mkForce 3;
+                preset = mkForce "turbo";
+                coolerBoost = mkForce true;
+                webcamBlock = mkForce false;
+                kbdBacklight = mkForce 3;
               };
             };
 
-            nvidia-offload.enable = lib.mkForce false;
-            nvidia-sync.enable = lib.mkForce true;
+            nvidia-offload.enable = mkForce false;
+            nvidia-sync.enable = mkForce true;
           };
         };
       })

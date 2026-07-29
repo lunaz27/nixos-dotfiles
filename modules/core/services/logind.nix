@@ -4,16 +4,21 @@
   ...
 }:
 
+let
+  cfg = config.modules.core.services.logind;
+in
 {
   options = {
-    modules.core.services.logind.enable =
-      lib.mkEnableOption "controls how laptop behaves when closing lid";
+    modules.core.services.logind = {
+      enable = lib.mkEnableOption "controls how laptop behaves when closing lid";
+      ignoreLidClosing = lib.mkEnableOption "does not suspend when closing laptop lid";
+    };
   };
 
-  config = lib.mkIf config.modules.core.services.logind.enable {
+  config = lib.mkIf cfg.enable {
     services.logind.settings.Login = {
-      HandleLidSwitch = "poweroff";
-      HandleLidSwitchExternalPower = "lock";
+      HandleLidSwitch = if cfg.ignoreLidClosing then "ignore" else "poweroff";
+      HandleLidSwitchExternalPower = if cfg.ignoreLidClosing then "ignore" else "lock";
       HandleLidSwitchDocked = "ignore";
     };
   };

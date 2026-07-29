@@ -4,46 +4,53 @@
   ...
 }:
 
+let
+  inherit (lib) mkForce;
+
+  cfg = config.modules.specialisation.travel;
+in
 {
   options = {
-    modules.specialisation.travel.enable = lib.mkEnableOption "battery saving boot specialisation";
+    modules.specialisation.travel = {
+      enable = lib.mkEnableOption "battery saving boot specialisation";
+    };
   };
 
-  config = lib.mkIf config.modules.specialisation.travel.enable {
+  config = lib.mkIf cfg.enable {
     specialisation."Travel".configuration = {
       system.nixos.tags = [ "Travel" ];
 
       modules = {
         containers = {
-          testbox.enable = lib.mkForce false;
+          testbox.enable = mkForce false;
         };
 
         core = {
           hardware = {
             _battery-optimisation.enable = true;
-            bluetooth.enable = lib.mkForce false;
+            bluetooth.enable = mkForce false;
             msi = {
-              enable = lib.mkForce true;
+              enable = mkForce true;
               ec = {
-                preset = lib.mkForce "eco";
-                coolerBoost = lib.mkForce false;
-                webcamBlock = lib.mkForce true;
-                kbdBacklight = lib.mkForce 0;
+                preset = mkForce "eco";
+                coolerBoost = mkForce false;
+                webcamBlock = mkForce true;
+                kbdBacklight = mkForce 0;
               };
             };
-            nvidia-disable.enable = lib.mkForce true;
-            nvidia-offload.enable = lib.mkForce false;
-            nvidia-sync.enable = lib.mkForce false;
+            nvidia-disable.enable = mkForce true;
+            nvidia-offload.enable = mkForce false;
+            nvidia-sync.enable = mkForce false;
           };
 
           services = {
-            mcontrolcenter.enable = lib.mkForce false;
-            openssh.enable = lib.mkForce false;
+            mcontrolcenter.enable = mkForce false;
+            openssh.enable = mkForce false;
             power = {
-              enable = lib.mkForce true;
-              mode = lib.mkForce "power-saver";
+              enable = mkForce true;
+              mode = mkForce "power-saver";
             };
-            tailscale.enable = lib.mkForce false;
+            tailscale.enable = mkForce false;
           };
         };
       };

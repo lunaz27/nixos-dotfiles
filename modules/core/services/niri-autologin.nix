@@ -16,13 +16,20 @@ let
         --replace-fail "XDG_VTNR=1" "XDG_VTNR=7"
     '';
   });
+
+  cfg = config.modules.core.services.niri-autologin;
+  hmCfg = config.home-manager.users.${userName}.modules.user;
 in
 {
   options = {
-    modules.core.services.auto-login.enable = lib.mkEnableOption "niri autologin";
+    modules.core.services.niri-autologin = {
+      enable = lib.mkEnableOption "custom niri autologin service" // {
+        default = hmCfg.desktop.niri.enable;
+      };
+    };
   };
 
-  config = lib.mkIf config.modules.core.services.auto-login.enable {
+  config = lib.mkIf cfg.enable {
     # https://git.sr.ht/~kennylevinsen/autologin
     environment.systemPackages = [ autologin_on_tty7 ];
 

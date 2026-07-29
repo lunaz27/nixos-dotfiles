@@ -4,12 +4,17 @@
   ...
 }:
 
+let
+  cfg = config.modules.core.system.zram;
+in
 {
   options = {
-    modules.core.system.zram.enable = lib.mkEnableOption "enables zram";
+    modules.core.system.zram.enable = lib.mkEnableOption "enables zram" // {
+      default = true;
+    };
   };
 
-  config = lib.mkIf config.modules.core.system.zram.enable {
+  config = lib.mkIf cfg.enable {
     zramSwap = {
       enable = true;
 

@@ -4,12 +4,19 @@
   ...
 }:
 
+let
+  cfg = config.modules.core.services.keyd;
+in
 {
   options = {
-    modules.core.services.keyd.enable = lib.mkEnableOption "keyd configuration";
+    modules.core.services.keyd = {
+      enable = lib.mkEnableOption "keyd configuration" // {
+        default = true;
+      };
+    };
   };
 
-  config = lib.mkIf config.modules.core.services.keyd.enable {
+  config = lib.mkIf cfg.enable {
     services.keyd = {
       enable = true;
 

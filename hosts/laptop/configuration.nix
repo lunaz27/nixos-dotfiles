@@ -98,19 +98,22 @@
       };
 
       services = {
-        auto-login.enable = true;
         git.enable = true;
         global-programs.enable = true;
         gvfs.enable = true;
         keyd.enable = true;
         libimobiledevice.enable = false;
-        logind.enable = true;
+        logind = {
+          enable = true;
+          ignoreLidClosing = false;
+        };
         mcontrolcenter.enable = true;
         minecraft-server.enable = false;
         network = {
           enable = true;
           isRouterDnsBroken = false;
         };
+        niri-autologin.enable = true;
         openssh.enable = true;
         polkit = {
           enable = false;
@@ -130,6 +133,7 @@
           };
         };
         tailscale.enable = false;
+        tty-autologin.enable = false;
       };
 
       system = {
@@ -158,6 +162,7 @@
         platform = "laptop";
       };
 
+      server.enable = true;
       travel.enable = true;
 
       virtualisation = {

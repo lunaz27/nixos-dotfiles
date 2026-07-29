@@ -11,7 +11,9 @@ in
 {
   options = {
     modules.core.services.network = {
-      enable = lib.mkEnableOption "declare hostname with networkmanager";
+      enable = lib.mkEnableOption "declare hostname with networkmanager" // {
+        default = true;
+      };
       isRouterDnsBroken = lib.mkEnableOption "insert cloudflare + google dns at /etc/resolv.conf";
     };
   };

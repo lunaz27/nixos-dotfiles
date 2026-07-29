@@ -5,10 +5,15 @@
   ...
 }:
 
+let
+  cfg = config.modules.core.nix.sops;
+in
 {
   options = {
-    modules.core.nix.sops.enable = lib.mkEnableOption "atomic secrets management tool" // {
-      default = true;
+    modules.core.nix.sops = {
+      enable = lib.mkEnableOption "atomic secrets management tool" // {
+        default = true;
+      };
     };
   };
 
@@ -16,7 +21,7 @@
     inputs.sops-nix.nixosModules.sops
   ];
 
-  config = lib.mkIf config.modules.core.nix.sops.enable {
+  config = lib.mkIf cfg.enable {
     sops = {
       defaultSopsFile = ../../../secrets/system-level/password-hashes.yaml;
       defaultSopsFormat = "yaml";

@@ -93,19 +93,22 @@
       };
 
       services = {
-        auto-login.enable = false;
         git.enable = true;
         global-programs.enable = true;
         gvfs.enable = true;
         keyd.enable = true;
         libimobiledevice.enable = false;
-        logind.enable = false;
+        logind = {
+          enable = false;
+          ignoreLidClosing = false;
+        };
         mcontrolcenter.enable = false;
         minecraft-server.enable = false;
         network = {
           enable = true;
           isRouterDnsBroken = true;
         };
+        niri-autologin.enable = false;
         openssh.enable = true;
         polkit = {
           enable = true; # Dependency for sway.nix
@@ -125,6 +128,7 @@
           };
         };
         tailscale.enable = true;
+        tty-autologin.enable = false;
       };
 
       system = {
@@ -153,6 +157,7 @@
         platform = null;
       };
 
+      server.enable = true;
       travel.enable = false;
 
       virtualisation = {

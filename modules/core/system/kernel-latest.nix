@@ -5,12 +5,19 @@
   ...
 }:
 
+let
+  cfg = config.modules.core.system.kernel-latest;
+in
 {
   options = {
-    modules.core.system.kernel-latest.enable = lib.mkEnableOption "latest kernel pkg";
+    modules.core.system.kernel-latest = {
+      enable = lib.mkEnableOption "latest kernel pkg" // {
+        default = true;
+      };
+    };
   };
 
-  config = lib.mkIf config.modules.core.system.kernel-latest.enable {
+  config = lib.mkIf cfg.enable {
     boot.kernelPackages = pkgs.linuxPackages_latest;
   };
 }

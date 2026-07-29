@@ -5,6 +5,8 @@
 }:
 
 let
+  inherit (lib) mkForce;
+
   cfg = config.modules.specialisation.virtualisation;
 in
 {
@@ -26,13 +28,13 @@ in
       system.nixos.tags = [ "Virtualisation" ];
 
       modules.core.services.qemu = {
-        enable = lib.mkForce true;
+        enable = mkForce true;
 
         features = {
-          gui = lib.mkForce cfg.features.gui;
-          windowsSupport = lib.mkForce cfg.features.windowsSupport;
-          usbSharing = lib.mkForce cfg.features.usbSharing;
-          clipboardSharing = lib.mkForce cfg.features.clipboardSharing;
+          gui = mkForce cfg.features.gui;
+          windowsSupport = mkForce cfg.features.windowsSupport;
+          usbSharing = mkForce cfg.features.usbSharing;
+          clipboardSharing = mkForce cfg.features.clipboardSharing;
         };
       };
     };
