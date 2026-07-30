@@ -34,6 +34,8 @@ in
               j = "down";
               k = "up";
               l = "right";
+              u = "pagedown";
+              i = "pageup";
               tab = "macro(space space)";
             };
           };

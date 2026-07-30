@@ -82,6 +82,8 @@ in
         lh = "lefthook";
         v = "virsh";
         vla = "virsh list --all";
+        hss = "herdr server stop";
+        hcc = "herdr config check";
       };
 
       # shellInit = /* fish */ ''

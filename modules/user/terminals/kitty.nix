@@ -8,13 +8,17 @@ let
   mkSymlink =
     pyFile:
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-dotfiles/config/kitty/${pyFile}";
+
+  cfg = config.modules.user.terminals.kitty;
 in
 {
   options = {
-    modules.user.terminals.kitty.enable = lib.mkEnableOption "kitty - gpu based terminal emulator";
+    modules.user.terminals.kitty = {
+      enable = lib.mkEnableOption "kitty - gpu based terminal emulator";
+    };
   };
 
-  config = lib.mkIf config.modules.user.terminals.kitty.enable {
+  config = lib.mkIf cfg.enable {
     programs.kitty = {
       enable = true;
 

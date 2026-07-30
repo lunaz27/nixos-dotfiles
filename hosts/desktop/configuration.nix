@@ -140,8 +140,8 @@
           enable = false;
           optimisationLevel = "zen4";
         };
-        kernel-latest.enable = true;
-        kernel-zen.enable = false;
+        kernel-latest.enable = false;
+        kernel-zen.enable = true;
         systemd-boot.enable = true;
         timezone.enable = true;
         users.enable = true;

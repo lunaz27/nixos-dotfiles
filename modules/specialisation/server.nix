@@ -68,6 +68,7 @@ in
             comma.enable = mkForce false;
             fastfetch.enable = mkForce false;
             fzf.enable = mkForce false;
+            herdr.enable = mkForce false;
             lazygit.enable = mkForce false;
             ssh-agent.enable = mkForce false;
             ssh-client.enable = mkForce true;

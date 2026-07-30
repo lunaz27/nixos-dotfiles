@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  hostName,
   ...
 }:
 
@@ -165,24 +166,21 @@ in
             repeat-rate = 35;
           };
 
+          mouse = {
+            accel-profile = "flat";
+          };
+
+          warp-mouse-to-focus._props.mode = "center-xy";
+          focus-follows-mouse._props.max-scroll-amount = "0%";
+          workspace-auto-back-and-forth = { };
+        }
+        // lib.optionalAttrs (hostName == "laptop") {
           touchpad = {
             tap = { };
             dwt = { };
             dwtp = { };
             natural-scroll = { };
           };
-
-          mouse = {
-            accel-profile = "flat";
-          };
-
-          trackpoint = {
-            natural-scroll = { };
-          };
-
-          warp-mouse-to-focus._props.mode = "center-xy";
-          focus-follows-mouse._props.max-scroll-amount = "0%";
-          workspace-auto-back-and-forth = { };
         };
 
         # ── Layout ────────────────────────────────────────────────────────────────────
@@ -253,202 +251,209 @@ in
         overview.zoom = 0.5;
         hotkey-overlay.skip-at-startup = { };
 
-        _children = [
+        _children =
           # ── Outputs ───────────────────────────────────────────────────────────────────
-          {
-            output = {
-              _args = [ "HDMI-A-1" ];
-              mode = "1920x1080@75.000";
-              variable-refresh-rate = { };
-              scale = 1.0;
-              hot-corners.bottom-right = { };
-            };
-          }
-          {
-            output = {
-              _args = [ "eDP-1" ];
-              mode = "1920x1080@60.001";
-              scale = 1.0;
-              hot-corners.bottom-right = { };
-            };
-          }
-
-          # ── Layer Rules ───────────────────────────────────────────────────────────────
-          {
-            layer-rule = {
-              match._props.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$";
-
-              opacity = 0.89;
-              background-effect = {
-                blur = true;
-                xray = false;
+          lib.optionals (hostName == "desktop") [
+            {
+              output = {
+                _args = [ "HDMI-A-1" ];
+                mode = "1920x1080@75.000";
+                variable-refresh-rate = { };
+                scale = 1.0;
+                hot-corners.bottom-right = { };
               };
-            };
-          }
-
-          {
-            layer-rule = {
-              match._props.namespace = "^noctalia-(bar-[^\"]+|attached-panel)$";
-
-              opacity = 0.89;
-              background-effect = {
-                blur = false;
-                xray = false;
+            }
+          ]
+          ++ lib.optionals (hostName == "laptop") [
+            {
+              output = {
+                _args = [ "eDP-1" ];
+                mode = "1920x1080@60.001";
+                scale = 1.0;
+                hot-corners.bottom-right = { };
               };
-            };
-          }
+            }
+          ]
+          ++ [
+            {
+            }
 
-          # Blur overview wallpaper
-          {
-            layer-rule = {
-              match._props.namespace = "^noctalia-backdrop*";
-              place-within-backdrop = true;
-            };
-          }
+            # ── Layer Rules ───────────────────────────────────────────────────────────────
+            {
+              layer-rule = {
+                match._props.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$";
 
-          # ── Window Rules ──────────────────────────────────────────────────────────────
-          {
-            window-rule = {
-              match._props = {
-                app-id = "zen-beta$";
-                title = "^Picture-in-Picture$";
-              };
-
-              open-floating = true;
-              default-column-width.fixed = 480;
-              default-window-height.fixed = 270;
-              default-floating-position._props = {
-                x = 0;
-                y = 0;
-                relative-to = "bottom-right";
-              };
-            };
-          }
-
-          {
-            window-rule._children = [
-              { match._props.app-id = "^kitty$"; }
-              { match._props.app-id = "^anki$"; }
-              { match._props.app-id = "^org\\.gnome\\.Nautilus$"; }
-              { match._props.app-id = "^xdg-desktop-portal-gtk$"; }
-
-              { opacity = 0.89; }
-              { draw-border-with-background = false; }
-              { clip-to-geometry = true; }
-              {
+                opacity = 0.89;
                 background-effect = {
                   blur = true;
                   xray = false;
                 };
-              }
-            ];
-          }
+              };
+            }
 
-          {
-            window-rule._children = [
-              { match._props.app-id = "^floating.*"; }
-              { match._props.is-floating = true; }
+            {
+              layer-rule = {
+                match._props.namespace = "^noctalia-(bar-[^\"]+|attached-panel)$";
 
-              {
+                opacity = 0.89;
                 background-effect = {
-                  blur = true;
+                  blur = false;
                   xray = false;
                 };
-              }
-            ];
-          }
-
-          {
-            window-rule = {
-              match._props.app-id = "^floating.*";
-
-              open-floating = true;
-              draw-border-with-background = false;
-              default-window-height.proportion = 0.90;
-              default-column-width.proportion = 0.75;
-            };
-          }
-
-          # Neovim modes
-          {
-            window-rule = {
-              match._props.title = "^nvim-N";
-
-              border = {
-                active-color = "#89b4fb";
-                inactive-color = "#1e1e2e";
-                urgent-color = "#f38ba9";
               };
-            };
-          }
-          {
-            window-rule = {
-              match._props.title = "^nvim-[IT]";
+            }
 
-              border = {
-                active-color = "#a6e3a2";
-                inactive-color = "#1e1e2e";
-                urgent-color = "#f38ba9";
+            # Blur overview wallpaper
+            {
+              layer-rule = {
+                match._props.namespace = "^noctalia-backdrop*";
+                place-within-backdrop = true;
               };
-            };
-          }
+            }
 
-          {
-            window-rule = {
-              match._props.title = "^nvim-V";
+            # ── Window Rules ──────────────────────────────────────────────────────────────
+            {
+              window-rule = {
+                match._props = {
+                  app-id = "zen-beta$";
+                  title = "^Picture-in-Picture$";
+                };
 
-              border = {
-                active-color = "#cba6f8";
-                inactive-color = "#1e1e2e";
-                urgent-color = "#f38ba9";
+                open-floating = true;
+                default-column-width.fixed = 480;
+                default-window-height.fixed = 270;
+                default-floating-position._props = {
+                  x = 0;
+                  y = 0;
+                  relative-to = "bottom-right";
+                };
               };
-            };
-          }
+            }
 
-          {
-            window-rule = {
-              match._props.title = "^nvim-C";
-              border = {
-                active-color = "#fab388";
-                inactive-color = "#1e1e2e";
-                urgent-color = "#f38ba9";
+            {
+              window-rule._children = [
+                { match._props.app-id = "^kitty$"; }
+                { match._props.app-id = "^anki$"; }
+                { match._props.app-id = "^org\\.gnome\\.Nautilus$"; }
+                { match._props.app-id = "^xdg-desktop-portal-gtk$"; }
+
+                { opacity = 0.89; }
+                { draw-border-with-background = false; }
+                { clip-to-geometry = true; }
+                {
+                  background-effect = {
+                    blur = true;
+                    xray = false;
+                  };
+                }
+              ];
+            }
+
+            {
+              window-rule._children = [
+                { match._props.app-id = "^floating.*"; }
+                { match._props.is-floating = true; }
+
+                {
+                  background-effect = {
+                    blur = true;
+                    xray = false;
+                  };
+                }
+              ];
+            }
+
+            {
+              window-rule = {
+                match._props.app-id = "^floating.*";
+
+                open-floating = true;
+                draw-border-with-background = false;
+                default-window-height.proportion = 0.90;
+                default-column-width.proportion = 0.75;
               };
-            };
-          }
+            }
 
-          {
-            window-rule = {
-              match._props.title = "^nvim-R";
-              border = {
-                active-color = "#f38ba8";
-                inactive-color = "#1e1e2e";
-                urgent-color = "#f38ba9";
+            # Neovim modes
+            {
+              window-rule = {
+                match._props.title = "^nvim-N";
+
+                border = {
+                  active-color = "#89b4fb";
+                  inactive-color = "#1e1e2e";
+                  urgent-color = "#f38ba9";
+                };
               };
-            };
-          }
+            }
+            {
+              window-rule = {
+                match._props.title = "^nvim-[IT]";
 
-          # Noctalia
-          {
-            window-rule = {
-              geometry-corner-radius = 20;
-              clip-to-geometry = true;
-            };
-          }
-          {
-            window-rule = {
-              match._props.app-id = "dev.noctalia.Noctalia.Settings";
+                border = {
+                  active-color = "#a6e3a2";
+                  inactive-color = "#1e1e2e";
+                  urgent-color = "#f38ba9";
+                };
+              };
+            }
 
-              open-floating = true;
-              default-column-width.fixed = 1080;
-              default-window-height.fixed = 920;
-            };
-          }
+            {
+              window-rule = {
+                match._props.title = "^nvim-V";
 
-          # ── Startups ──────────────────────────────────────────────────────────────────
-          { spawn-at-startup._args = [ "fcitx5" ]; }
-          { spawn-at-startup._args = [ "noctalia" ]; }
-          { spawn-at-startup._args = [ "mcontrolcenter" ]; }
-        ];
+                border = {
+                  active-color = "#cba6f8";
+                  inactive-color = "#1e1e2e";
+                  urgent-color = "#f38ba9";
+                };
+              };
+            }
+
+            {
+              window-rule = {
+                match._props.title = "^nvim-C";
+                border = {
+                  active-color = "#fab388";
+                  inactive-color = "#1e1e2e";
+                  urgent-color = "#f38ba9";
+                };
+              };
+            }
+
+            {
+              window-rule = {
+                match._props.title = "^nvim-R";
+                border = {
+                  active-color = "#f38ba8";
+                  inactive-color = "#1e1e2e";
+                  urgent-color = "#f38ba9";
+                };
+              };
+            }
+
+            # Noctalia
+            {
+              window-rule = {
+                geometry-corner-radius = 20;
+                clip-to-geometry = true;
+              };
+            }
+            {
+              window-rule = {
+                match._props.app-id = "dev.noctalia.Noctalia.Settings";
+
+                open-floating = true;
+                default-column-width.fixed = 1080;
+                default-window-height.fixed = 920;
+              };
+            }
+
+            # ── Startups ──────────────────────────────────────────────────────────────────
+            { spawn-at-startup._args = [ "fcitx5" ]; }
+            { spawn-at-startup._args = [ "noctalia" ]; }
+            { spawn-at-startup._args = [ "mcontrolcenter" ]; }
+          ];
 
         debug = {
           honor-xdg-activation-with-invalid-serial = { };

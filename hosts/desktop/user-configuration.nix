@@ -22,6 +22,7 @@
       comma.enable = true;
       fastfetch.enable = true;
       fzf.enable = true;
+      herdr.enable = true;
       lazygit.enable = true;
       ssh-agent = {
         enable = true;
