@@ -3,7 +3,6 @@
   config,
   pkgs,
   userName,
-  inputs,
   ...
 }:
 
@@ -45,9 +44,7 @@ in
       serviceConfig = {
         ExecStart = /* sh */ ''
           ${autologin_on_tty7}/bin/autologin \
-                ${userName} ${
-                  inputs.niri-flake.packages.${pkgs.stdenv.system}.niri-unstable
-                }/bin/niri-session 2>/dev/null'';
+                ${userName} ${pkgs.niri}/bin/niri-session 2>/dev/null'';
         Type = "simple";
         IgnoreSIGPIPE = "no";
         SendSIGHUP = "yes";

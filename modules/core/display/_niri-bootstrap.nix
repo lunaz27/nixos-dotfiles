@@ -1,8 +1,6 @@
 {
   lib,
   config,
-  inputs,
-  pkgs,
   userName,
   ...
 }:
@@ -15,7 +13,6 @@ in
     # NOTE: Installs native desktop portals and gnome keyring daemon
     programs.niri = {
       enable = true;
-      package = inputs.niri-flake.packages.${pkgs.stdenv.system}.niri-unstable;
     };
   };
 }

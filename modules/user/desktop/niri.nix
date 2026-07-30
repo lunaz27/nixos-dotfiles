@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  inputs,
   ...
 }:
 
@@ -17,7 +16,6 @@ in
   config = lib.mkIf cfg.enable {
     wayland.windowManager.niri = {
       enable = true;
-      package = inputs.niri-flake.packages.${pkgs.stdenv.system}.niri-unstable;
       xwaylandSatellitePackage = pkgs.xwayland-satellite;
       portalPackage = pkgs.xdg-desktop-portal-gnome;
 

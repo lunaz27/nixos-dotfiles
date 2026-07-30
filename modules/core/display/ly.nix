@@ -38,10 +38,6 @@
           show_password_key = "F5";
         };
       };
-
-      # sessionPackages = [
-      #   inputs.niri-flake.packages.${pkgs.stdenv.system}.niri-unstable
-      # ];
     };
   };
 }
