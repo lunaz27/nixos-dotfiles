@@ -30,6 +30,7 @@
         identityLifetimeSeconds = 8 * 60;
       };
       ssh-client.enable = true;
+      superfile.enable = false;
       tealdeer.enable = true;
       tmux.enable = false;
       yazi.enable = true;

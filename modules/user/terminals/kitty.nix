@@ -7,7 +7,7 @@
 let
   mkSymlink =
     pyFile:
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-dotfiles/config/kitty/${pyFile}";
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-dotfiles/modules/user/dotfiles/config/kitty/${pyFile}";
 
   cfg = config.modules.user.terminals.kitty;
 in

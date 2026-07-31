@@ -18,7 +18,10 @@ in
 
   config = lib.mkIf cfg.enable {
     boot.loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        editor = false; # Avoiding root access with init=/bin/sh
+      };
       efi.canTouchEfiVariables = true;
     };
   };
