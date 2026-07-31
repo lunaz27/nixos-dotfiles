@@ -20,6 +20,7 @@ order = [ "default" ]
         "control-center"
     ]
     margin_edge = 12
+    order = [ "default" ]
     start = [ "launcher", "clock", "sysmon", "temp", "ram", "cpu", "media" ]
 
 [brightness]
@@ -38,6 +39,7 @@ enabled = false
 
 [dock]
 active_monitor_only = true
+background_opacity = 0.99999997764825821
 cross_axis_padding = 6
 enabled = true
 icon_size = 35
@@ -48,17 +50,17 @@ main_axis_padding = 12
 margin_edge = 12
 
 [keybinds]
-down = [ "Ctrl+j", "Ctrl+n" ]
-left = [ "Ctrl+h" ]
-right = [ "Ctrl+l" ]
-up = [ "Ctrl+k", "Ctrl+p" ]
+down = [ "Ctrl+j", "Ctrl+n", "Down" ]
+left = [ "Ctrl+h", "Left" ]
+right = [ "Ctrl+l", "Right" ]
+up = [ "Ctrl+k", "Ctrl+p", "Up" ]
 validate = [ "Ctrl+y", "Return" ]
 
 [location]
 address = "Ho Chi Minh City"
 
 [lockscreen_widgets]
-enabled = false
+enabled = true
 schema_version = 2
 widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
 
@@ -68,10 +70,10 @@ widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
     visible = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
-    box_height = 70.0
-    box_width = 400.0
+    box_height = 196.0
+    box_width = 810.0
     cx = 960.0
-    cy = 961.0
+    cy = 540.0
     output = "HDMI-A-1"
     rotation = 0.0
     type = "login_box"
@@ -83,14 +85,18 @@ widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
         center_password_text = false
         input_opacity = 1.0
         input_radius = 6.0
+        layout = "regular"
         show_caps_lock = true
         show_keyboard_layout = true
         show_login_button = true
-        show_password_hint = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-    box_height = 70.0
-    box_width = 400.0
+    box_height = 196.0
+    box_width = 720.0
     cx = 960.0
     cy = 540.0
     output = "eDP-1"
@@ -104,10 +110,14 @@ widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
         center_password_text = false
         input_opacity = 1.0
         input_radius = 6.0
+        layout = "regular"
         show_caps_lock = true
         show_keyboard_layout = true
         show_login_button = true
-        show_password_hint = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
 [notification]
 layer = "overlay"
@@ -147,35 +157,38 @@ settings_show_advanced = true
     [shell.screen_corners]
     enabled = true
 
-    [[shell.session.actions]]
-    action = "lock"
-    enabled = true
-    shortcut = "1"
-    variant = "primary"
+    [shell.session]
+    grid_columns = 1
 
-    [[shell.session.actions]]
-    action = "lock_and_suspend"
-    enabled = true
-    shortcut = "2"
-    variant = "primary"
+        [[shell.session.actions]]
+        action = "lock"
+        enabled = true
+        shortcut = "1"
+        variant = "primary"
 
-    [[shell.session.actions]]
-    action = "logout"
-    enabled = true
-    shortcut = "3"
-    variant = "secondary"
+        [[shell.session.actions]]
+        action = "lock_and_suspend"
+        enabled = true
+        shortcut = "2"
+        variant = "primary"
 
-    [[shell.session.actions]]
-    action = "reboot"
-    enabled = true
-    shortcut = "4"
-    variant = "destructive"
+        [[shell.session.actions]]
+        action = "logout"
+        enabled = true
+        shortcut = "3"
+        variant = "secondary"
 
-    [[shell.session.actions]]
-    action = "shutdown"
-    enabled = true
-    shortcut = "5"
-    variant = "destructive"
+        [[shell.session.actions]]
+        action = "reboot"
+        enabled = true
+        shortcut = "4"
+        variant = "destructive"
+
+        [[shell.session.actions]]
+        action = "shutdown"
+        enabled = true
+        shortcut = "5"
+        variant = "destructive"
 
 [theme]
 builtin = "Catppuccin"
@@ -185,7 +198,7 @@ source = "builtin"
 wallpaper_scheme = "m3-content"
 
     [theme.templates]
-    builtin_ids = [ "gtk3", "gtk4", "niri", "qt" ]
+    builtin_ids = [ "gtk3", "gtk4", "qt" ]
     community_ids = [ "zen-browser" ]
 
 [wallpaper]
@@ -193,13 +206,13 @@ directory = "/nix/store/rnzhy0pxkin8lx7sabfrqlc3m46jpk3z-wallpapers"
 transition_on_startup = true
 
     [wallpaper.default]
-    path = "/nix/store/rnzhy0pxkin8lx7sabfrqlc3m46jpk3z-wallpapers/shadedLandscape.png"
+    path = "/nix/store/rnzhy0pxkin8lx7sabfrqlc3m46jpk3z-wallpapers/sunsetLandscape.jpg"
 
     [wallpaper.last]
-    path = "/nix/store/rnzhy0pxkin8lx7sabfrqlc3m46jpk3z-wallpapers/shadedLandscape.png"
+    path = "/nix/store/rnzhy0pxkin8lx7sabfrqlc3m46jpk3z-wallpapers/sunsetLandscape.jpg"
 
     [wallpaper.monitors.HDMI-A-1]
-    path = "/nix/store/rnzhy0pxkin8lx7sabfrqlc3m46jpk3z-wallpapers/shadedLandscape.png"
+    path = "/nix/store/rnzhy0pxkin8lx7sabfrqlc3m46jpk3z-wallpapers/sunsetLandscape.jpg"
 
 [widget.control-center]
 custom_image = "/nix/store/r90ixzwialz4qghdmnqf41l71iwc8l1i-nixos-flake.png"

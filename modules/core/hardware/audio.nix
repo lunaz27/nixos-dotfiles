@@ -10,13 +10,16 @@
   };
 
   config = lib.mkIf config.modules.core.hardware.audio.enable {
-    services.pipewire = {
-      enable = true;
+    services = {
+      pulseaudio.enable = false;
+      pipewire = {
+        enable = true;
 
-      pulse.enable = true;
-      jack.enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
+        pulse.enable = true;
+        jack.enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+      };
     };
 
     # Remove glitchy audio issue

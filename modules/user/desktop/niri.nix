@@ -275,9 +275,6 @@ in
             }
           ]
           ++ [
-            {
-            }
-
             # ── Layer Rules ───────────────────────────────────────────────────────────────
             {
               layer-rule = {
@@ -291,17 +288,17 @@ in
               };
             }
 
-            {
-              layer-rule = {
-                match._props.namespace = "^noctalia-(bar-[^\"]+|attached-panel)$";
-
-                opacity = 0.89;
-                background-effect = {
-                  blur = false;
-                  xray = false;
-                };
-              };
-            }
+            # {
+            #   layer-rule = {
+            #     match._props.namespace = "^noctalia-(bar-[^\"]+|attached-panel)$";
+            #
+            #     opacity = 0.89;
+            #     background-effect = {
+            #       blur = false;
+            #       xray = false;
+            #     };
+            #   };
+            # }
 
             # Blur overview wallpaper
             {

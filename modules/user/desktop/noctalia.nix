@@ -2,9 +2,18 @@
   lib,
   config,
   inputs,
+  hostName,
   ...
 }:
 
+let
+  outputMonitor =
+    {
+      desktop = "HDMI-A-1";
+      laptop = "eDP-1";
+    }
+    .${hostName};
+in
 {
   options = {
     modules.user.desktop.noctalia.enable = lib.mkEnableOption "noctalia-shell rewritten in C++/OpenCL";
@@ -18,16 +27,17 @@
 
     programs.noctalia = {
       enable = true;
-      # settings = fromTOML (builtins.readFile ../dotfiles/config/noctalia/noctalia-config.toml);
 
+      # settings = fromTOML (builtins.readFile ../dotfiles/config/noctalia/noctalia-config.toml);
       settings = {
         backdrop.enabled = true;
 
         bar = {
+          order = [ "default" ];
+
           default = {
             margin_edge = 12;
             contact_shadow = true;
-            order = [ "default" ];
 
             start = [
               "launcher"
@@ -75,6 +85,7 @@
         dock = {
           enabled = true;
 
+          background_opacity = 1.0;
           active_monitor_only = true;
           cross_axis_padding = 6;
           icon_size = 35;
@@ -89,12 +100,20 @@
           down = [
             "Ctrl+j"
             "Ctrl+n"
+            "Down"
           ];
-          left = [ "Ctrl+h" ];
-          right = [ "Ctrl+l" ];
+          left = [
+            "Ctrl+h"
+            "Left"
+          ];
+          right = [
+            "Ctrl+l"
+            "Right"
+          ];
           up = [
             "Ctrl+k"
             "Ctrl+p"
+            "Up"
           ];
           validate = [
             "Ctrl+y"
@@ -103,6 +122,49 @@
         };
 
         location.address = "Ho Chi Minh City";
+
+        lockscreen_widgets = {
+          enabled = true;
+          schema_version = 2;
+
+          grid = {
+            cell_size = 16;
+            major_interval = 4;
+            visible = true;
+          };
+
+          widget = {
+            "lockscreen-login-box@${outputMonitor}" = {
+              box_height = 196;
+              box_width = if outputMonitor == "eDP-1" then 720 else 810;
+              cx = 960;
+              cy = 540;
+              output = "${outputMonitor}";
+              rotation = 0;
+              settings = {
+                background_color = "surface_variant";
+                background_opacity = 0.89;
+                background_radius = 12;
+                center_password_text = false;
+                input_opacity = 1;
+                input_radius = 6;
+                layout = "regular";
+                show_caps_lock = true;
+                show_keyboard_layout = true;
+                show_login_button = true;
+                show_media = true;
+                show_session_buttons = true;
+                show_unlock_hint = true;
+                show_weather = true;
+              };
+              type = "login_box";
+            };
+
+            widget_order = [
+              "lockscreen-login-box@${outputMonitor}"
+            ];
+          };
+        };
 
         notification.layer = "overlay";
 
@@ -189,7 +251,6 @@
             builtin_ids = [
               "gtk3"
               "gtk4"
-              "niri"
               "qt"
             ];
             community_ids = [ "zen-browser" ];
