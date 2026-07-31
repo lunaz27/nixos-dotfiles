@@ -196,6 +196,7 @@ update host=FLAKE_HOST: pkill git
     just restart noctalia
     just git
     just commit {{ host }}
+    just push
 
 rollback gen="":
     #!/usr/bin/env bash

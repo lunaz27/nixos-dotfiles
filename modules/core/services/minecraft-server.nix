@@ -6,7 +6,7 @@
 }:
 
 let
-  monifactoryWrapped = pkgs.writeShellScriptBin "minecraft-server" ''
+  monifactoryWrapped = pkgs.writeShellScriptBin "minecraft-server" /* bash */ ''
     export PATH="${pkgs.jdk17_headless}/bin:$PATH"
     echo "-Xms4096M -Xmx8192M -XX:+UseG1GC" > user_jvm_args.txt
     if [ -f "./run.sh" ]; then
