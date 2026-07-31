@@ -270,7 +270,7 @@ in
             custom_image = ../../../public/images/logos/nixos-flake.png;
           };
           cpu = {
-            show_label = false;
+            show_value = false;
           };
 
           launcher = {
@@ -282,25 +282,21 @@ in
             title_scroll = "on_hover";
           };
 
-          network = {
-            show_label = false;
-          };
-
           privacy = {
             inactive_color = "on_surface";
           };
 
           ram = {
-            show_label = false;
+            show_value = false;
           };
 
           sysmon = {
-            show_label = false;
+            show_value = false;
             stat = "disk_used";
           };
 
           temp = {
-            show_label = false;
+            show_value = false;
           };
 
           tray = {
