@@ -191,7 +191,7 @@ update host=FLAKE_HOST +arg="": pkill git
     # nvim --headless +"lua vim.pack.update()" +w +qa &>/dev/null
 
     printf "{{ BLUE }}   UPDATE  {{ NORMAL }} NixOS#{{ host }}\n"
-    if nh os switch {{ justfile_directory() }} --update -H {{ host }} {{ arg }} ; then
+    if nh os switch {{ justfile_directory() }} --update -H {{ host }} {{ arg }}; then
       just notify 0
     else
       just notify $?
