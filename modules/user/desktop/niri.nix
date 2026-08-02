@@ -328,6 +328,13 @@ in
             }
 
             {
+              window-rule = {
+                match._props.app-id = "zen-beta$";
+                open-maximized = true;
+              };
+            }
+
+            {
               window-rule._children = [
                 { match._props.app-id = "^kitty$"; }
                 { match._props.app-id = "^anki$"; }

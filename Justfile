@@ -140,43 +140,48 @@ inspect:
     printf "{{ BLUE }}   INSPECT {{ NORMAL }} NixOS Flake\n"
     nix run nixpkgs#nix-inspect -- -p {{ justfile_directory() }}
 
-specialisation spec_name="Virtualisation" host=FLAKE_HOST: pkill git
+specialisation spec_name="Virtualisation" host=FLAKE_HOST +arg="": pkill git
     printf "{{ BLUE }}   SPECIAL {{ NORMAL }} NixOS#{{ host }}\n"
-    nh os test {{ justfile_directory() }} --specialisation {{ spec_name }} -H {{ host }} {{ NOTIFY }}
+    nh os test {{ justfile_directory() }}  -H {{ host }} \
+      --specialisation {{ spec_name }} {{ arg }} {{ NOTIFY }}
 
-switch host=FLAKE_HOST: pkill git
+switch host=FLAKE_HOST +arg="": pkill git
     printf "{{ BLUE }}  󰔢 SWITCH  {{ NORMAL }} NixOS#{{ host }}\n"
-    nh os switch {{ justfile_directory() }} -H {{ host }} \
+    nh os switch {{ justfile_directory() }} -H {{ host }} {{ arg }}\
       && just notify 0 && just commit {{ host }} || just notify $?
 
-boot host=FLAKE_HOST: git
+boot host=FLAKE_HOST arg="": git
     printf "{{ BLUE }}  󰜉 BOOT    {{ NORMAL }} NixOS#{{ host }}\n"
-    nh os boot {{ justfile_directory() }} -H {{ host }} \
+    nh os boot {{ justfile_directory() }} -H {{ host }} {{ arg }} \
       && just notify 0 && just commit {{ host }} || just notify $?
 
-test host=FLAKE_HOST: pkill git
+test host=FLAKE_HOST +arg="": pkill git
     printf "{{ BLUE }}  󰙨 TEST    {{ NORMAL }} NixOS#{{ host }}\n"
-    nh os test {{ justfile_directory() }} -H {{ host }} {{ NOTIFY }}
+    nh os test {{ justfile_directory() }} -H {{ host }} {{ arg }} \
+      {{ NOTIFY }}
 
-build host=FLAKE_HOST: git
+build host=FLAKE_HOST +arg="": git
     printf "{{ BLUE }}  󰲽 BUILD   {{ NORMAL }} NixOS#{{ host }}\n"
-    nh os build {{ justfile_directory() }} -H {{ host }} {{ NOTIFY }}
+    nh os build {{ justfile_directory() }} -H {{ host }} {{ arg }} \
+      {{ NOTIFY }}
 
-remote action="switch" host="laptop": pkill git
+remote action="switch" host="laptop" +arg="": pkill git
     printf "{{ BLUE }}  󰢹 REMOTE  {{ NORMAL }} NixOS#{{ host }} (Forced offload)\n"
-    nh os build {{ justfile_directory() }} -H {{ host }} -- --max-jobs 0
+    nh os build {{ justfile_directory() }} -H {{ host }} {{ arg }} \
+      -- --max-jobs 0
     just {{ action }} {{ host }}
 
-dry host=FLAKE_HOST: git
+dry host=FLAKE_HOST +arg="": git
     printf "{{ BLUE }}   DRY     {{ NORMAL }} NixOS#{{ host }}\n"
-    nh os switch {{ justfile_directory() }} -H {{ host }} --dry {{ NOTIFY }}
+    nh os switch {{ justfile_directory() }} -H {{ host }} --dry {{ arg }} \
+      {{ NOTIFY }}
 
-legacy host=FLAKE_HOST: pkill git
+legacy host=FLAKE_HOST +arg="": pkill git
     printf "{{ BLUE }}  󰔡 SWITCH  {{ NORMAL }} (L) NixOS#{{ host }}\n"
-    sudo nixos-rebuild switch --flake {{ justfile_directory() }} \
+    sudo nixos-rebuild switch --flake {{ justfile_directory() }} {{ arg }} \
       && just notify 0 && just commit {{ host }} || just notify $?
 
-update host=FLAKE_HOST: pkill git
+update host=FLAKE_HOST +arg="": pkill git
     #!/usr/bin/env bash
     set -euo pipefail
     printf "{{ BLUE }}   UPDATE  {{ NORMAL }} lazy.nvim\n"
@@ -186,7 +191,7 @@ update host=FLAKE_HOST: pkill git
     # nvim --headless +"lua vim.pack.update()" +w +qa &>/dev/null
 
     printf "{{ BLUE }}   UPDATE  {{ NORMAL }} NixOS#{{ host }}\n"
-    if nh os switch {{ justfile_directory() }} --update -H {{ host }}; then
+    if nh os switch {{ justfile_directory() }} --update -H {{ host }} {{ arg }} ; then
       just notify 0
     else
       just notify $?
@@ -198,7 +203,7 @@ update host=FLAKE_HOST: pkill git
     just commit {{ host }}
     just push
 
-rollback gen="":
+rollback gen="" +arg="":
     #!/usr/bin/env bash
     set -euo pipefail
     if [[ -z "{{ gen }}" ]]; then
@@ -207,16 +212,19 @@ rollback gen="":
       nh os rollback {{ NOTIFY }}
     else
       printf "{{ BLUE }}   ROLLBACK{{ NORMAL }} Generation {{ gen }}\n"
-      nh os rollback -t {{ gen }} {{ NOTIFY }}
+      nh os rollback -t {{ gen }} {{ arg }} \
+        {{ NOTIFY }}
     fi
 
-clean keep_num="3":
+clean keep_num="3" +arg="":
     printf "{{ RED }}   CLEAN   {{ NORMAL }} Partial (Keeping: {{ keep_num }})\n"
-    nh clean all --keep {{ keep_num }} {{ NOTIFY }}
+    nh clean all --keep {{ keep_num }} {{ arg }} \
+      {{ NOTIFY }}
 
-nuke:
+nuke +arg="":
     printf "{{ RED }}   CLEAN   {{ NORMAL }} All\n"
-    nh clean all --ask {{ NOTIFY }}
+    nh clean all --ask {{ arg }} \
+      {{ NOTIFY }}
 
 # WARN: Recipes for installing NixOS on a new machine (Pure disko + nixos-anywhere recipes)
 __disko host:
