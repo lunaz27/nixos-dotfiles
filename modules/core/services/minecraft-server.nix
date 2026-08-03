@@ -27,6 +27,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    modules.core.system._unfree-pkgs.list = [
+      "minecraft-server"
+    ];
+
     services.minecraft-server = {
       enable = true;
       package = monifactoryWrapped;
@@ -48,8 +52,12 @@ in
       };
     };
 
-    modules.core.system._unfree-pkgs.list = [
-      "minecraft-server"
-    ];
+    programs.bash = {
+      loginShellInit = /* bash */ ''
+        if [[ "$(tty)" = "/dev/tty1" ]]; then
+          journalctl -fu minecraft-server.service
+        fi
+      '';
+    };
   };
 }
