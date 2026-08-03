@@ -809,7 +809,14 @@ in
               hotkey-overlay-title = "Window Switcher access";
               repeat = false;
             };
-            spawn-sh = "noctalia msg panel-toggle launcher \"/win\"";
+            spawn-sh = "noctalia msg panel-toggle launcher \"/win \"";
+          };
+          "Mod+Alt+C" = {
+            _props = {
+              hotkey-overlay-title = "Calculator access";
+              repeat = false;
+            };
+            spawn-sh = "noctalia msg panel-toggle launcher \"/calc \"";
           };
 
           "Mod+F12" = {
