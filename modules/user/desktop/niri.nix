@@ -26,68 +26,134 @@ in
           on = { };
           slowdown = 1.5;
 
+          # ── Water droplet feel ────────────────────────────────────────────────────────
           window-open = {
-            duration-ms = 260;
-            curve = [
-              "cubic-bezier"
-              0.22
-              1.0
-              0.36
-              1.0
-            ];
+            duration-ms = 180;
+            curve = "ease-out-cubic";
             custom-shader = /* glsl */ ''
               vec4 open_color(vec3 coords_geo, vec3 size_geo) {
                 float p = niri_clamped_progress;
-                float slide_px = (1.0 - p) * 60.0;
-                float slide_geo = slide_px / max(size_geo.x, 1.0);
-                float scale = 0.985 + 0.015 * p;
-
                 vec2 uv = coords_geo.xy;
-                uv -= vec2(0.5, 0.5);
-                uv /= scale;
-                uv += vec2(0.5, 0.5);
-                uv.y -= slide_geo;
 
-                vec3 coords_tex = niri_geo_to_tex * vec3(uv, 1.0);
-                vec4 color = texture2D(niri_tex, coords_tex.st);
+                vec2 impact = vec2(0.35, 0.4);
+                vec2 c = uv - impact;
+                c.x *= size_geo.x / max(size_geo.y, 0.0001);
+                float d = length(c);
+                float front = p * 1.5;
+                float ring1 = sin((d - front) * 80.0) * exp(-abs(d - front) * 6.0);
+                float ring2 = sin((d - front + 0.08) * 80.0) * exp(-abs(d - front + 0.08) * 8.0) * 0.6;
+                float ring3 = sin((d - front + 0.16) * 80.0) * exp(-abs(d - front + 0.16) * 10.0) * 0.4;
+                float ripple = (ring1 + ring2 + ring3) * 0.05 * (1.0 - p * 0.5);
+                vec2 dir = (d > 0.001) ? normalize(c) : vec2(0.0);
+                vec2 distorted = clamp(uv + dir * ripple, vec2(0.0), vec2(1.0));
 
-                color *= p;
-                return color;
+                vec3 tc = niri_geo_to_tex * vec3(distorted, 1.0);
+                vec4 win = texture2D(niri_tex, tc.st);
+
+                float reveal = smoothstep(0.05, -0.02, d - front);
+                vec4 mixed = win * reveal;
+
+                float in_bounds = step(0.0, uv.x) * step(uv.x, 1.0) * step(0.0, uv.y) * step(uv.y, 1.0);
+                return mixed * in_bounds;
               }
             '';
           };
 
           window-close = {
-            duration-ms = 180;
-            curve = [
-              "cubic-bezier"
-              0.32
-              0.0
-              0.67
-              0.0
-            ];
+            duration-ms = 260;
+            curve = "ease-out-cubic";
             custom-shader = /* glsl */ ''
               vec4 close_color(vec3 coords_geo, vec3 size_geo) {
-                float p = niri_clamped_progress;
-                float inv = 1.0 - p;
-                float slide_px = p * 40.0;
-                float slide_geo = slide_px / max(size_geo.x, 1.0);
-                float scale = 1.0 - 0.012 * p;
-
+                float p = 1.0 - niri_clamped_progress;
                 vec2 uv = coords_geo.xy;
-                uv -= vec2(0.5, 0.5);
-                uv /= scale;
-                uv += vec2(0.5, 0.5);
-                uv.y -= slide_geo;
 
-                vec3 coords_tex = niri_geo_to_tex * vec3(uv, 1.0);
-                vec4 color = texture2D(niri_tex, coords_tex.st);
+                vec2 impact = vec2(0.35, 0.4);
+                vec2 c = uv - impact;
+                c.x *= size_geo.x / max(size_geo.y, 0.0001);
+                float d = length(c);
+                float front = p * 1.5;
+                float ring1 = sin((d - front) * 80.0) * exp(-abs(d - front) * 6.0);
+                float ring2 = sin((d - front + 0.08) * 80.0) * exp(-abs(d - front + 0.08) * 8.0) * 0.6;
+                float ring3 = sin((d - front + 0.16) * 80.0) * exp(-abs(d - front + 0.16) * 10.0) * 0.4;
+                float ripple = (ring1 + ring2 + ring3) * 0.05 * (1.0 - p * 0.5);
+                vec2 dir = (d > 0.001) ? normalize(c) : vec2(0.0);
+                vec2 distorted = clamp(uv + dir * ripple, vec2(0.0), vec2(1.0));
 
-                color *= inv;
-                return color;
+                vec3 tc = niri_geo_to_tex * vec3(distorted, 1.0);
+                vec4 win = texture2D(niri_tex, tc.st);
+
+                float reveal = smoothstep(0.05, -0.02, d - front);
+                vec4 mixed = win * reveal;
+
+                float in_bounds = step(0.0, uv.x) * step(uv.x, 1.0) * step(0.0, uv.y) * step(uv.y, 1.0);
+                return mixed * in_bounds;
               }
             '';
           };
+
+          # ── Floaty fell ───────────────────────────────────────────────────────────────
+          # window-open = {
+          #   duration-ms = 260;
+          #   curve = [
+          #     "cubic-bezier"
+          #     0.22
+          #     1.0
+          #     0.36
+          #     1.0
+          #   ];
+          #   custom-shader = /* glsl */ ''
+          #     vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+          #       float p = niri_clamped_progress;
+          #       float slide_px = (1.0 - p) * 60.0;
+          #       float slide_geo = slide_px / max(size_geo.x, 1.0);
+          #       float scale = 0.985 + 0.015 * p;
+          #
+          #       vec2 uv = coords_geo.xy;
+          #       uv -= vec2(0.5, 0.5);
+          #       uv /= scale;
+          #       uv += vec2(0.5, 0.5);
+          #       uv.y -= slide_geo;
+          #
+          #       vec3 coords_tex = niri_geo_to_tex * vec3(uv, 1.0);
+          #       vec4 color = texture2D(niri_tex, coords_tex.st);
+          #
+          #       color *= p;
+          #       return color;
+          #     }
+          #   '';
+          # };
+          #
+          # window-close = {
+          #   duration-ms = 180;
+          #   curve = [
+          #     "cubic-bezier"
+          #     0.32
+          #     0.0
+          #     0.67
+          #     0.0
+          #   ];
+          #   custom-shader = /* glsl */ ''
+          #     vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+          #       float p = niri_clamped_progress;
+          #       float inv = 1.0 - p;
+          #       float slide_px = p * 40.0;
+          #       float slide_geo = slide_px / max(size_geo.x, 1.0);
+          #       float scale = 1.0 - 0.012 * p;
+          #
+          #       vec2 uv = coords_geo.xy;
+          #       uv -= vec2(0.5, 0.5);
+          #       uv /= scale;
+          #       uv += vec2(0.5, 0.5);
+          #       uv.y -= slide_geo;
+          #
+          #       vec3 coords_tex = niri_geo_to_tex * vec3(uv, 1.0);
+          #       vec4 color = texture2D(niri_tex, coords_tex.st);
+          #
+          #       color *= inv;
+          #       return color;
+          #     }
+          #   '';
+          # };
 
           window-resize = {
             spring._props = {

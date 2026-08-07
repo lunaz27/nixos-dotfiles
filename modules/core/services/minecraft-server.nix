@@ -2,11 +2,13 @@
   lib,
   config,
   pkgs,
+  userName,
+  hosts,
   ...
 }:
 
 let
-  monifactoryWrapped = pkgs.writeShellScriptBin "minecraft-server" /* bash */ ''
+  monifactoryWrappedBin = pkgs.writeShellScriptBin "minecraft-server" /* bash */ ''
     export PATH="${pkgs.jdk17_headless}/bin:$PATH"
     echo "-Xms4096M -Xmx8192M -XX:+UseG1GC" > user_jvm_args.txt
     if [ -f "./run.sh" ]; then
@@ -17,7 +19,17 @@ let
     fi
   '';
 
+  backupSrc = "${toString config.services.minecraft-server.dataDir}/";
+
+  ipDest = "${userName}@" + hosts."desktop".ip + ":";
+  backupDest =
+    if !hmCfg.modules.user.desktop.user-dirs.enable then
+      ipDest + toString hmCfg.xdg.userDirs.publicShare + "/"
+    else
+      "${ipDest}/home/${userName}/Public/";
+
   cfg = config.modules.core.services.minecraft-server;
+  hmCfg = config.home-manager.users.${userName}.modules.user;
 in
 {
   options = {
@@ -33,7 +45,7 @@ in
 
     services.minecraft-server = {
       enable = true;
-      package = monifactoryWrapped;
+      package = monifactoryWrappedBin;
       jvmOpts = "";
       # jvmOpts = "-Xms2048M -Xmx2048M";
 
@@ -55,9 +67,34 @@ in
     programs.bash = {
       loginShellInit = /* bash */ ''
         if [[ "$(tty)" = "/dev/tty1" ]]; then
-          journalctl -fu minecraft-server.service
+          ${pkgs.systemd}/bin/journalctl -fu minecraft-server.service
         fi
       '';
+    };
+
+    # TODO: Complete this automatic backup service
+    systemd = {
+      services."minecraft-backup" = {
+        description = "Backup Minecraft Server Data";
+        serviceConfig = {
+          Type = "oneshot";
+          User = "root";
+          ExecStart = /* sh */ ''
+            ${pkgs.rsync}/bin/rsync -az --delete --partial ${backupSrc} ${backupDest}
+          '';
+          RemainAfterExit = true;
+        };
+      };
+
+      timers."minecraft-backup" = {
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          Persistent = true;
+          # Verify by: $ systemd-analyze calendar --iterations 5 "*-*-* 00/1:00:00"
+          OnCalendar = "*-*-* 00/1:00:00";
+          Unit = "minecraft-server";
+        };
+      };
     };
   };
 }
