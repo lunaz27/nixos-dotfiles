@@ -23,7 +23,7 @@ let
 
   ipDest = "${userName}@" + hosts."desktop".ip + ":";
   backupDest =
-    if !hmCfg.modules.user.desktop.user-dirs.enable then
+    if !hmCfg.desktop.user-dirs.enable then
       ipDest + toString hmCfg.xdg.userDirs.publicShare + "/"
     else
       "${ipDest}/home/${userName}/Public/";
@@ -73,28 +73,28 @@ in
     };
 
     # TODO: Complete this automatic backup service
-    systemd = {
-      services."minecraft-backup" = {
-        description = "Backup Minecraft Server Data";
-        serviceConfig = {
-          Type = "oneshot";
-          User = "root";
-          ExecStart = /* sh */ ''
-            ${pkgs.rsync}/bin/rsync -az --delete --partial ${backupSrc} ${backupDest}
-          '';
-          RemainAfterExit = true;
-        };
-      };
-
-      timers."minecraft-backup" = {
-        wantedBy = [ "timers.target" ];
-        timerConfig = {
-          Persistent = true;
-          # Verify by: $ systemd-analyze calendar --iterations 5 "*-*-* 00/1:00:00"
-          OnCalendar = "*-*-* 00/1:00:00";
-          Unit = "minecraft-server";
-        };
-      };
-    };
+    # systemd = {
+    #   services."minecraft-backup" = {
+    #     description = "Backup Minecraft Server Data";
+    #     serviceConfig = {
+    #       Type = "oneshot";
+    #       User = "root";
+    #       ExecStart = /* sh */ ''
+    #         ${pkgs.rsync}/bin/rsync -az --delete --partial ${backupSrc} ${backupDest}
+    #       '';
+    #       RemainAfterExit = true;
+    #     };
+    #   };
+    #
+    #   timers."minecraft-backup" = {
+    #     wantedBy = [ "timers.target" ];
+    #     timerConfig = {
+    #       Persistent = true;
+    #       # Verify by: $ systemd-analyze calendar --iterations 5 "*-*-* 00/1:00:00"
+    #       OnCalendar = "*-*-* 00/1:00:00";
+    #       Unit = "minecraft-server";
+    #     };
+    #   };
+    # };
   };
 }
