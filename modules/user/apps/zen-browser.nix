@@ -269,6 +269,7 @@ in
                   (mkBookmark "Motion Canvas (Docs)" "https://archive.canvascommons.io/")
                   (mkBookmark "My Bach Khoa" "https://mybk.hcmut.edu.vn/my/index.action")
                   (mkBookmark "Noggle" "https://noogle.dev/")
+                  (mkBookmark "Tailscale" "https://console.tailscale.com/admin/machines")
                   (mkBookmark "YouTube" "https://www.youtube.com/")
                   (mkBookmark "Zalo" "https://chat.zalo.me/")
                   (mkBookmark "アニメ" "https://aanime.biz/")
