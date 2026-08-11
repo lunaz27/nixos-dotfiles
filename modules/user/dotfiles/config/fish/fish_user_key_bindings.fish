@@ -1,5 +1,13 @@
 fish_vi_key_bindings
 
+# Normal mode navigation
+bind -M default g,h beginning-of-line
+bind -M default g,l end-of-line
+
+# Visual mode navigation
+bind -M visual g,h beginning-of-line
+bind -M visual g,l end-of-line
+
 # Insert mode navigation
 bind -M insert ! bind_bang
 bind -M insert '$' bind_dollar
@@ -9,7 +17,9 @@ bind yy kill-whole-line yank_to_clipboard yank
 bind Y kill-whole-line yank_to_clipboard yank
 bind y,\$ kill-line yank_to_clipboard yank
 bind y,\^ backward-kill-line yank_to_clipboard yank
+bind -M default y,g,l kill-line yank_to_clipboard yank
 bind y,0 backward-kill-line yank_to_clipboard yank
+bind -M default y,g,h backward-kill-line yank_to_clipboard yank
 bind y,w kill-word yank_to_clipboard yank
 bind y,W kill-bigword yank_to_clipboard yank
 bind y,i,w forward-single-char forward-single-char backward-word kill-word yank_to_clipboard yank
@@ -37,3 +47,9 @@ bind -M visual -m default y kill-selection yank_to_clipboard yank end-selection 
 # Paste from system clipboard (vi mode)
 bind -s p 'set -g fish_cursor_end_mode exclusive' forward-char 'set -g fish_cursor_end_mode inclusive' fish_clipboard_paste
 bind -s P fish_clipboard_paste
+
+# Delete and change integration
+bind -M default d,g,h backward-kill-line
+bind -M default d,g,l kill-line
+bind -M default c,g,h backward-kill-line repaint-mode
+bind -M default c,g,l kill-line repaint-mode
