@@ -14,7 +14,7 @@
     cli = {
       bat.enable = true;
       btop = {
-        enable = false;
+        enable = true;
         gpu = "nvidia";
       };
       cava.enable = false;
