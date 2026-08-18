@@ -34,6 +34,7 @@ in
               j = "down";
               k = "up";
               l = "right";
+              y = "enter";
               u = "pagedown";
               i = "pageup";
               tab = "macro(space space)";
