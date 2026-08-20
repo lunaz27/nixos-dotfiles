@@ -37,12 +37,12 @@ nix flake init -t ~/nixos-dotfiles#c
 nix flake init -t github:lunaz27/nixos-dotfiles#c
 ```
 
-- **Configuration**: `./modules/flake-utils/templates.nix` and `./devshells/*`
+- **Configuration**: `./utils/templates/devshells/*/flake.nix`
 - [Documentation URL](https://flake.parts/options/devshell)
 
 ### Disko
 
-- **Configuration**: `./modules/_disko`
+- **Configuration**: `./utils/templates/disko/*/*.nix`
 - [Documentation URL](https://github.com/nix-community/disko/blob/master/docs/quickstart.md)
 
 ## NixOS Logo
