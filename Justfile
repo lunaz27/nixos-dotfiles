@@ -184,6 +184,8 @@ legacy host=FLAKE_HOST +arg="": pkill git
 update host=FLAKE_HOST +arg="": pkill git
     #!/usr/bin/env bash
     set -euo pipefail
+    just pull
+
     printf "{{ BLUE }}   UPDATE  {{ NORMAL }} lazy.nvim\n"
     nvim --headless "+Lazy! sync" +qa &>/dev/null
 

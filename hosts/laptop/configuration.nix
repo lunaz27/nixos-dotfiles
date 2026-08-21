@@ -164,10 +164,10 @@
 
       server.enable = true;
 
-      travel.enable = true;
+      travel.enable = false;
 
       virtualisation = {
-        enable = true;
+        enable = false;
         features = {
           gui = true;
           windowsSupport = false;

@@ -5,18 +5,23 @@
   ...
 }:
 
+let
+  cfg = config.modules.user.themes.catppuccin;
+in
 {
   options = {
-    modules.user.themes.catppuccin.enable = lib.mkEnableOption "catppuccin colorscheme";
+    modules.user.themes.catppuccin = {
+      enable = lib.mkEnableOption "catppuccin colorscheme";
+    };
   };
 
   imports = [
     inputs.catppuccin.homeModules.catppuccin
   ];
 
-  config = lib.mkIf config.modules.user.themes.catppuccin.enable {
+  config = {
     catppuccin = {
-      enable = true;
+      inherit (cfg) enable;
       autoEnable = false;
 
       flavor = "mocha";
