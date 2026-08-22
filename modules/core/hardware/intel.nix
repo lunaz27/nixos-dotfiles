@@ -26,6 +26,6 @@
       LIBVA_DRIVER_NAME = "iHD";
     };
 
-    services.thermald.enable = true;
+    # services.thermald.enable = true;
   };
 }

@@ -157,7 +157,7 @@
         platform = null;
       };
 
-      server.enable = true;
+      server.enable = false;
       travel.enable = false;
 
       virtualisation = {

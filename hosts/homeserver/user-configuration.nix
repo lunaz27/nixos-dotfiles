@@ -7,7 +7,7 @@
       libre-office.enable = false;
       librewolf.enable = true;
       only-office.enable = false;
-      sioyek.enable = true;
+      sioyek.enable = false;
       zathura.enable = false;
       zen-browser.enable = false;
     };
@@ -40,7 +40,7 @@
       cursor.enable = false;
       fcitx5.enable = false;
       gtk.enable = false;
-      niri.enable = true;
+      niri.enable = false;
       noctalia.enable = false;
       qt.enable = false;
       sway.enable = true;
@@ -57,7 +57,7 @@
     editors = {
       neovim = {
         enable = true;
-        bundleWithLsp = true;
+        bundleWithLsp = false;
       };
     };
 
