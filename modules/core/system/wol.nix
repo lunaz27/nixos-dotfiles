@@ -13,7 +13,7 @@ in
       enable = lib.mkEnableOption "enables wake on lan for a network interface";
       interface = lib.mkOption {
         type = lib.types.str;
-        default = "eno1";
+        default = "enp16s0";
         description = "the network interface to enable wake on lan";
       };
     };

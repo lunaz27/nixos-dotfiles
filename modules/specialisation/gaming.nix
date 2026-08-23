@@ -30,8 +30,6 @@ in
         system.nixos.tags = [ "Gaming" ];
 
         modules.core = {
-          services.minecraft-server.enable = mkForce true;
-
           display = {
             elyprismlauncher.enable = mkForce true;
 

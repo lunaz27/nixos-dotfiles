@@ -130,6 +130,7 @@
             clipboardSharing = true;
           };
         };
+        sunshine.enable = true;
         tailscale.enable = false;
         tty-autologin.enable = false;
       };
@@ -147,8 +148,8 @@
         users.enable = true;
         variables.enable = true;
         wol = {
-          enable = false;
-          interface = "eno1";
+          enable = true;
+          interface = "enp16s0";
         };
         zram.enable = true;
       };
