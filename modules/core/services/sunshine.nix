@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  userName,
   ...
 }:
 
@@ -15,6 +16,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    boot.kernelModules = [ "uinput" ];
+    users.users.${userName}.extraGroups = [
+      "input"
+      "uinput"
+    ];
+
     services.sunshine = {
       enable = true;
       autoStart = true;

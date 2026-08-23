@@ -130,7 +130,7 @@
             clipboardSharing = true;
           };
         };
-        sunshine.enable = false;
+        sunshine.enable = true;
         tailscale.enable = false;
         tty-autologin.enable = false;
       };
