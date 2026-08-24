@@ -150,7 +150,7 @@ switch host=FLAKE_HOST +arg="": pkill git
     nh os switch {{ justfile_directory() }} -H {{ host }} {{ arg }}\
       && just notify 0 && just commit {{ host }} || just notify $?
 
-boot host=FLAKE_HOST arg="": git
+boot host=FLAKE_HOST +arg="": git
     printf "{{ BLUE }}  󰜉 BOOT    {{ NORMAL }} NixOS#{{ host }}\n"
     nh os boot {{ justfile_directory() }} -H {{ host }} {{ arg }} \
       && just notify 0 && just commit {{ host }} || just notify $?
