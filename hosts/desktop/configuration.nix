@@ -50,6 +50,7 @@
         gnome.enable = false;
         kde-plasma.enable = false;
         ly.enable = true;
+        moonlight.enable = false;
         portals.enable = true;
         steam = {
           enable = false;

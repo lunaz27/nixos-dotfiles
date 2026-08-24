@@ -63,6 +63,10 @@ in
       # ── Laptop host (iGPU + Nvidia) ───────────────────────────────────────────────
       (mkIf (cfg.platform == "laptop") {
         modules.core = {
+          display = {
+            moonlight.enable = mkForce true;
+          };
+
           system = {
             kernel-cachyos = {
               enable = mkForce true;
