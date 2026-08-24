@@ -131,7 +131,7 @@
           };
         };
         sunshine.enable = false;
-        tailscale.enable = false;
+        tailscale.enable = true;
         tty-autologin.enable = false;
       };
 

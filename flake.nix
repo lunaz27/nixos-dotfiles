@@ -67,8 +67,8 @@
           arch = "x86_64-linux";
           maxJobs = 32;
           speedFactor = 300;
-          ip = "192.168.1.50";
-          # ip = "100.114.211.115"; # Tailscale
+          # ip = "192.168.1.50";
+          ip = "100.114.211.115"; # Tailscale
           isBuilder = true;
           stateVersion = "26.05";
         };
@@ -77,8 +77,8 @@
           arch = "x86_64-linux";
           maxJobs = 4;
           speedFactor = 100;
-          # ip = "1.2.3.4";
-          ip = "100.77.178.32"; # Tailscale
+          ip = "100.77.178.32";
+          # ip = "100.77.178.32"; # Tailscale
           isBuilder = false;
           stateVersion = "26.05";
         };
@@ -87,8 +87,8 @@
           arch = "x86_64-linux";
           maxJobs = 12;
           speedFactor = 200;
-          ip = "192.168.1.27";
-          # ip = "100.103.120.77"; # Tailscale
+          # ip = "192.168.1.27";
+          ip = "100.103.120.77"; # Tailscale
           isBuilder = true;
           stateVersion = "25.11";
         };

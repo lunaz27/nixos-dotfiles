@@ -29,7 +29,7 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.noctalia = {
-      enable = false;
+      enable = true;
 
       # settings = fromTOML (builtins.readFile ../dotfiles/config/noctalia/noctalia-config.toml);
       settings = {
