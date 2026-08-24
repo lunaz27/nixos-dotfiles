@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  userName,
   ...
 }:
 
@@ -14,6 +15,21 @@
   config = lib.mkIf config.modules.core.display.elyprismlauncher.enable {
     environment.systemPackages = with pkgs; [
       elyprismlauncher
+
+      (pkgs.makeDesktopItem {
+        name = "monifactory";
+        desktopName = "Monifactory";
+        type = "Application";
+        exec = "${pkgs.elyprismlauncher}/bin/elyprismlauncher --launch Monifactory";
+        icon = "/home/${userName}/.local/share/ElyPrismLauncher/instances/Monifactory/icon.png";
+        comment = "Play this game on elyprismlauncher";
+        categories = [
+          "Game"
+          "ActionGame"
+          "AdventureGame"
+          "Simulation"
+        ];
+      })
     ];
 
     nixpkgs.overlays = [

@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   userName,
   ...
 }:
@@ -35,11 +36,19 @@ in
         min_log_level = "info";
       };
 
-      # applications = {
-      #   apps = [
-      #
-      #   ];
-      # };
+      applications = {
+        apps = [
+          {
+            name = "Desktop";
+          }
+
+          {
+            name = "Monifactory";
+            cmd = "${pkgs.elyprismlauncher}/bin/elyprismlauncher --launch Monifactory";
+            image-path = "/home/${userName}/.local/share/ElyPrismLauncher/instances/Monifactory/icon.png";
+          }
+        ];
+      };
     };
   };
 }
