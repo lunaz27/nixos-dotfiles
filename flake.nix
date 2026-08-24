@@ -67,7 +67,7 @@
           arch = "x86_64-linux";
           maxJobs = 32;
           speedFactor = 300;
-          ip = "192.168.1.201";
+          ip = "192.168.1.50";
           # ip = "100.114.211.115"; # Tailscale
           isBuilder = true;
           stateVersion = "26.05";

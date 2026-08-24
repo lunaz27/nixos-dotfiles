@@ -123,6 +123,7 @@
           enable = true;
           mode = "performance";
         };
+        sunshine.enable = false;
         qemu = {
           enable = true;
           features = {

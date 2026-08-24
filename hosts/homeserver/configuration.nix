@@ -118,6 +118,7 @@
           enable = false;
           mode = null;
         };
+        sunshine.enable = false;
         qemu = {
           enable = false;
           features = {

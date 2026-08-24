@@ -130,7 +130,7 @@
             clipboardSharing = true;
           };
         };
-        sunshine.enable = true;
+        sunshine.enable = false;
         tailscale.enable = false;
         tty-autologin.enable = false;
       };
@@ -162,6 +162,9 @@
       };
 
       server.enable = false;
+
+      remote-play.enable = true;
+
       travel.enable = false;
 
       virtualisation = {
