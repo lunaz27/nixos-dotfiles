@@ -13,20 +13,23 @@ let
       laptop = "eDP-1";
     }
     .${hostName};
+
+  cfg = config.modules.user.desktop.noctalia;
 in
 {
   options = {
-    modules.user.desktop.noctalia.enable = lib.mkEnableOption "noctalia-shell rewritten in C++/OpenCL";
+    modules.user.desktop.noctalia = {
+      enable = lib.mkEnableOption "noctalia-shell rewritten in C++/OpenCL";
+    };
   };
 
   imports = [
     inputs.noctalia.homeModules.default
   ];
 
-  config = lib.mkIf config.modules.user.desktop.noctalia.enable {
-
+  config = lib.mkIf cfg.enable {
     programs.noctalia = {
-      enable = true;
+      enable = false;
 
       # settings = fromTOML (builtins.readFile ../dotfiles/config/noctalia/noctalia-config.toml);
       settings = {

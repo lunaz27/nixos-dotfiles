@@ -158,7 +158,10 @@
         platform = null;
       };
 
+      remote-play.enable = false;
+
       server.enable = false;
+
       travel.enable = false;
 
       virtualisation = {

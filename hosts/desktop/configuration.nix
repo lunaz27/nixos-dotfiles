@@ -161,9 +161,9 @@
         platform = "desktop";
       };
 
-      server.enable = false;
-
       remote-play.enable = true;
+
+      server.enable = false;
 
       travel.enable = false;
 

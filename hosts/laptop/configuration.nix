@@ -125,7 +125,7 @@
         };
         sunshine.enable = false;
         qemu = {
-          enable = true;
+          enable = false;
           features = {
             gui = true;
             windowsSupport = false;
@@ -163,16 +163,18 @@
         platform = "laptop";
       };
 
+      remote-play.enable = false;
+
       server.enable = true;
 
-      travel.enable = false;
+      travel.enable = true;
 
       virtualisation = {
         enable = false;
         features = {
           gui = true;
-          windowsSupport = false;
-          usbSharing = false;
+          windowsSupport = true;
+          usbSharing = true;
           clipboardSharing = true;
         };
       };
