@@ -40,6 +40,7 @@ in
         apps = [
           {
             name = "Desktop";
+            image-path = ../../../public/images/logos/nixos-flake.png;
           }
 
           {
