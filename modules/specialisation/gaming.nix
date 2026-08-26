@@ -67,6 +67,11 @@ in
             moonlight.enable = mkForce true;
           };
 
+          services = {
+            # WARN: Temporary solution for running game with server in background
+            minecraft-server.enable = mkForce true;
+          };
+
           system = {
             kernel-cachyos = {
               enable = mkForce true;
