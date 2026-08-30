@@ -47,6 +47,7 @@ in
       enable = true;
       package = monifactoryWrappedBin;
       jvmOpts = "";
+      dataDir = "/var/lib/minecraft";
       # jvmOpts = "-Xms2048M -Xmx2048M";
 
       eula = true;
