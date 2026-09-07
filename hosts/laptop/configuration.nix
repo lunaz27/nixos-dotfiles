@@ -171,7 +171,7 @@
       travel.enable = true;
 
       virtualisation = {
-        enable = false;
+        enable = true;
         features = {
           gui = true;
           windowsSupport = true;
