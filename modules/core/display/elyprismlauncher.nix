@@ -41,7 +41,7 @@
             owner = "ElyPrismLauncher";
             repo = "Launcher";
             tag = oldAttrs.version;
-            hash = "sha256-N5jGq87pLM/F0WYJGWLkAlNBiKXx4AyENYbyS9T5XTM=";
+            hash = "sha256-8bVZfrMsB4tWoi9J9x6JjY+P3Gv8ZGPXRUioxx3nMNo=";
           };
         });
 
