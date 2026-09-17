@@ -761,6 +761,13 @@ in
             };
             spawn-sh = "noctalia msg clipboard-clear";
           };
+          "Mod+Shift+Alt+S" = {
+            _props = {
+              hotkey-overlay-title = "Screenshot Annotation";
+              repeat = false;
+            };
+            spawn-sh = "noctalia msg screenshot-annotate";
+          };
           "Mod+Shift+C" = {
             _props = {
               hotkey-overlay-title = "Calendar";

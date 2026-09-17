@@ -109,7 +109,10 @@
           ignoreLidClosing = false;
         };
         mcontrolcenter.enable = true;
-        minecraft-server.enable = false;
+        minecraft-server = {
+          enable = false;
+          instanceName = "Monifactory";
+        };
         network = {
           enable = true;
           isRouterDnsBroken = false;

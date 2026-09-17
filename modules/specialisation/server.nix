@@ -37,7 +37,10 @@ in
             niri-autologin.enable = mkForce false;
             tty-autologin.enable = mkForce true;
             logind.ignoreLidClosing = mkForce true;
-            minecraft-server.enable = mkForce true;
+            minecraft-server = {
+              enable = mkForce true;
+              instanceName = mkForce "Monifactory";
+            };
             tailscale.enable = mkForce true;
           };
 

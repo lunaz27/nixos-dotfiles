@@ -19,40 +19,12 @@ let
     fi
   '';
 
-  backupSrc = "${toString config.services.minecraft-server.dataDir}/";
-
-  ipDest = "${userName}@" + hosts."desktop".ip + ":";
-  backupDest =
-    if !hmCfg.desktop.user-dirs.enable then
-      ipDest + toString hmCfg.xdg.userDirs.publicShare + "/"
-    else
-      "${ipDest}/home/${userName}/Public/";
-
-  cfg = config.modules.core.services.minecraft-server;
-  hmCfg = config.home-manager.users.${userName}.modules.user;
-in
-{
-  options = {
-    modules.core.services.minecraft-server = {
-      enable = lib.mkEnableOption "nixos native hosting server for minecraft";
-    };
-  };
-
-  config = lib.mkIf cfg.enable {
-    modules.core.system._unfree-pkgs.list = [
-      "minecraft-server"
-    ];
-
-    services.minecraft-server = {
-      enable = true;
+  serverConfigs = {
+    Monifactory = {
       package = monifactoryWrappedBin;
       jvmOpts = "";
-      dataDir = "/var/lib/minecraft";
-      # jvmOpts = "-Xms2048M -Xmx2048M";
+      dataDir = "/var/lib/minecraft/Monifactory";
 
-      eula = true;
-      openFirewall = true;
-      declarative = true;
       serverProperties = {
         server-port = 45000;
         difficulty = 0; # Force peaceful
@@ -63,6 +35,55 @@ in
         allow-flight = true;
         max-tick-time = -1;
       };
+    };
+  };
+  activeConfig = serverConfigs.${cfg.instanceName};
+
+  # backupSrc = "${toString config.services.minecraft-server.dataDir}/";
+  #
+  # ipDest = "${userName}@" + hosts."desktop".ip + ":";
+  # backupDest =
+  #   if !hmCfg.desktop.user-dirs.enable then
+  #     ipDest + toString hmCfg.xdg.userDirs.publicShare + "/"
+  #   else
+  #     "${ipDest}/home/${userName}/Public/";
+
+  cfg = config.modules.core.services.minecraft-server;
+  # hmCfg = config.home-manager.users.${userName}.modules.user;
+in
+{
+  options = {
+    modules.core.services.minecraft-server = {
+      enable = lib.mkEnableOption "nixos native hosting server for minecraft";
+
+      instanceName = lib.mkOption {
+        default = "Monifactory";
+        description = "which server instance to deploy";
+        type = lib.types.enum [
+          "Monifactory"
+        ];
+      };
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+    modules.core.system._unfree-pkgs.list = [
+      "minecraft-server"
+    ];
+
+    services.minecraft-server = {
+      enable = true;
+
+      declarative = true;
+      eula = true;
+      openFirewall = true;
+
+      inherit (activeConfig)
+        package
+        jvmOpts
+        dataDir
+        serverProperties
+        ;
     };
 
     programs.bash = {
