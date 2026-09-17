@@ -69,7 +69,10 @@ in
 
           services = {
             # WARN: Temporary solution for running game with server in background
-            minecraft-server.enable = mkForce true;
+            minecraft-server = {
+              enable = mkForce true;
+              instanceName = mkForce "GTNH";
+            };
           };
 
           system = {

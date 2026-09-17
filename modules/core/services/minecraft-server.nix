@@ -18,6 +18,15 @@ let
       exit 1
     fi
   '';
+  gtnhWrappedBin = pkgs.writeShellScriptBin "minecraft-server" /* bash */ ''
+    export PATH="${pkgs.jdk21_headless}/bin:$PATH"
+    if [ -f "./startserver-java9.sh" ]; then
+      exec ${pkgs.bash}/bin/bash ./startserver-java9.sh
+    else
+      echo "ERROR: startserver-java9.sh not found!"
+      exit 1
+    fi
+  '';
 
   serverConfigs = {
     Monifactory = {
@@ -34,6 +43,24 @@ let
         online-mode = false;
         allow-flight = true;
         max-tick-time = -1;
+      };
+    };
+
+    GTNH = {
+      package = gtnhWrappedBin;
+      jvmOpts = "";
+      dataDir = "/var/lib/minecraft/GTNH";
+
+      serverProperties = {
+        server-port = 50000;
+        difficulty = 3; # Force hard
+        max-players = 2;
+        motd = "NixOS GNTH (1.7.10) server!";
+        allow-cheats = true;
+        online-mode = false;
+        allow-flight = true;
+        max-tick-time = -1;
+        level-type = "RWG";
       };
     };
   };
@@ -61,6 +88,7 @@ in
         description = "which server instance to deploy";
         type = lib.types.enum [
           "Monifactory"
+          "GTNH"
         ];
       };
     };
