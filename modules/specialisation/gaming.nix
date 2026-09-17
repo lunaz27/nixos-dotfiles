@@ -71,7 +71,7 @@ in
             # WARN: Temporary solution for running game with server in background
             minecraft-server = {
               enable = mkForce true;
-              instanceName = mkForce "GTNH";
+              instanceName = mkForce "Monifactory";
             };
           };
 

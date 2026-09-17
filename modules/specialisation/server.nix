@@ -7,6 +7,10 @@
 
 let
   inherit (lib) mkForce;
+  serverInstances = [
+    "Monifactory"
+    "GTNH"
+  ];
 
   cfg = config.modules.specialisation.server;
 in
@@ -18,9 +22,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    specialisation."Server" = {
+    specialisation = lib.genAttrs serverInstances (instanceName: {
       configuration = {
-        system.nixos.tags = [ "Server" ];
+        system.nixos.tags = [ "Server-${instanceName}" ];
 
         modules.core = {
           hardware = {
@@ -120,6 +124,6 @@ in
           };
         };
       };
-    };
+    });
   };
 }
