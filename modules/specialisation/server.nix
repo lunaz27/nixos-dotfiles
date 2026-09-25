@@ -9,7 +9,7 @@ let
   inherit (lib) mkForce;
   serverInstances = [
     "Monifactory"
-    "GTNH"
+    # "GTNH"
   ];
 
   cfg = config.modules.specialisation.server;
