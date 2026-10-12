@@ -41,14 +41,14 @@ in
           tailscale.enable = mkForce true;
         };
 
-        system = {
-          kernel-cachyos = {
-            enable = mkForce true;
-            optimisationLevel = mkForce "zen4";
-          };
-
-          kernel-zen.enable = mkForce false;
-        };
+        #   system = {
+        #     kernel-cachyos = {
+        #       enable = mkForce true;
+        #       optimisationLevel = mkForce "zen4";
+        #     };
+        #
+        #     kernel-zen.enable = mkForce false;
+        #   };
       };
     };
   };

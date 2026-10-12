@@ -33,14 +33,14 @@ in
           display = {
             elyprismlauncher.enable = mkForce true;
 
-            steam = {
-              enable = mkForce true;
-              features = {
-                protonGE = mkForce true;
-                gamemode = mkForce true;
-                mangoHud = mkForce true;
-              };
-            };
+            # steam = {
+            #   enable = mkForce true;
+            #   features = {
+            #     protonGE = mkForce true;
+            #     gamemode = mkForce true;
+            #     mangoHud = mkForce true;
+            #   };
+            # };
           };
 
           services.tailscale.enable = mkForce true;
@@ -49,15 +49,15 @@ in
 
       # ── Desktop host (Full AMD) ───────────────────────────────────────────────────
       (mkIf (cfg.platform == "desktop") {
-        modules.core.system = {
-          kernel-cachyos = {
-            enable = mkForce true;
-            optimisationLevel = mkForce "zen4";
-          };
-
-          kernel-zen.enable = mkForce false;
-          kernel-latest.enable = mkForce false;
-        };
+        # modules.core.system = {
+        #   kernel-cachyos = {
+        #     enable = mkForce true;
+        #     optimisationLevel = mkForce "zen4";
+        #   };
+        #
+        #   kernel-zen.enable = mkForce false;
+        #   kernel-latest.enable = mkForce false;
+        # };
       })
 
       # ── Laptop host (iGPU + Nvidia) ───────────────────────────────────────────────
