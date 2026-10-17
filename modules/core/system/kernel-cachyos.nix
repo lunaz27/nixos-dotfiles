@@ -31,11 +31,16 @@ in
   config = lib.mkIf cfg.enable {
     boot.kernelPackages =
       {
-        "latest" = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
-        "v2" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v2;
-        "v3" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3;
-        "v4" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v4;
-        "zen4" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-zen4;
+        # "latest" = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
+        # "v2" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v2;
+        # "v3" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3;
+        # "v4" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v4;
+        # "zen4" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-zen4;
+        "latest" = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+        "v2" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-x86_64-v2;
+        "v3" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-x86_64-v3;
+        "v4" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-x86_64-v4;
+        "zen4" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-zen4;
       }
       .${cfg.optimisationLevel};
 
@@ -56,11 +61,13 @@ in
       substituters = [
         "https://cache.garnix.io"
         "https://attic.xuyh0120.win/lantian"
+        "https://cache.xinux.uz"
       ];
 
       trusted-public-keys = [
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+        "cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0="
       ];
     };
   };

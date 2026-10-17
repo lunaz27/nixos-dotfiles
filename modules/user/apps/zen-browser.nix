@@ -229,6 +229,7 @@ in
           };
 
           settings = {
+            "zen.updates.show-update-notification" = false;
             "browser.contentblocking.category" = "strict";
             "browser.ctrlTab.sortByRecentlyUsed" = true;
             "extensions.autoDisableScopes" = 0;
