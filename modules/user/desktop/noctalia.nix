@@ -74,6 +74,9 @@ in
         calendar = {
           enabled = true;
           refresh_minutes = 240;
+          reminders = {
+            default_lead_minutes = 65;
+          };
 
           account = {
             "personal_google" = {

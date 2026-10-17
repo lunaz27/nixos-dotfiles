@@ -42,11 +42,16 @@ in
             };
           };
         };
+
+        networking.firewall.trustedInterfaces = [ "virbr0" ];
       }
 
       # ── GUI ───────────────────────────────────────────────────────────────────────
       (lib.mkIf cfg.features.gui {
-        programs.virt-manager.enable = true;
+        programs = {
+          virt-manager.enable = true;
+          dconf.enable = true;
+        };
 
         # environment.systemPackages = with pkgs; [
         #   virt-viewer

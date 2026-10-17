@@ -5,25 +5,21 @@ enabled = true
 order = [ "default" ]
 
     [bar.default]
-    capsule_group = []
     center = [ "workspaces" ]
     contact_shadow = true
-    end = [
-        "tray",
-        "network",
-        "bluetooth",
-        "input_volume",
-        "output_volume",
-        "battery",
-        "brightness",
-        "privacy",
-        "control-center"
-    ]
+    end = [ "tray", "network", "bluetooth", "input_volume", "output_volume", "battery", "brightness", "control-center" ]
     margin_edge = 12
     start = [ "launcher", "clock", "sysmon", "temp", "ram", "cpu", "media" ]
 
+        [[bar.default.capsule_group]]
+        fill = "surface_variant"
+        id = "g1"
+        members = [ "sysmon", "temp", "ram", "cpu" ]
+        opacity = 0.0
+        padding = 6.0
+
 [brightness]
-minimum_brightness = 0.01
+minimum_brightness = 0.0099999997764825821
 
 [calendar]
 enabled = true
@@ -33,12 +29,24 @@ refresh_minutes = 240
     name = "sv_cal"
     type = "google"
 
+    [calendar.reminders]
+    default_lead_minutes = 65
+
 [desktop_widgets]
 enabled = false
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
 
 [dock]
 active_monitor_only = true
-background_opacity = 0.99999997764825821
+background_opacity = 1.0
 cross_axis_padding = 6
 enabled = true
 icon_size = 35
@@ -49,17 +57,17 @@ main_axis_padding = 12
 margin_edge = 12
 
 [keybinds]
-down = [ "Ctrl+j", "Ctrl+n", "Down" ]
+down = [ "Ctrl+j", "Ctrl+n" ]
 left = [ "Ctrl+h", "Left" ]
 right = [ "Ctrl+l", "Right" ]
-up = [ "Ctrl+k", "Ctrl+p", "Up" ]
+up = [ "Ctrl+k", "Ctrl+p" ]
 validate = [ "Ctrl+y", "Return" ]
 
 [location]
 address = "Ho Chi Minh City"
 
 [lockscreen_widgets]
-enabled = true
+enabled = false
 schema_version = 2
 widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
 
@@ -69,14 +77,16 @@ widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
     visible = true
 
     [lockscreen_widgets.widget]
-    widget_order = [ "lockscreen-login-box@HDMI-A-1" ]
+    widget_order = [ "lockscreen-login-box@eDP-1" ]
 
         [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
         box_height = 196.0
         box_width = 810.0
-        cx = 960.0
-        cy = 540.0
+        cx = 720.0
+        cy = 777.0
         output = "HDMI-A-1"
+        placement_height = 0.0
+        placement_width = 0.0
         rotation = 0.0
         type = "login_box"
 
@@ -98,10 +108,12 @@ widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
 
         [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
         box_height = 196.0
-        box_width = 720.0
+        box_width = 810.0
         cx = 960.0
         cy = 540.0
         output = "eDP-1"
+        placement_height = 1080.0
+        placement_width = 1920.0
         rotation = 0.0
         type = "login_box"
 
@@ -120,6 +132,9 @@ widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
             show_session_buttons = true
             show_unlock_hint = true
             show_weather = true
+
+[nightlight]
+temperature_day = 10000
 
 [notification]
 layer = "overlay"
@@ -141,8 +156,8 @@ enabled = []
     name = "official"
 
 [shell]
-avatar_path = "/nix/store/2akwwpy7r3fz6aydddywlx0mdvjffka1-youmu.png"
-corner_radius_scale = 1.75
+avatar_path = "/home/lunaz/nixos-dotfiles/public/images/pfp/youmu.png"
+corner_radius_scale = 1.7500000260770321
 font_family = "Work Sans SemiBold"
 password_style = "random"
 polkit_agent = true
@@ -150,47 +165,45 @@ screen_time_enabled = true
 settings_show_advanced = true
 
     [shell.animation]
-    speed = 0.75
+    speed = 0.7500000111758709
 
     [shell.panel]
     open_near_click_control_center = true
+    session_placement = "centered"
     transparency_mode = "soft"
 
     [shell.screen_corners]
     enabled = true
 
-    [shell.session]
-    grid_columns = 1
+    [[shell.session.actions]]
+    action = "lock"
+    enabled = true
+    shortcut = "1"
+    variant = "primary"
 
-        [[shell.session.actions]]
-        action = "lock"
-        enabled = true
-        shortcut = "1"
-        variant = "primary"
+    [[shell.session.actions]]
+    action = "lock_and_suspend"
+    enabled = true
+    shortcut = "2"
+    variant = "primary"
 
-        [[shell.session.actions]]
-        action = "lock_and_suspend"
-        enabled = true
-        shortcut = "2"
-        variant = "primary"
+    [[shell.session.actions]]
+    action = "logout"
+    enabled = true
+    shortcut = "3"
+    variant = "secondary"
 
-        [[shell.session.actions]]
-        action = "logout"
-        enabled = true
-        shortcut = "3"
-        variant = "secondary"
+    [[shell.session.actions]]
+    action = "reboot"
+    enabled = true
+    shortcut = "4"
+    variant = "destructive"
 
-        [[shell.session.actions]]
-        action = "reboot"
-        enabled = true
-        shortcut = "4"
-        variant = "destructive"
-
-        [[shell.session.actions]]
-        action = "shutdown"
-        enabled = true
-        shortcut = "5"
-        variant = "destructive"
+    [[shell.session.actions]]
+    action = "shutdown"
+    enabled = true
+    shortcut = "5"
+    variant = "destructive"
 
 [theme]
 builtin = "Catppuccin"
@@ -200,7 +213,7 @@ source = "builtin"
 wallpaper_scheme = "m3-content"
 
     [theme.templates]
-    builtin_ids = [ "gtk3", "gtk4", "qt" ]
+    builtin_ids = [ "gtk3", "gtk4", "niri", "qt" ]
     community_ids = [ "zen-browser" ]
 
 [wallpaper]
@@ -208,13 +221,23 @@ directory = "/nix/store/rnzhy0pxkin8lx7sabfrqlc3m46jpk3z-wallpapers"
 transition_on_startup = true
 
     [wallpaper.default]
-    path = "/nix/store/rnzhy0pxkin8lx7sabfrqlc3m46jpk3z-wallpapers/sunsetLandscape.jpg"
+    path = "/nix/store/rnzhy0pxkin8lx7sabfrqlc3m46jpk3z-wallpapers/firewatch.png"
 
     [wallpaper.last]
-    path = "/nix/store/rnzhy0pxkin8lx7sabfrqlc3m46jpk3z-wallpapers/sunsetLandscape.jpg"
+    path = "/nix/store/rnzhy0pxkin8lx7sabfrqlc3m46jpk3z-wallpapers/firewatch.png"
 
     [wallpaper.monitors.HDMI-A-1]
-    path = "/nix/store/rnzhy0pxkin8lx7sabfrqlc3m46jpk3z-wallpapers/sunsetLandscape.jpg"
+    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/sunsetLandscape.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/nix/store/rnzhy0pxkin8lx7sabfrqlc3m46jpk3z-wallpapers/firewatch.png"
+
+[widget.active_window]
+display = "icon_only"
+title_scroll = "on_hover"
+
+[widget.cat]
+type = "noctalia/bongocat:cat"
 
 [widget.control-center]
 custom_image = "/nix/store/r90ixzwialz4qghdmnqf41l71iwc8l1i-nixos-flake.png"
