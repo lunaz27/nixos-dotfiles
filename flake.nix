@@ -5,6 +5,9 @@
     # ── Nixpkgs ───────────────────────────────────────────────────────────────────
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # Latest stable branch (update every 6 months)
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
+
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,6 +60,7 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-stable,
       ...
     }@inputs:
 
@@ -118,6 +122,11 @@
               ;
 
             inherit (hostConfig) stateVersion;
+
+            pkgs-stable = import nixpkgs-stable {
+              system = hostConfig.arch;
+            };
+
             hostName = host;
           };
 

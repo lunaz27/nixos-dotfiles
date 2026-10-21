@@ -7,6 +7,7 @@
   stateVersion,
   userEmail,
   userName,
+  nixpkgs-stable,
   ...
 }:
 
@@ -24,6 +25,7 @@
         stateVersion
         userEmail
         userName
+        nixpkgs-stable
         ;
     };
     backupFileExtension = "bak";

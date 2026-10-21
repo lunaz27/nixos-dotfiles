@@ -7,6 +7,7 @@
   stateVersion,
   userEmail,
   userName,
+  pkgs-stable,
   ...
 }:
 
@@ -24,6 +25,7 @@
         stateVersion
         userEmail
         userName
+        pkgs-stable
         ;
     };
     backupFileExtension = "bak";

@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  pkgs-stable,
   userName,
   ...
 }:
@@ -33,6 +34,11 @@
     ];
 
     nixpkgs.overlays = [
+      # WARN: Temporary fix for launcher not recognizing mesa (amd)
+      (self: super: {
+        inherit (pkgs-stable) mesa;
+      })
+
       (final: prev: {
         elyprismlauncher-unwrapped = prev.prismlauncher-unwrapped.overrideAttrs (oldAttrs: {
           pname = "elyprismlauncher";
