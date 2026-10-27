@@ -7,12 +7,11 @@
 }:
 
 let
-  outputMonitor =
-    {
-      desktop = "HDMI-A-1";
-      laptop = "eDP-1";
-    }
-    .${hostName};
+  hostMonitors = {
+    desktop = "HDMI-A-1";
+    laptop = "eDP-1";
+  };
+  outputMonitor = hostMonitors.${hostName};
 
   cfg = config.modules.user.desktop.noctalia;
 in
@@ -148,7 +147,7 @@ in
               output = "${outputMonitor}";
               rotation = 0;
               settings = {
-                background_color = "surface_variant";
+                background_color = "surface_container";
                 background_opacity = 0.89;
                 background_radius = 12;
                 center_password_text = false;

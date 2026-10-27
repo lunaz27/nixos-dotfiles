@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs-stable,
+  pkgs,
   ...
 }:
 
@@ -18,7 +18,7 @@
       fcitx5 = {
         waylandFrontend = true;
 
-        addons = with pkgs-stable; [
+        addons = with pkgs; [
           fcitx5-gtk
           fcitx5-mozc
           kdePackages.fcitx5-qt
