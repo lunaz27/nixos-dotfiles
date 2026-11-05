@@ -968,6 +968,13 @@ in
             };
             spawn-sh = "noctalia msg nightlight-force-toggle";
           };
+          "Mod+Alt+Tab" = {
+            _props = {
+              hotkey-overlay-title = "Noctalia Window Switcher";
+              repeat = false;
+            };
+            spawn-sh = "noctalia msg window-switcher";
+          };
         };
       };
     };

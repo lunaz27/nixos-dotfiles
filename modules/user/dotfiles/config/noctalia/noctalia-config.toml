@@ -5,7 +5,9 @@ enabled = true
 order = [ "default" ]
 
     [bar.default]
+    border_width = 2.5
     capsule_group = []
+    capsule_opacity = 0.56999998725950718
     center = [ "workspaces" ]
     contact_shadow = true
     end = [
@@ -20,6 +22,7 @@ order = [ "default" ]
         "control-center"
     ]
     margin_edge = 12
+    position = "bottom"
     start = [ "launcher", "clock", "sysmon", "temp", "ram", "cpu", "media" ]
 
 [brightness]
@@ -42,6 +45,7 @@ enabled = false
 [dock]
 active_monitor_only = true
 background_opacity = 0.99999997764825821
+border_width = 2.5
 cross_axis_padding = 6
 enabled = true
 icon_size = 35
@@ -50,6 +54,19 @@ launcher_icon = "list-search"
 launcher_position = "start"
 main_axis_padding = 12
 margin_edge = 12
+position = "left"
+
+[hot_corners]
+enabled = true
+
+    [hot_corners.bottom_left]
+    action = "window_switcher"
+
+    [hot_corners.top_left]
+    action = "launcher"
+
+    [hot_corners.top_right]
+    action = "control_center"
 
 [keybinds]
 down = [ "Ctrl+j", "Ctrl+n", "Down" ]
@@ -139,12 +156,12 @@ enabled = []
 
     [[plugins.source]]
     kind = "git"
-    location = "https://github.com/noctalia-dev/community-plugins"
+    location = ""
     name = "community"
 
     [[plugins.source]]
     kind = "git"
-    location = "https://github.com/noctalia-dev/official-plugins"
+    location = ""
     name = "official"
 
 [shell]

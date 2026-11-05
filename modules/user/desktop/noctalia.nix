@@ -38,8 +38,10 @@ in
           order = [ "default" ];
 
           default = {
+            position = "bottom";
             margin_edge = 12;
             contact_shadow = true;
+            border_width = 2.5;
 
             start = [
               "launcher"
@@ -90,7 +92,9 @@ in
         dock = {
           enabled = true;
 
+          position = "left";
           background_opacity = 1.0;
+          border_width = 2.5;
           active_monitor_only = true;
           cross_axis_padding = 6;
           icon_size = 35;
@@ -99,6 +103,20 @@ in
           launcher_position = "start";
           main_axis_padding = 12;
           margin_edge = 12;
+        };
+
+        hot_corners = {
+          enabled = true;
+
+          bottom_left = {
+            action = "window_switcher";
+          };
+          top_left = {
+            action = "launcher";
+          };
+          top_right = {
+            action = "control_center";
+          };
         };
 
         keybinds = {

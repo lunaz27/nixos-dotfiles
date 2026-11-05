@@ -148,12 +148,12 @@ specialisation spec_name="Virtualisation" host=FLAKE_HOST +arg="": pkill git
 switch host=FLAKE_HOST +arg="": pkill git
     printf "{{ BLUE }}  󰔢 SWITCH  {{ NORMAL }} NixOS#{{ host }}\n"
     nh os switch {{ justfile_directory() }} -H {{ host }} {{ arg }}\
-      && just notify 0 && just commit {{ host }} || just notify $?
+      && just notify 0 && just commit {{ host }} && just push || just notify $?
 
 boot host=FLAKE_HOST +arg="": git
     printf "{{ BLUE }}  󰜉 BOOT    {{ NORMAL }} NixOS#{{ host }}\n"
     nh os boot {{ justfile_directory() }} -H {{ host }} {{ arg }} \
-      && just notify 0 && just commit {{ host }} || just notify $?
+      && just notify 0 && just commit {{ host }} && just push || just notify $?
 
 test host=FLAKE_HOST +arg="": pkill git
     printf "{{ BLUE }}  󰙨 TEST    {{ NORMAL }} NixOS#{{ host }}\n"
