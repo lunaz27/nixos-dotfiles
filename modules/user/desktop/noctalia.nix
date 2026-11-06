@@ -38,7 +38,6 @@ in
           order = [ "default" ];
 
           default = {
-            position = "bottom";
             margin_edge = 12;
             contact_shadow = true;
             border_width = 2.5;
@@ -92,7 +91,6 @@ in
         dock = {
           enabled = true;
 
-          position = "left";
           background_opacity = 1.0;
           border_width = 2.5;
           active_monitor_only = true;
