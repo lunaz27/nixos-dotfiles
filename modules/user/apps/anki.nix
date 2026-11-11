@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  pkgs-stable,
   userEmail,
   ...
 }:
@@ -18,6 +19,7 @@
 
     programs.anki = {
       enable = true;
+      package = pkgs-stable.anki;
       addons = with pkgs.ankiAddons; [
         anki-connect
         review-heatmap

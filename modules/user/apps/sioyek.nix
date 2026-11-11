@@ -35,7 +35,10 @@
         "fit_to_page_width" = "w";
         "fit_to_page_width_smart" = "e";
       };
-      config.startup_commands = [ ];
+      config = {
+        "inverse_search_command" = "nvim --headless -c \"VimtexInverseSearch %2 '%1'\"";
+        startup_commands = [ ];
+      };
     };
   };
 }

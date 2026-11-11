@@ -14,9 +14,9 @@
       enable = true;
 
       pulse.enable = true;
-      jack.enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
+      jack.enable = false; # Use the `pw-jack` wrapper from `pipewire.jack` where necessary instead.
     };
 
     # Remove glitchy audio issue
