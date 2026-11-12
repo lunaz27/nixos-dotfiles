@@ -17,8 +17,6 @@
     environment.systemPackages = with pkgs; [
       libimobiledevice
       ifuse
-
-      appimage-run # Sidestore AppImage
     ];
   };
 }
