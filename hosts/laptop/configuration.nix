@@ -103,7 +103,7 @@
         global-programs.enable = true;
         gvfs.enable = true;
         keyd.enable = true;
-        libimobiledevice.enable = false;
+        libimobiledevice.enable = true;
         logind = {
           enable = true;
           ignoreLidClosing = false;
