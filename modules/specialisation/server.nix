@@ -8,8 +8,8 @@
 let
   inherit (lib) mkForce;
   serverInstances = [
-    "Monifactory"
-    # "GTNH"
+    # "Monifactory"
+    "GTNH"
   ];
 
   cfg = config.modules.specialisation.server;
@@ -43,7 +43,7 @@ in
             logind.ignoreLidClosing = mkForce true;
             minecraft-server = {
               enable = mkForce true;
-              instanceName = mkForce "Monifactory";
+              instanceName = mkForce "GTNH";
             };
             tailscale.enable = mkForce true;
           };
