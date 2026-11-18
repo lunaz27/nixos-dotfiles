@@ -18,11 +18,11 @@
       elyprismlauncher
 
       (pkgs.makeDesktopItem {
-        name = "monifactory";
-        desktopName = "Monifactory";
+        name = "GT New Horizons";
+        desktopName = "GT New Horizons";
         type = "Application";
-        exec = "${pkgs.elyprismlauncher}/bin/elyprismlauncher --launch Monifactory";
-        icon = "/home/${userName}/.local/share/ElyPrismLauncher/instances/Monifactory/icon.png";
+        exec = "${pkgs.elyprismlauncher}/bin/elyprismlauncher --launch \"GT New Horizons\"";
+        icon = "/home/${userName}/.local/share/ElyPrismLauncher/instances/GT New Horizons/gtnh_icon.png";
         comment = "Play this game on elyprismlauncher";
         categories = [
           "Game"
@@ -34,7 +34,7 @@
     ];
 
     nixpkgs.overlays = [
-      # WARN: Temporary fix for launcher not recognizing mesa (amd)
+      # WARN: Temporary fix for launcher not recognizing mesa (AMD)
       # (self: super: {
       #   inherit (pkgs-stable) mesa;
       # })
