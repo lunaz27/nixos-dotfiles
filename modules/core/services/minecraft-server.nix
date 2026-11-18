@@ -60,7 +60,7 @@ let
         online-mode = false;
         allow-flight = true;
         max-tick-time = -1;
-        level-type = "RWG";
+	level-type = "RWG2";
       };
     };
   };
