@@ -129,7 +129,7 @@
           enable = false;
           features = {
             gui = true;
-            windowsSupport = false;
+            windowsSupport = true;
             usbSharing = false;
             clipboardSharing = true;
           };
@@ -161,11 +161,11 @@
 
     specialisation = {
       gaming = {
-        enable = true;
+        enable = false;
         platform = "desktop";
       };
 
-      remote-play.enable = true;
+      remote-play.enable = false;
 
       server.enable = false;
 

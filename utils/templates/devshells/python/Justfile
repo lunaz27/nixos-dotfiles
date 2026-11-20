@@ -2,6 +2,9 @@
 
 set quiet
 
+default:
+    just --list
+
 lint args="" +files=".":
     echo "  LINT    tests/*.py"
     ruff check {{ files }} {{ args }}
