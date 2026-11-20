@@ -161,7 +161,7 @@
 
     specialisation = {
       gaming = {
-        enable = false;
+        enable = true;
         platform = "desktop";
       };
 
@@ -172,7 +172,7 @@
       travel.enable = false;
 
       virtualisation = {
-        enable = false;
+        enable = true;
         features = {
           gui = true;
           windowsSupport = false;
