@@ -109,7 +109,7 @@
         mcontrolcenter.enable = false;
         minecraft-server = {
           enable = false;
-          instanceName = "Monifactory";
+          instanceName = "GTNH";
         };
         network = {
           enable = true;

@@ -21,8 +21,8 @@
         name = "GT New Horizons";
         desktopName = "GT New Horizons";
         type = "Application";
-        exec = "${pkgs.elyprismlauncher}/bin/elyprismlauncher --launch \"GT New Horizons\"";
-        icon = "/home/${userName}/.local/share/ElyPrismLauncher/instances/GT New Horizons/gtnh_icon.png";
+        exec = "${pkgs.elyprismlauncher}/bin/elyprismlauncher --launch \"GT New Horizons 2.9.1\"";
+        icon = "/home/${userName}/.local/share/ElyPrismLauncher/instances/GT New Horizons 2.9.1/gtnh_icon.png";
         comment = "Play this game on elyprismlauncher";
         categories = [
           "Game"
